@@ -1,0 +1,43 @@
+<h1>{{title}}</h1>
+
+<button (click)="showCreateArticle = !showCreateArticle">Crea articolo</button>
+<button (click)="showCreateCart = !showCreateCart">Crea carrello</button>
+
+<div *ngIf="showCreateCart">
+  <h3>Carrello</h3>
+</div>
+
+<form *ngIf="showCreateArticle" (submit)="add()">
+
+  <h3>Aggiungi articolo</h3>
+
+  <div>
+    <label for="code">Codice</label>
+    <input type="text" id="code" name="code" value="" [(ngModel)]="code">
+  </div>
+
+  <div>
+    <label for="name">Nome</label>
+    <input type="text" id="name" name="name" value="" [(ngModel)]="name">
+  </div>
+
+  <div>
+    <label for="qty">Quantità</label>
+    <input type="number" step="1" id="qty" name="qty" value="" [(ngModel)]="qty">
+  </div>
+
+  <button type="submit">Aggiungi</button>
+
+</form>
+
+
+<div class="article-list">
+  <h3>Lista articoli</h3>
+  <div *ngFor="let article of articles">
+    <h5><strong>nome: </strong>{{article.name}}</h5>
+    <p><strong>codice: </strong> {{article.code}}</p>
+    <p><strong>quantità: </strong> {{article.qty}}</p>
+    <button (click)="edit(article)">Modifica</button>
+  </div>
+</div>
+
