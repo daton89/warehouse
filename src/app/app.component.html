@@ -1,43 +1,65 @@
-<h1>{{title}}</h1>
+<div class="container">
 
-<button (click)="showCreateArticle = !showCreateArticle">Crea articolo</button>
-<button (click)="showCreateCart = !showCreateCart">Crea carrello</button>
+  <div class="dashboard">
 
-<div *ngIf="showCreateCart">
-  <h3>Carrello</h3>
+    <div class="articles col-md-6" (click)="goToPage('manage-articles')">Gestione Articoli</div>
+    <div class="cart col-md-6" (click)="goToPage('create-cart')">Carrello</div>
+    <div class="logo">
+      <img src="assets/images/logo.jpg" width="150" height="150" alt="vapers">
+    </div>
+
+  </div>
+
+  <div class="create-cart" *ngIf="currentPage === 'create-cart'">
+    <h2 class="text-center">Carrello</h2>
+  </div>
+
+  <div class="manage-articles jumbotron" *ngIf="currentPage === 'manage-articles'">
+
+    <form (submit)="add()" class="form-inline">
+
+      <h2 class="text-center">Aggiungi articolo</h2>
+
+      <div class="form-group">
+        <label for="code">Codice</label>
+        <input type="text" id="code" name="code" value="" class="form-control" [(ngModel)]="code">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" id="name" name="name" value="" class="form-control" [(ngModel)]="name">
+      </div>
+
+      <div class="form-group">
+        <label for="qty">Quantità</label>
+        <input type="number" step="1" id="qty" name="qty" value="" class="form-control" [(ngModel)]="qty">
+      </div>
+
+      <button type="submit" class="btn btn-default">Aggiungi</button>
+
+    </form>
+
+    <div class="article-list row">
+      <div class="jumbotron">
+        <h2 class="text-center">Lista articoli</h2>
+        <div class="text-center">
+          <span>filtra per nome: <input type="text" placeholder="flavorart"></span>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="col-md-4" *ngFor="let article of articles">
+        <h2><strong>{{article.name}}</strong></h2>
+        <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>
+        <p><strong>Codice: </strong><span>{{article.code}}</span></p>
+
+        <p><button class="btn btn-default" (click)="edit(article)">Change details »</button></p>
+
+      </div>
+
+    </div>
+  </div>
+
+
 </div>
-
-<form *ngIf="showCreateArticle" (submit)="add()">
-
-  <h3>Aggiungi articolo</h3>
-
-  <div>
-    <label for="code">Codice</label>
-    <input type="text" id="code" name="code" value="" [(ngModel)]="code">
-  </div>
-
-  <div>
-    <label for="name">Nome</label>
-    <input type="text" id="name" name="name" value="" [(ngModel)]="name">
-  </div>
-
-  <div>
-    <label for="qty">Quantità</label>
-    <input type="number" step="1" id="qty" name="qty" value="" [(ngModel)]="qty">
-  </div>
-
-  <button type="submit">Aggiungi</button>
-
-</form>
-
-
-<div class="article-list">
-  <h3>Lista articoli</h3>
-  <div *ngFor="let article of articles">
-    <h5><strong>nome: </strong>{{article.name}}</h5>
-    <p><strong>codice: </strong> {{article.code}}</p>
-    <p><strong>quantità: </strong> {{article.qty}}</p>
-    <button (click)="edit(article)">Modifica</button>
-  </div>
-</div>
-

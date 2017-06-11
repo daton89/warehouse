@@ -4,13 +4,14 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "pm2 start server/index.js --watch --name warehouse && pm2 logs",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-electron": "ng build --base-href . && cp src/electron/* dist",
-    "electron": "npm run build-electron && electron dist"
+    "electron": "npm run build-electron && electron dist",
+    "serve": "ng serve"
   },
   "private": true,
   "dependencies": {
@@ -22,8 +23,16 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
     "jsonfile": "^3.0.0",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.5",
+    "morgan": "^1.8.2",
     "pouchdb": "^6.2.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
@@ -34,6 +43,8 @@
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
+    "connect-livereload": "^0.6.0",
+    "cors": "^2.8.3",
     "electron": "^1.6.10",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import jsonfile from 'jsonfile';
 import PouchDB from 'pouchdb';
+import { Http } from '@angular/http';
+import 'rxjs';
 
 const db = new PouchDB('articles');
 
@@ -12,40 +13,43 @@ const db = new PouchDB('articles');
 
 export class AppComponent {
 
-  title = 'vapers app!';
-
+  http
   articles = [];
 
-  showCreateArticle = false;
-  showCreateCart = false;
+  currentPage = 'dashboard';
+
+  pages = ['dashboard', 'manage-articles', 'create-cart']
 
   code = '';
   name = '';
   qty = '';
 
-  constructor() {
+  constructor(http: Http) {
 
-    var that = this;
+    http.get('http://localhost:9000/api/articles')
+      .subscribe(
+      (res) =>  console.log(res),
+      (err) => console.error('errore =>', err),
+      () => console.log('finito')
+      );
 
-    db.allDocs({ include_docs: true, descending: true }, function (err, doc) {
+    // var that = this;
+    // db.allDocs({ include_docs: true, descending: true }, function (err, doc) {
+    //   console.log(doc.rows);
+    //   doc.rows.forEach(d => {
+    //     that.articles.unshift(d.doc);
+    //   });
+    // });
 
-      console.log(doc.rows);
+  }
 
-      doc.rows.forEach(d => {
-        that.articles.unshift(d.doc);
-      });
-
-    });
-
+  goToPage(page) {
+    this.currentPage = page;
   }
 
   add() {
 
-    // const id = parseInt((Math.random() * 10000).toString(), 10);
-    const _id = Date.now().toString();
-
-    const article = {
-      _id,
+    let article = {
       code: this.code,
       name: this.name,
       qty: this.qty
@@ -53,20 +57,17 @@ export class AppComponent {
 
     this.articles.unshift(article);
 
-    db.put(article, function callback(err, result) {
-      if (err) return console.error(err);
+    this.http.post('http://localhost:9000/api/articles', article)
+      .subscribe(
+      (res) =>  console.log(res),
+      (err) => console.error('errore =>', err),
+      () => console.log('finito')
+      );
 
-      console.log('Successfully posted a todo!');
-
-    });
 
     this.code = '';
     this.name = '';
     this.qty = '';
-
-    // jsonfile.writeFile('articles.json', this.articles, function (err) {
-    //   if (err) console.error(err);
-    // })
 
   }
 

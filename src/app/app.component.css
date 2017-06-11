@@ -1,0 +1,23 @@
+
+.articles, .cart {
+    height: 150px;
+    text-align: center;
+    font-size: 36px;
+    line-height: 150px;
+    vertical-align: middle;
+}
+
+.articles {
+    color: blue;
+    background-color: #ff6654;
+}
+
+.cart {
+    color: red;
+    background-color: #006654;
+}
+
+.logo {
+  position: absolute;
+  left: calc(50% - 75px);
+}
