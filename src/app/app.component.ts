@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import PouchDB from 'pouchdb';
 import { Http } from '@angular/http';
 import 'rxjs';
 
-const db = new PouchDB('articles');
+// const db = new PouchDB('articles');
 
 @Component({
   selector: 'app-root',
