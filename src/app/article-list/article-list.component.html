@@ -1,0 +1,28 @@
+<div class="article-list">
+  <div class="jumbotron">
+    <h2 class="text-center">Cerca articoli</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="text-center">
+          <span>codice: <input type="text" placeholder="flavorart"></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="text-center">
+          <span>nome: <input type="text" placeholder="8613854132161"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let article of articles">
+      <h2><strong>{{article.name}}</strong></h2>
+      <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>
+      <p><strong>Codice: </strong><span>{{article.code}}</span></p>
+      <p><button class="btn btn-default" (click)="edit(article)">Change details »</button></p>
+    </div>
+  </div>
+</div>
