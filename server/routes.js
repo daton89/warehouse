@@ -11,7 +11,7 @@ const config = require('./config/environment');
 module.exports = function (app) {
   // Insert routes below
 
-  // app.get('/api/articles', require('./api/article'));
+  app.use('/api/articles', require('./api/article'));
 
   // app.use('/auth', require('./auth'));
 
