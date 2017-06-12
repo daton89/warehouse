@@ -10,6 +10,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ArticleService } from "app/article.service";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ArticleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
