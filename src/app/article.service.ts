@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { Article } from "app/article";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class ArticleService {
 
   baseUri = 'http://localhost:9999/api/articles'
+
+  public collection: Observable<Array<Article>>
 
   constructor(
     private http: Http

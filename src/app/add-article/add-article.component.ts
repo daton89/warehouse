@@ -10,15 +10,15 @@ import { Article } from "app/article";
 })
 export class AddArticleComponent implements OnInit {
 
-  article: Article
+  public article: Article
 
-  @Output() onSave = new EventEmitter<Article>()
+  // @Output() onSave = new EventEmitter<Article>()
 
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute
   ) {
-
+    this.article = new Article()
   }
 
   ngOnInit() {
@@ -27,7 +27,10 @@ export class AddArticleComponent implements OnInit {
 
       if (params.id && params.id !== 'new') {
         this.articleService.getById(params.id)
-          .subscribe(res => this.article = res.json())
+          .subscribe(
+          res => { if (res.json()) this.article = res.json() },
+          err => console.error(err)
+          )
       } else {
         this.article = new Article()
       }
@@ -42,7 +45,7 @@ export class AddArticleComponent implements OnInit {
       this.articleService.update(article)
         .subscribe(
         (res) => {
-          this.onSave.emit(res.json())
+          // this.onSave.emit(res.json())
           this.article = res.json()
         },
         (err) => console.error(err)
@@ -51,7 +54,7 @@ export class AddArticleComponent implements OnInit {
       this.articleService.create(article)
         .subscribe(
         (res) => {
-          this.onSave.emit(res.json())
+          // this.onSave.emit(res.json())
           this.article = res.json()
         },
         (err) => console.error(err)

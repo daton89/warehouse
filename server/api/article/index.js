@@ -7,6 +7,7 @@ var router = require('express').Router();
 router.get('/', controller.read);
 router.get('/code/:code', controller.readByCode);
 router.get('/name/:name', controller.readByName);
+router.get('/:id', controller.readById);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.delete('/:id', controller.remove);

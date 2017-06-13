@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ArticleService } from "app/article.service";
 import { Article } from "app/article";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'article-list',
@@ -9,31 +10,31 @@ import { Article } from "app/article";
 })
 export class ArticleListComponent implements OnInit {
 
-  public articles: Article[]
+  public articles: Observable<Array<Article>>
+
 
   constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
 
-    this.articleService.fetch()
-      .subscribe(
+    this.articleService.fetch().subscribe(
       res => this.articles = res.json()
-      )
+    )
 
   }
 
   searchByCode(code) {
     this.articleService.getByCode(code)
       .subscribe((res) => {
-        this.articles = []
-        if (res.json()) this.articles = [res.json()]
+        // this.articles = []
+        // if (res.json()) this.articles = [res.json()]
       })
   }
 
   searchByName(name) {
     this.articleService.getByName(name)
       .subscribe((res) => {
-        this.articles = res.json()
+        // this.articles = res.json()
       })
   }
 

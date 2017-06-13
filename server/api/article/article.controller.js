@@ -10,6 +10,12 @@ const controller = {
       .catch(err => res.status(500).json(err));
   },
 
+  readById(req, res) {
+    Article.findById(req.params.id)
+      .then(article => res.status(200).json(article))
+      .catch(err => res.status(500).json(err));
+  },
+
   readByName(req, res) {
     Article.find({ name: new RegExp(req.params.name, 'i') })
       .then(article => res.status(200).json(article))
