@@ -41,6 +41,12 @@ module.exports = {
 
     },
 
+    remove(req, res) {
+        Cart.remove({ _id: req.params.id })
+            .then((cart) => res.status(200).json(cart))
+            .catch((err) => res.status(500).json(err))
+    },
+
     checkout(req, res) {
 
         Cart.findById(req.params.id)
@@ -56,6 +62,11 @@ module.exports = {
                 })
 
                 return Promise.all(products)
+                // .then((promises) => {
+
+
+
+                // })
 
             })
             .then((cart) => res.status(200).json(cart))

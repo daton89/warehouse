@@ -12,6 +12,7 @@ module.exports = function (app) {
   // Insert routes below
 
   app.use('/api/articles', require('./api/article'));
+  app.use('/api/carts', require('./api/cart'));
 
   // app.use('/auth', require('./auth'));
 
