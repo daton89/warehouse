@@ -10,15 +10,19 @@ import { Observable } from "rxjs/Observable";
 })
 export class ArticleListComponent implements OnInit {
 
-  public articles: Observable<Array<Article>>
+  public articles: Observable<Article[]>
 
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService) {
+  }
 
   ngOnInit() {
 
     this.articleService.fetch().subscribe(
-      res => this.articles = res.json()
+      res => {
+        this.articleService.collection = res.json()
+        this.articles = this.articleService.collection
+      }
     )
 
   }

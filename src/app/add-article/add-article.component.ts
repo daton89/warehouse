@@ -3,6 +3,7 @@ import { ArticleService } from '../article.service';
 import { ActivatedRoute } from "@angular/router";
 import { Article } from "app/article";
 
+
 @Component({
   selector: 'add-article',
   templateUrl: './add-article.component.html',
@@ -28,7 +29,9 @@ export class AddArticleComponent implements OnInit {
       if (params.id && params.id !== 'new') {
         this.articleService.getById(params.id)
           .subscribe(
-          res => { if (res.json()) this.article = res.json() },
+          res => { if (res.json()){
+            this.article = res.json()
+          }},
           err => console.error(err)
           )
       } else {

@@ -8,7 +8,7 @@ export class ArticleService {
 
   baseUri = 'http://localhost:9999/api/articles'
 
-  public collection: Observable<Array<Article>>
+  public collection: Observable<Article[]>
 
   constructor(
     private http: Http
