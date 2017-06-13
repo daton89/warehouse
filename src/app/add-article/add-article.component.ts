@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../article.service';
+import { ActivatedRoute } from "@angular/router";
+import { Article } from "app/article";
 
 @Component({
   selector: 'add-article',
@@ -8,23 +10,45 @@ import { ArticleService } from '../article.service';
 })
 export class AddArticleComponent implements OnInit {
 
-  article = {}
+  article: Article
 
-  constructor(private articleService: ArticleService) {
-    this.articleService = articleService
-   }
+  constructor(
+    private articleService: ArticleService,
+    private route: ActivatedRoute
+  ) {
 
-  ngOnInit() {
   }
 
-  add($event) {
+  ngOnInit() {
 
-    this.articleService.create(this.article)
-      .subscribe(
-      (res) => console.log(res),
-      (err) => console.error('errore =>', err),
-      () => console.log('finito')
-      );
+    this.route.params.subscribe(params => {
+
+      if (params.id && params.id !== 'new') {
+        this.articleService.getById(params.id)
+          .subscribe(res => this.article = res.json())
+      } else {
+        this.article = new Article()
+      }
+
+    })
+
+  }
+
+  save($event, article) {
+
+    if (article._id) {
+      this.articleService.update(article)
+        .subscribe(
+        (res) => this.article = res.json(),
+        (err) => console.error(err)
+        )
+    } else {
+      this.articleService.create(article)
+        .subscribe(
+        (res) => this.article = res.json(),
+        (err) => console.error(err)
+        );
+    }
 
   }
 

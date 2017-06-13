@@ -4,12 +4,14 @@
     <div class="row">
       <div class="col-md-6">
         <div class="text-center">
-          <span>codice: <input type="text" placeholder="flavorart"></span>
+          <label for="code">codice:</label>
+          <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="8613854132161">
         </div>
       </div>
       <div class="col-md-6">
         <div class="text-center">
-          <span>nome: <input type="text" placeholder="8613854132161"></span>
+          <label for="name">nome:</label>
+          <input type="text" class="form-control" #searchName name="name" (keyup)="searchByName(searchName.value)" placeholder="flavorart">
         </div>
       </div>
     </div>
@@ -18,11 +20,12 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-4" *ngFor="let article of articles">
+    <div class="col-md-4 text-center" *ngFor="let article of articles">
       <h2><strong>{{article.name}}</strong></h2>
       <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>
       <p><strong>Codice: </strong><span>{{article.code}}</span></p>
-      <p><button class="btn btn-default" (click)="edit(article)">Change details »</button></p>
+      <p><button class="btn btn-default" (click)="edit(article)">Modifica »</button></p>
+      <p><button class="btn btn-primary" (click)="addToCart(article)">Carrello »</button></p>
     </div>
   </div>
 </div>

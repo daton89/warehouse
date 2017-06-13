@@ -11,7 +11,7 @@ const config = {
     mongo: {
       uri: 'mongodb://localhost/warehouse-production'
     },
-    port: process.env.PORT || 9000,
+    port: process.env.PORT || 9999,
     seedDB: false
   },
   development: {
@@ -19,15 +19,15 @@ const config = {
     mongo: {
       uri: 'mongodb://localhost/warehouse-development'
     },
-    port: process.env.PORT || 9000,
+    port: process.env.PORT || 9999,
     seedDB: false
   },
   test: {
     root: path.resolve(__dirname, '../../../'),
     mongo: {
-        uri: 'mongodb://localhost/warehouse-test'
+      uri: 'mongodb://localhost/warehouse-test'
     },
-    port: process.env.PORT || 9000,
+    port: process.env.PORT || 9999,
     seedDB: false
   }
 }

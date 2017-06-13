@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from "app/article.service";
+import { Article } from "app/article";
 
 @Component({
   selector: 'article-list',
@@ -8,7 +9,7 @@ import { ArticleService } from "app/article.service";
 })
 export class ArticleListComponent implements OnInit {
 
-  articles = []
+  public articles: Article[]
 
   constructor(private articleService: ArticleService) { }
 
@@ -19,6 +20,21 @@ export class ArticleListComponent implements OnInit {
       res => this.articles = res.json()
       )
 
+  }
+
+  searchByCode(code) {
+    this.articleService.getByCode(code)
+      .subscribe((res) => {
+        this.articles = []
+        if (res.json()) this.articles = [res.json()]
+      })
+  }
+
+  searchByName(name) {
+    this.articleService.getByName(name)
+      .subscribe((res) => {
+        this.articles = res.json()
+      })
   }
 
 }

@@ -4,20 +4,20 @@ const Article = require('./article.model');
 
 const controller = {
 
-  read(req, res){
+  read(req, res) {
     Article.find({})
       .then(articles => res.status(200).json(articles))
       .catch(err => res.status(500).json(err));
   },
 
   readByName(req, res) {
-    Article.find({name: new RegExp(req.params.name, 'i')})
+    Article.find({ name: new RegExp(req.params.name, 'i') })
       .then(article => res.status(200).json(article))
       .catch(err => res.status(500).json(err));
   },
 
-  readByCode(req, res){
-    Article.findOne({code: req.params.code})
+  readByCode(req, res) {
+    Article.findOne({ code: req.params.code })
       .then(article => res.status(200).json(article))
       .catch(err => res.status(500).json(err));
   },
@@ -29,13 +29,13 @@ const controller = {
   },
 
   update(req, res) {
-    Article.update({_id: req.params.id}, req.body)
+    Article.update({ _id: req.params.id }, req.body)
       .then(article => res.status(200).json(article))
       .catch(err => res.status(500).json(err));
   },
 
   remove(req, res) {
-    Article.remove({_id: req.params.id})
+    Article.remove({ _id: req.params.id })
       .then(article => res.status(200).json(article))
       .catch(err => res.status(500).json(err));
   }
