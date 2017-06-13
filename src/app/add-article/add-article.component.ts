@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { ActivatedRoute } from "@angular/router";
 import { Article } from "app/article";
@@ -11,6 +11,8 @@ import { Article } from "app/article";
 export class AddArticleComponent implements OnInit {
 
   article: Article
+
+  @Output() onSave = new EventEmitter<Article>()
 
   constructor(
     private articleService: ArticleService,
@@ -39,13 +41,19 @@ export class AddArticleComponent implements OnInit {
     if (article._id) {
       this.articleService.update(article)
         .subscribe(
-        (res) => this.article = res.json(),
+        (res) => {
+          this.onSave.emit(res.json())
+          this.article = res.json()
+        },
         (err) => console.error(err)
         )
     } else {
       this.articleService.create(article)
         .subscribe(
-        (res) => this.article = res.json(),
+        (res) => {
+          this.onSave.emit(res.json())
+          this.article = res.json()
+        },
         (err) => console.error(err)
         );
     }
