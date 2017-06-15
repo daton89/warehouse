@@ -23,7 +23,7 @@ module.exports = function (app) {
   app.route('/*')
     .get((req, res) => {
       // console.log("serving index starred");
-      res.sendFile(path.resolve(__dirname, '../create/dist/index.html'));
+      res.sendFile(path.resolve(__dirname, '../dist/index.html'));
     });
 
 };
