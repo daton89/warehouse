@@ -23,7 +23,7 @@ const controller = {
   },
 
   readByCode(req, res) {
-    Article.findOne({ code: req.params.code })
+    Article.find({ code: req.params.code })
       .then(article => res.status(200).json(article))
       .catch(err => res.status(500).json(err));
   },
@@ -35,14 +35,15 @@ const controller = {
   },
 
   update(req, res) {
-    Article.update({ _id: req.params.id }, req.body)
+    Article.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
       .then(article => res.status(200).json(article))
       .catch(err => res.status(500).json(err));
   },
 
   remove(req, res) {
-    Article.remove({ _id: req.params.id })
-      .then(article => res.status(200).json(article))
+    Article.findByIdAndRemove(req.params.id)
+      .then(a => Article.find({}))
+      .then(articles => res.status(200).json(articles))
       .catch(err => res.status(500).json(err));
   }
 
