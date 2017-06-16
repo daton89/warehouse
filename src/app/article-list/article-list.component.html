@@ -20,7 +20,7 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-4 text-center" *ngFor="let article of articles">
+    <div class="col-md-4 text-center" *ngFor="let article of articles | async">
       <h2><strong>{{article.name}}</strong></h2>
       <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>
       <p><strong>Codice: </strong><span>{{article.code}}</span></p>
