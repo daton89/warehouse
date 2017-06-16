@@ -1,7 +1,16 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ArticleService } from "app/article.service";
 import { Article } from "app/article";
+import { Subject } from 'rxjs/Subject';
 import { Observable } from "rxjs/Observable";
+// Observable class extensions
+import 'rxjs/add/observable/of';
+
+// Observable operators
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'article-list',
@@ -12,34 +21,27 @@ export class ArticleListComponent implements OnInit {
 
   public articles: Observable<Article[]>
 
-
-  constructor(private articleService: ArticleService) {
-  }
+  constructor(private articleService: ArticleService) {}
 
   ngOnInit() {
 
-    this.articleService.fetch().subscribe(
-      res => {
-        this.articleService.collection = res.json()
-        this.articles = this.articleService.collection
-      }
-    )
+    this.articles = this.articleService.fetch()
 
   }
 
   searchByCode(code) {
-    this.articleService.getByCode(code)
-      .subscribe((res) => {
-        // this.articles = []
-        // if (res.json()) this.articles = [res.json()]
-      })
+    this.articles = this.articleService.getByCode(code)
+      // .subscribe((res) => {
+      //   // this.articles = []
+      //   // if (res.json()) this.articles = [res.json()]
+      // })
   }
 
   searchByName(name) {
-    this.articleService.getByName(name)
-      .subscribe((res) => {
-        // this.articles = res.json()
-      })
+    this.articles = this.articleService.getByName(name)
+      // .subscribe((res) => {
+      //   // this.articles = res.json()
+      // })
   }
 
 }
