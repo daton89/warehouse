@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
 import { Subject } from "rxjs/Subject";
+import _ from 'lodash'
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-
-
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class ArticleService {
@@ -17,7 +17,7 @@ export class ArticleService {
 
   constructor(
     private http: Http
-  ) {}
+  ) { }
 
   fetch(): Observable<Article[]> {
 
@@ -29,9 +29,9 @@ export class ArticleService {
     // .catch(err => Promise.reject(err.message || err));
   }
 
-  getById(id): Observable<Article[]> {
+  getById(id): Observable<Article> {
     return this.http.get(this.baseUri + '/' + id)
-      .map(articles => articles.json() as Article[])
+      .map(articles => articles.json() as Article)
   }
 
   getByCode(code): Observable<Article[]> {
@@ -47,21 +47,19 @@ export class ArticleService {
   create(article) {
 
     return this.http.post(this.baseUri, article)
-      .map(res => {
-
-        let article = res.json() as Article
-
-        this.collection.push(article)
-
-        return article // or this.collection as Article[]
-
-      })
-
+      .map(res => res.json() as Article)
+      .do(article => this.collection.push(article))
   }
 
-  update(article): Observable<Article>{
+  update(article): Observable<Article> {
     return this.http.put(this.baseUri + '/' + article._id, article)
       .map(res => res.json() as Article)
+      .do(article => this.collection.splice(this.collection.findIndex(a => a._id === article._id), 1, article))
+  }
+
+  remove(article): Observable<Article[]> {
+    return this.http.delete(this.baseUri + '/' + article._id)
+      .map(articles => articles.json() as Article[])
   }
 
 }
