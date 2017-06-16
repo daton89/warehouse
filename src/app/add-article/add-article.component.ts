@@ -28,12 +28,12 @@ export class AddArticleComponent implements OnInit {
 
       if (params.id && params.id !== 'new') {
         this.articleService.getById(params.id)
-          .subscribe(
-          res => { if (res.json()){
-            this.article = res.json()
-          }},
-          err => console.error(err)
-          )
+        // .subscribe(
+        // res => { if (res.json()){
+        //   this.article = res.json()
+        // }},
+        // err => console.error(err)
+        // )
       } else {
         this.article = new Article()
       }
@@ -43,26 +43,19 @@ export class AddArticleComponent implements OnInit {
   }
 
   save($event, article) {
-
+    let obs;
     if (article._id) {
-      this.articleService.update(article)
-        .subscribe(
-        (res) => {
-          // this.onSave.emit(res.json())
-          this.article = res.json()
-        },
-        (err) => console.error(err)
-        )
+      obs = this.articleService.update(article)
     } else {
-      this.articleService.create(article)
-        .subscribe(
-        (res) => {
-          // this.onSave.emit(res.json())
-          this.article = res.json()
-        },
-        (err) => console.error(err)
-        );
+      obs = this.articleService.create(article)
     }
+    obs.subscribe(
+      (res) => {
+        // this.onSave.emit(res.json())
+        console.log('res =>', res);
+      },
+      (err) => console.error(err)
+    )
 
   }
 
