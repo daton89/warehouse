@@ -3,6 +3,8 @@ import { ArticleService } from "app/article.service";
 import { Article } from "app/article";
 import { Subject } from 'rxjs/Subject';
 import { Observable } from "rxjs/Observable";
+import _ from 'lodash';
+
 // Observable class extensions
 import 'rxjs/add/observable/of';
 
@@ -21,27 +23,39 @@ export class ArticleListComponent implements OnInit {
 
   public articles: Observable<Article[]>
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
 
     this.articles = this.articleService.fetch()
 
+    this.articles.subscribe(
+      change => console.log('change =>', change)
+    )
+
   }
 
   searchByCode(code) {
     this.articles = this.articleService.getByCode(code)
-      // .subscribe((res) => {
-      //   // this.articles = []
-      //   // if (res.json()) this.articles = [res.json()]
-      // })
+
+    console.log(this.articles);
+    // .subscribe((res) => {
+    //   // this.articles = []
+    //   // if (res.json()) this.articles = [res.json()]
+    // })
   }
 
   searchByName(name) {
     this.articles = this.articleService.getByName(name)
-      // .subscribe((res) => {
-      //   // this.articles = res.json()
-      // })
+    // .subscribe((res) => {
+    //   // this.articles = res.json()
+    // })
+  }
+
+  removeArticle(article) {
+
+    this.articles = this.articleService.remove(article)
+
   }
 
 }

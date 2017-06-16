@@ -28,12 +28,12 @@ export class AddArticleComponent implements OnInit {
 
       if (params.id && params.id !== 'new') {
         this.articleService.getById(params.id)
-        // .subscribe(
-        // res => { if (res.json()){
-        //   this.article = res.json()
-        // }},
-        // err => console.error(err)
-        // )
+          .subscribe(
+          article => {
+            this.article = article
+          },
+          err => console.error(err)
+          )
       } else {
         this.article = new Article()
       }
@@ -51,8 +51,7 @@ export class AddArticleComponent implements OnInit {
     }
     obs.subscribe(
       (res) => {
-        // this.onSave.emit(res.json())
-        console.log('res =>', res);
+        console.log('save =>', res);
       },
       (err) => console.error(err)
     )
