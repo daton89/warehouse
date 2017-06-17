@@ -12,7 +12,7 @@ const cart = new mongoose.Schema({
     createdOn: { type: Date, default: Date.now() },
     updatedOn: { type: Date, default: Date.now() },
     checkout: { type: Boolean, default: false },
-    checkoutOn: { type: Date, default: Date.now() }
+    checkoutOn: { type: Date }
 })
 
 module.exports = mongoose.model('Cart', cart)

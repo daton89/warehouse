@@ -2,6 +2,7 @@
 
 const Cart = require('./cart.model')
 const Article = require('../article/article.model')
+const _ = require('lodash')
 
 module.exports = {
 
@@ -11,6 +12,14 @@ module.exports = {
             .sort('-createdOn')
             .limit(1)
             .populate('products.article')
+            .then(cart => {
+              console.log(cart);
+              if (_.isEmpty(cart)) {
+                return res.status(404).json({})
+              } else {
+                return cart
+              }
+            })
             .then((cart) => res.status(200).json(cart[0]))
             .catch((err) => res.status(500).json(err))
 
@@ -53,15 +62,15 @@ module.exports = {
             .populate('products.article')
             .then((cart) => {
 
-                let products = []
+                let decrementArticles = []
 
                 cart.products.forEach((product) => {
 
-                    products.push(Article.findByIdAndUpdate(product.article._id, { $inc: { qty: -product.qty } }))
+                    decrementArticles.push(Article.findByIdAndUpdate(product.article._id, { $inc: { qty: -product.qty } }))
 
                 })
 
-                return Promise.all(products)
+                return Promise.all(decrementArticles)
                 // .then((promises) => {
 
 
