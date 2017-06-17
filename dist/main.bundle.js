@@ -1,14 +1,14 @@
 webpackJsonp([1,5],{
 
-/***/ 104:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard_component__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_article_add_article_component__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart_component__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard_component__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_article_add_article_component__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cart_cart_component__ = __webpack_require__(65);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -43,11 +43,11 @@ AppRoutingModule = __decorate([
 
 /***/ }),
 
-/***/ 105:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -67,10 +67,10 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* Component */])({
         selector: 'app-root',
-        template: __webpack_require__(173),
-        styles: [__webpack_require__(165)]
+        template: __webpack_require__(175),
+        styles: [__webpack_require__(167)]
     }),
     __metadata("design:paramtypes", [])
 ], AppComponent);
@@ -79,21 +79,23 @@ AppComponent = __decorate([
 
 /***/ }),
 
-/***/ 106:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routing_module__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__article_list_article_list_component__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__add_article_add_article_component__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__cart_cart_component__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dashboard_dashboard_component__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_app_article_service__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cart_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routing_module__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__article_list_article_list_component__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__add_article_add_article_component__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__cart_cart_component__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dashboard_dashboard_component__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_app_article_service__ = __webpack_require__(35);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -112,28 +114,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["b" /* NgModule */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["b" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__article_list_article_list_component__["a" /* ArticleListComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__add_article_add_article_component__["a" /* AddArticleComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__cart_cart_component__["a" /* CartComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__dashboard_dashboard_component__["a" /* DashboardComponent */]
+            __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__article_list_article_list_component__["a" /* ArticleListComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__add_article_add_article_component__["a" /* AddArticleComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__cart_cart_component__["a" /* CartComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__dashboard_dashboard_component__["a" /* DashboardComponent */]
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_4__app_routing_module__["a" /* AppRoutingModule */]
+            __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common__["a" /* CommonModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_6__app_routing_module__["a" /* AppRoutingModule */]
         ],
-        providers: [__WEBPACK_IMPORTED_MODULE_10_app_article_service__["a" /* ArticleService */]],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+        providers: [__WEBPACK_IMPORTED_MODULE_12_app_article_service__["a" /* ArticleService */], __WEBPACK_IMPORTED_MODULE_0__cart_service__["a" /* CartService */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -141,21 +146,21 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 107:
+/***/ 109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_article_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_article_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_observable_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_debounceTime__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_debounceTime__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_distinctUntilChanged__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_distinctUntilChanged___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_distinctUntilChanged__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArticleListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -184,30 +189,36 @@ var ArticleListComponent = (function () {
         this.articles = this.articleService.fetch();
         this.articles.subscribe(function (change) { return console.log('change =>', change); });
     };
+    ArticleListComponent.prototype.addToCart = function (article) {
+    };
     ArticleListComponent.prototype.searchByCode = function (code) {
+        if (!code)
+            this.articles = this.articleService.fetch();
         this.articles = this.articleService.getByCode(code);
-        console.log(this.articles);
         // .subscribe((res) => {
         //   // this.articles = []
         //   // if (res.json()) this.articles = [res.json()]
         // })
     };
     ArticleListComponent.prototype.searchByName = function (name) {
+        if (!name)
+            this.articles = this.articleService.fetch();
         this.articles = this.articleService.getByName(name);
         // .subscribe((res) => {
         //   // this.articles = res.json()
         // })
     };
     ArticleListComponent.prototype.removeArticle = function (article) {
-        this.articles = this.articleService.remove(article);
+        if (confirm('Sei sicuro di voler eliminare questo articolo?'))
+            this.articles = this.articleService.remove(article);
     };
     return ArticleListComponent;
 }());
 ArticleListComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* Component */])({
         selector: 'article-list',
-        template: __webpack_require__(174),
-        styles: [__webpack_require__(166)]
+        template: __webpack_require__(176),
+        styles: [__webpack_require__(168)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_app_article_service__["a" /* ArticleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_app_article_service__["a" /* ArticleService */]) === "function" && _a || Object])
 ], ArticleListComponent);
@@ -217,7 +228,7 @@ var _a;
 
 /***/ }),
 
-/***/ 108:
+/***/ 110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -232,7 +243,7 @@ var Article = (function () {
 
 /***/ }),
 
-/***/ 109:
+/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -246,42 +257,6 @@ var environment = {
     production: false
 };
 //# sourceMappingURL=environment.js.map
-
-/***/ }),
-
-/***/ 164:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(13)(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 165:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(13)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".articles, .cart {\n    height: 150px;\n    text-align: center;\n    font-size: 36px;\n    line-height: 150px;\n    vertical-align: middle;\n}\n\n.articles {\n    color: blue;\n    background-color: #ff6654;\n}\n\n.cart {\n    color: red;\n    background-color: #006654;\n}\n\n.logo {\n  position: absolute;\n  left: calc(50% - 75px);\n}\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
 
 /***/ }),
 
@@ -311,7 +286,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".articles, .cart {\n    height: 150px;\n    text-align: center;\n    font-size: 36px;\n    line-height: 150px;\n    vertical-align: middle;\n}\n\n.articles {\n    color: blue;\n    background-color: #ff6654;\n}\n\n.cart {\n    color: red;\n    background-color: #006654;\n}\n\n.logo {\n  position: absolute;\n  left: calc(50% - 75px);\n}\n", ""]);
 
 // exports
 
@@ -339,60 +314,96 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 172:
-/***/ (function(module, exports) {
+/***/ 169:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"manage-articles jumbotron\">\n\n    <br>\n\n    <h2 class=\"text-center\">Aggiungi articolo</h2>\n\n    <form (submit)=\"save($event, article)\">\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Nome</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" [(ngModel)]=\"article.name\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"code\">Codice</label>\n                    <input type=\"text\" id=\"code\" name=\"code\" class=\"form-control\" [(ngModel)]=\"article.code\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"qty\">Quantità</label>\n                    <input type=\"number\" step=\"1\" id=\"qty\" name=\"qty\" class=\"form-control\" [(ngModel)]=\"article.qty\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"category\">Categoria</label>\n                    <select class=\"form-control\" id=\"category\" name=\"category\" [(ngModel)]=\"article.category\">\n                <option value=\"Liquido\">Liquido</option>\n                <option value=\"Hardware\">Hardware</option>\n                </select>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"type\">Tipo</label>\n                    <select name=\"type\" id=\"type\" class=\"form-control\" name=\"type\" [(ngModel)]=\"article.type\">\n                <option value=\"50/50\">50/50</option>\n                <option value=\"Atomizzatore\">Atomizzatore</option>\n                <option value=\"Aroma\">Aroma</option>\n                <option value=\"Box\">Box</option>\n                <option value=\"Filo\">Filo</option>\n                <option value=\"Pronto\">Pronto</option>\n            </select>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"company\">Azienda</label>\n                    <input type=\"text\" class=\"form-control\" id=\"company\" name=\"company\" [(ngModel)]=\"article.company\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"nicotine\">Nicotina</label>\n                    <input type=\"text\" class=\"form-control\" id=\"nicotine\" name=\"nicotine\" [(ngModel)]=\"article.nicotine\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"size\">Formato</label>\n                    <input type=\"text\" class=\"form-control\" id=\"size\" name=\"size\" [(ngModel)]=\"article.size\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"price\">Prezzo</label>\n                    <input type=\"text\" class=\"form-control\" id=\"price\" name=\"price\" [(ngModel)]=\"article.price\">\n                </div>\n            </div>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-success\">Salva</button>\n\n    </form>\n\n</div>"
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 173:
-/***/ (function(module, exports) {
+/***/ 170:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"container\">\n\n  <div class=\"dashboard\">\n\n    <div class=\"articles col-md-6\">\n      <a routerLink=\"/articles/new\" routerLinkActive=\"active\">Aggiungi Articolo</a>\n    </div>\n    <div class=\"cart col-md-6\">\n      <a routerLink=\"/cart\" routerLinkActive=\"active\">Carrello</a>\n    </div>\n    <div class=\"logo\">\n      <img src=\"assets/images/logo.jpg\" width=\"150\" height=\"150\" alt=\"vapers\">\n    </div>\n  </div>\n\n  <router-outlet></router-outlet>\n\n  <article-list></article-list>\n\n</div>\n"
+exports = module.exports = __webpack_require__(13)(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 
 /***/ 174:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"article-list\">\n  <div class=\"jumbotron\">\n    <h2 class=\"text-center\">Cerca articoli</h2>\n    <div class=\"row\">\n      <div class=\"col-md-6\">\n        <div class=\"text-center\">\n          <label for=\"code\">codice:</label>\n          <input type=\"text\" class=\"form-control\" #searchCode name=\"code\" (keyup)=\"searchByCode(searchCode.value)\" placeholder=\"8613854132161\">\n        </div>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"text-center\">\n          <label for=\"name\">nome:</label>\n          <input type=\"text\" class=\"form-control\" #searchName name=\"name\" (keyup)=\"searchByName(searchName.value)\" placeholder=\"flavorart\">\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <hr>\n\n  <div class=\"row\">\n    <div class=\"col-md-4 text-center\" *ngFor=\"let article of articles | async\">\n      <h2><strong>{{article.name}}</strong></h2>\n      <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>\n      <p><strong>Codice: </strong><span>{{article.code}}</span></p>\n      <p><button class=\"btn btn-primary\" (click)=\"addToCart(article)\">Carrello »</button></p>\n      <p><button class=\"btn btn-default\" [routerLink]=\"['/articles', article._id]\">Modifica »</button></p>\n      <p><button class=\"btn btn-danger\" (click)=\"removeArticle(article)\">Elimina  »</button></p>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"manage-articles jumbotron\">\n\n    <br>\n\n    <h2 class=\"text-center\">Aggiungi articolo</h2>\n\n    <form (submit)=\"save($event, article)\">\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Nome</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" [(ngModel)]=\"article.name\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"code\">Codice</label>\n                    <input type=\"text\" id=\"code\" name=\"code\" class=\"form-control\" [(ngModel)]=\"article.code\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"qty\">Quantità</label>\n                    <input type=\"number\" step=\"1\" id=\"qty\" name=\"qty\" class=\"form-control\" [(ngModel)]=\"article.qty\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"category\">Categoria</label>\n                    <select class=\"form-control\" id=\"category\" name=\"category\" [(ngModel)]=\"article.category\">\n                <option value=\"Liquido\">Liquido</option>\n                <option value=\"Hardware\">Hardware</option>\n                </select>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"type\">Tipo</label>\n                    <select name=\"type\" id=\"type\" class=\"form-control\" name=\"type\" [(ngModel)]=\"article.type\">\n                <option value=\"50/50\">50/50</option>\n                <option value=\"Atomizzatore\">Atomizzatore</option>\n                <option value=\"Aroma\">Aroma</option>\n                <option value=\"Box\">Box</option>\n                <option value=\"Filo\">Filo</option>\n                <option value=\"Pronto\">Pronto</option>\n            </select>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"company\">Azienda</label>\n                    <input type=\"text\" class=\"form-control\" id=\"company\" name=\"company\" [(ngModel)]=\"article.company\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"nicotine\">Nicotina</label>\n                    <input type=\"text\" class=\"form-control\" id=\"nicotine\" name=\"nicotine\" [(ngModel)]=\"article.nicotine\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"size\">Formato</label>\n                    <input type=\"text\" class=\"form-control\" id=\"size\" name=\"size\" [(ngModel)]=\"article.size\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"price\">Prezzo</label>\n                    <input type=\"text\" class=\"form-control\" id=\"price\" name=\"price\" [(ngModel)]=\"article.price\">\n                </div>\n            </div>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-success\">Salva</button>\n\n    </form>\n\n</div>"
 
 /***/ }),
 
 /***/ 175:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"create-cart text-center\">\n  <h2 class=\"text-center\">Carrello</h2>\n</div>\n\n"
+module.exports = "<div class=\"container\">\n\n  <div class=\"dashboard\">\n\n    <div class=\"articles col-md-6\">\n      <a routerLink=\"/articles/new\" routerLinkActive=\"active\">Aggiungi Articolo</a>\n    </div>\n    <div class=\"cart col-md-6\">\n      <a routerLink=\"/cart\" routerLinkActive=\"active\">Carrello</a>\n    </div>\n    <div class=\"logo\">\n      <img src=\"assets/images/logo.jpg\" width=\"150\" height=\"150\" alt=\"vapers\">\n    </div>\n  </div>\n\n  <router-outlet></router-outlet>\n\n  <article-list></article-list>\n\n</div>\n"
 
 /***/ }),
 
 /***/ 176:
 /***/ (function(module, exports) {
 
+module.exports = "<div class=\"article-list\">\n  <div class=\"jumbotron\">\n    <h2 class=\"text-center\">Cerca articoli</h2>\n    <div class=\"row\">\n      <div class=\"col-md-6\">\n        <div class=\"text-center\">\n          <label for=\"code\">codice:</label>\n          <input type=\"text\" class=\"form-control\" #searchCode name=\"code\" (keyup)=\"searchByCode(searchCode.value)\" placeholder=\"8613854132161\">\n        </div>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"text-center\">\n          <label for=\"name\">nome:</label>\n          <input type=\"text\" class=\"form-control\" #searchName name=\"name\" (keyup)=\"searchByName(searchName.value)\" placeholder=\"flavorart\">\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <hr>\n\n  <div class=\"row\">\n    <div class=\"col-md-4 text-center\" *ngFor=\"let article of articles | async\">\n      <h2><strong>{{article.name}}</strong></h2>\n      <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>\n      <p><strong>Codice: </strong><span>{{article.code}}</span></p>\n      <button class=\"btn btn-primary\" (click)=\"addToCart(article)\">Carrello »</button>\n      <button class=\"btn btn-default\" [routerLink]=\"['/articles', article._id]\">Modifica »</button>\n      <button class=\"btn btn-danger\" (click)=\"removeArticle(article)\">Elimina  »</button>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ 177:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"create-cart text-center\">\n  <h2 class=\"text-center\">Carrello</h2>\n\n  <div class=\"cart-list\">\n\n    <div class=\"row\" *ngFor=\"let product of products | async\">\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <label for=\"article\">Articolo</label>\n          <p>{{product.article.name}}</p>\n        </div>\n      </div>\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <label for=\"code\">Quantità</label>\n          <input type=\"text\" id=\"qty\" name=\"qty\" class=\"form-control\" [(ngModel)]=\"product.qty\">\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n"
+
+/***/ }),
+
+/***/ 178:
+/***/ (function(module, exports) {
+
 module.exports = "\n<h1>this is dashboard</h1>\n"
 
 /***/ }),
 
-/***/ 222:
+/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(95);
+module.exports = __webpack_require__(97);
 
 
 /***/ }),
 
-/***/ 33:
+/***/ 35:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ArticleService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -462,14 +473,14 @@ var _a;
 
 /***/ }),
 
-/***/ 62:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__article_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_article__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__article_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_article__ = __webpack_require__(110);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddArticleComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -486,9 +497,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var AddArticleComponent = (function () {
     // @Output() onSave = new EventEmitter<Article>()
-    function AddArticleComponent(articleService, route) {
+    function AddArticleComponent(articleService, route, router) {
         this.articleService = articleService;
         this.route = route;
+        this.router = router;
         this.article = new __WEBPACK_IMPORTED_MODULE_3_app_article__["a" /* Article */]();
     }
     AddArticleComponent.prototype.ngOnInit = function () {
@@ -506,6 +518,7 @@ var AddArticleComponent = (function () {
         });
     };
     AddArticleComponent.prototype.save = function ($event, article) {
+        var _this = this;
         var obs;
         if (article._id) {
             obs = this.articleService.update(article);
@@ -514,30 +527,92 @@ var AddArticleComponent = (function () {
             obs = this.articleService.create(article);
         }
         obs.subscribe(function (res) {
-            console.log('save =>', res);
+            _this.router.navigateByUrl('/dashboard');
         }, function (err) { return console.error(err); });
     };
     return AddArticleComponent;
 }());
 AddArticleComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* Component */])({
         selector: 'add-article',
-        template: __webpack_require__(172),
-        styles: [__webpack_require__(164)]
+        template: __webpack_require__(174),
+        styles: [__webpack_require__(166)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__article_service__["a" /* ArticleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__article_service__["a" /* ArticleService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__article_service__["a" /* ArticleService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__article_service__["a" /* ArticleService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _c || Object])
 ], AddArticleComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=add-article.component.js.map
 
 /***/ }),
 
-/***/ 63:
+/***/ 64:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CartService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var CartService = (function () {
+    function CartService(http) {
+        this.http = http;
+        this.baseUri = 'http://localhost:9999/api/carts';
+    }
+    CartService.prototype.fetch = function () {
+        var _this = this;
+        return this.http.get(this.baseUri)
+            .map(function (res) { return res.json(); })
+            .do(function (cart) { return _this.cart = cart; })
+            .map(function (cart) { return _this.products = cart.products; });
+    };
+    CartService.prototype.getById = function (id) {
+        var _this = this;
+        return this.http.get(this.baseUri + "/" + id)
+            .map(function (res) { return res.json(); })
+            .do(function (cart) { return _this.products = cart.products; });
+    };
+    CartService.prototype.add = function (product) {
+        var _this = this;
+        var obs;
+        if (this.cart._id) {
+            obs = this.http.put(this.baseUri + "/" + this.cart._id, product);
+        }
+        else {
+            obs = this.http.post(this.baseUri, product);
+        }
+        return obs
+            .map(function (res) { return res.json(); })
+            .do(function (cart) { return _this.products = cart.products; });
+    };
+    return CartService;
+}());
+CartService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], CartService);
+
+var _a;
+//# sourceMappingURL=cart.service.js.map
+
+/***/ }),
+
+/***/ 65:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cart_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CartComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -549,31 +624,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CartComponent = (function () {
-    function CartComponent() {
+    function CartComponent(cartService) {
+        this.cartService = cartService;
     }
     CartComponent.prototype.ngOnInit = function () {
+        this.products = this.cartService.fetch();
+        // .do(cart => this.products = cart.products as Observable<Product[]>)
+        console.log('p=>', this.products);
     };
     return CartComponent;
 }());
 CartComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_13" /* Component */])({
         selector: 'cart',
-        template: __webpack_require__(175),
-        styles: [__webpack_require__(167)]
+        template: __webpack_require__(177),
+        styles: [__webpack_require__(169)]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__cart_service__["a" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__cart_service__["a" /* CartService */]) === "function" && _a || Object])
 ], CartComponent);
 
+var _a;
 //# sourceMappingURL=cart.component.js.map
 
 /***/ }),
 
-/***/ 64:
+/***/ 66:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -593,10 +674,10 @@ var DashboardComponent = (function () {
     return DashboardComponent;
 }());
 DashboardComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* Component */])({
         selector: 'dashboard',
-        template: __webpack_require__(176),
-        styles: [__webpack_require__(168)]
+        template: __webpack_require__(178),
+        styles: [__webpack_require__(170)]
     }),
     __metadata("design:paramtypes", [])
 ], DashboardComponent);
@@ -605,7 +686,7 @@ DashboardComponent = __decorate([
 
 /***/ }),
 
-/***/ 94:
+/***/ 96:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -614,20 +695,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 94;
+webpackEmptyContext.id = 96;
 
 
 /***/ }),
 
-/***/ 95:
+/***/ 97:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(111);
 
 
 
@@ -640,5 +721,5 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ })
 
-},[222]);
+},[224]);
 //# sourceMappingURL=main.bundle.js.map
