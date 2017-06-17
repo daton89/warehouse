@@ -35,10 +35,16 @@ export class ArticleListComponent implements OnInit {
 
   }
 
+  addToCart(article){
+
+  }
+
   searchByCode(code) {
+
+    if (!code) this.articles = this.articleService.fetch()
+
     this.articles = this.articleService.getByCode(code)
 
-    console.log(this.articles);
     // .subscribe((res) => {
     //   // this.articles = []
     //   // if (res.json()) this.articles = [res.json()]
@@ -46,7 +52,11 @@ export class ArticleListComponent implements OnInit {
   }
 
   searchByName(name) {
+
+    if (!name) this.articles = this.articleService.fetch()
+
     this.articles = this.articleService.getByName(name)
+
     // .subscribe((res) => {
     //   // this.articles = res.json()
     // })
@@ -54,7 +64,8 @@ export class ArticleListComponent implements OnInit {
 
   removeArticle(article) {
 
-    this.articles = this.articleService.remove(article)
+    if (confirm('Sei sicuro di voler eliminare questo articolo?'))
+      this.articles = this.articleService.remove(article)
 
   }
 

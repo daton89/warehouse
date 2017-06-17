@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs/Observable';
+import { Product } from './../product';
+import { CartService } from './../cart.service';
+import { Cart } from './../cart';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  public products: Observable<Product[]>
+  public cart: Cart
+
+  constructor(public cartService: CartService) { }
 
   ngOnInit() {
+
+    this.products = this.cartService.fetch()
+      // .do(cart => this.products = cart.products as Observable<Product[]>)
+      console.log('p=>', this.products);
+
   }
+
+
 
 }

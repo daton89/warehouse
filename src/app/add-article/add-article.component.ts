@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { ArticleService } from '../article.service';
-import { ActivatedRoute } from "@angular/router";
 import { Article } from "app/article";
 
 
@@ -17,7 +17,8 @@ export class AddArticleComponent implements OnInit {
 
   constructor(
     private articleService: ArticleService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.article = new Article()
   }
@@ -51,7 +52,7 @@ export class AddArticleComponent implements OnInit {
     }
     obs.subscribe(
       (res) => {
-        console.log('save =>', res);
+        this.router.navigateByUrl('/dashboard')
       },
       (err) => console.error(err)
     )

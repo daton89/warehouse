@@ -1,8 +1,9 @@
+import { Product } from './product';
 
 export class Cart {
 
   public _id: string
-  public products: Array<any>
+  public products: Array<Product>
   public price: number
   public createdOn: Date
   public updatedOn: Date

@@ -1,4 +1,23 @@
 <div class="create-cart text-center">
   <h2 class="text-center">Carrello</h2>
-</div>
 
+  <div class="cart-list">
+
+    <div class="row" *ngFor="let product of products | async">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="article">Articolo</label>
+          <p>{{product.article.name}}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="code">Quantità</label>
+          <input type="text" id="qty" name="qty" class="form-control" [(ngModel)]="product.qty">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
