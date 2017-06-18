@@ -22,28 +22,29 @@ export class CartComponent implements OnInit {
 
   }
 
-  checkout(){
+  checkout() {
     this.cartService.checkout()
       .subscribe(
-        res => {
-          console.log('checkout =>', res)
-          window.location.reload()
-        }
+      res => {
+        console.log('checkout =>', res)
+        window.location.reload()
+      }
       )
   }
 
   remove(product) {
-    this.cartService.remove(product)
-      .subscribe(
-      res => {
-        console.log('remove=>', res)
-      },
-      err => console.error('remove=>', err)
-      )
+    if (confirm('Sei sicuro di voler rimuovere questo articolo dal carrello?'))
+      this.cartService.remove(product)
+        .subscribe(
+        res => {
+          console.log('remove=>', res)
+        },
+        err => console.error('remove=>', err)
+        )
   }
 
   delete() {
-    if (confirm('Sei sicuro di voler rimuovere questo articolo dal carrello?'))
+    if (confirm('Sei sicuro di voler eliminare questo carrello?'))
       this.cartService.delete()
         .subscribe(
         res => {
