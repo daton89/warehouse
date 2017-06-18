@@ -61,7 +61,25 @@ export class CartService {
 
   }
 
-  checkout(){
+  updateQuantity(product) {
+
+    return this.http.put(`${this.baseUri}/set-quantity/${this.cart._id}`, product)
+      .map(res => res.json() as Cart)
+      .do(cart => this.cart = cart)
+      .do(cart => {
+
+        let diff = _.differenceBy(cart.products, this.products, 'qty')
+
+        diff.forEach(p => {
+
+          this.products.push(p)
+
+        })
+
+      })
+  }
+
+  checkout() {
     return this.http.get(`${this.baseUri}/checkout/${this.cart._id}`)
       .map(cart => this.cart = cart.json() as Cart)
   }

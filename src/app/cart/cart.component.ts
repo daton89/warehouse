@@ -22,6 +22,17 @@ export class CartComponent implements OnInit {
 
   }
 
+  updateQuantity(product) {
+
+    this.cartService.updateQuantity(product)
+      .subscribe(
+        res => {
+          console.log('upQty =>', res)
+        }
+      )
+
+  }
+
   checkout() {
     this.cartService.checkout()
       .subscribe(

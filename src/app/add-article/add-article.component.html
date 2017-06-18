@@ -1,49 +1,55 @@
 <div class="manage-articles jumbotron">
 
-    <br>
+  <br>
 
-    <h2 class="text-center">Aggiungi articolo</h2>
+  <h2 class="text-center">Aggiungi articolo</h2>
 
-    <form (submit)="save($event, article)">
+  <form (submit)="save($event, article)">
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" class="form-control" [(ngModel)]="article.name">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="code">Codice</label>
-                    <input type="text" id="code" name="code" class="form-control" [(ngModel)]="article.code">
-                </div>
-            </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" id="name" name="name" class="form-control" [(ngModel)]="article.name">
         </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="code">Codice</label>
+          <input type="text" id="code" name="code" class="form-control" [(ngModel)]="article.code">
+        </div>
+      </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="qty">Quantità</label>
-                    <input type="number" step="1" id="qty" name="qty" class="form-control" step="1" [(ngModel)]="article.qty">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="category">Categoria</label>
-                    <select class="form-control" id="category" name="category" [(ngModel)]="article.category">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="company">Azienda</label>
+          <input type="text" class="form-control" id="company" name="company" [(ngModel)]="article.company">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="qty">Quantità</label>
+          <input type="number" step="1" id="qty" name="qty" class="form-control" step="1" [(ngModel)]="article.qty">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="category">Categoria</label>
+          <select class="form-control" id="category" name="category" [(ngModel)]="article.category">
                 <option value="Liquido">Liquido</option>
                 <option value="Hardware">Hardware</option>
                 </select>
-                </div>
-            </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="type">Tipo</label>
-                    <select name="type" id="type" class="form-control" name="type" [(ngModel)]="article.type">
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="type">Tipo</label>
+          <select name="type" id="type" class="form-control" name="type" [(ngModel)]="article.type">
                 <option value="50/50">50/50</option>
                 <option value="Atomizzatore">Atomizzatore</option>
                 <option value="Aroma">Aroma</option>
@@ -51,39 +57,42 @@
                 <option value="Filo">Filo</option>
                 <option value="Pronto">Pronto</option>
             </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="company">Azienda</label>
-                    <input type="text" class="form-control" id="company" name="company" [(ngModel)]="article.company">
-                </div>
-            </div>
         </div>
+      </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="nicotine">Nicotina</label>
-                    <input type="text" class="form-control" id="nicotine" name="nicotine" [(ngModel)]="article.nicotine">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="size">Formato</label>
-                    <input type="text" class="form-control" id="size" name="size" [(ngModel)]="article.size">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="price">Prezzo</label>
-                    <input type="number" class="form-control" id="price" name="price" step="0.01" [(ngModel)]="article.price">
-                </div>
-            </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="nicotine">Nicotina</label>
+          <input type="text" class="form-control" id="nicotine" name="nicotine" [(ngModel)]="article.nicotine">
         </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="size">Formato</label>
+          <input type="text" class="form-control" id="size" name="size" [(ngModel)]="article.size">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="price">Prezzo</label>
+          <input type="number" class="form-control" id="price" name="price" step="0.01" [(ngModel)]="article.price">
+        </div>
+      </div>
+    </div>
 
-        <button type="submit" class="btn btn-success">Salva</button>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="description">Decrizione</label>
+          <textarea id="description" rows="5" class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
 
-    </form>
+    <button type="submit" class="btn btn-success">Salva</button>
+
+  </form>
 
 </div>
