@@ -44,11 +44,13 @@ export class ArticleListComponent implements OnInit {
   }
 
   addToCart(article){
+
     this.cartService.add(article)
       .subscribe(
         cart => {
 
-          if (this.router.url === '/cart') {
+
+          if (this.router.url === '/cart' && cart.products.length === 1) {
 
             window.location.reload()
 
