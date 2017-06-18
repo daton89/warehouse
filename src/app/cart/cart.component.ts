@@ -19,11 +19,42 @@ export class CartComponent implements OnInit {
   ngOnInit() {
 
     this.products = this.cartService.fetch()
-      // .do(cart => this.products = cart.products as Observable<Product[]>)
-      console.log('p=>', this.products);
 
   }
 
+  checkout(){
+    this.cartService.checkout()
+      .subscribe(
+        res => {
+          console.log('checkout =>', res)
+          window.location.reload()
+        }
+      )
+  }
 
+  remove(product) {
+    this.cartService.remove(product)
+      .subscribe(
+      res => {
+        console.log('remove=>', res)
+      },
+      err => console.error('remove=>', err)
+      )
+  }
+
+  delete() {
+    if (confirm('Sei sicuro di voler rimuovere questo articolo dal carrello?'))
+      this.cartService.delete()
+        .subscribe(
+        res => {
+
+          console.log('delete=>', res)
+
+          window.location.reload()
+
+        },
+        err => console.error('delete=>', err)
+        )
+  }
 
 }

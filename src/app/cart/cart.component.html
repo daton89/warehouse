@@ -1,5 +1,10 @@
 <div class="create-cart text-center">
-  <h2 class="text-center">Carrello</h2>
+
+  <h2 class="text-center" *ngIf="!products">il carrello è vuoto</h2>
+
+  <h2 class="text-center" *ngIf="products">Carrello</h2>
+
+  <button class="btn btn-danger" *ngIf="products" (click)="delete()">Elimina carrello</button>
 
   <div class="cart-list">
 
@@ -7,17 +12,23 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="article">Articolo</label>
-          <p>{{product.article.name}}</p>
+          <p>{{product.article.name}} - {{product.article.code}}</p>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label for="code">Quantità</label>
-          <input type="text" id="qty" name="qty" class="form-control" [(ngModel)]="product.qty">
+          <input type="number" id="qty" name="qty" class="form-control" [(ngModel)]="product.qty">
         </div>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-danger" (click)="remove(product)">rimuovi X</button>
       </div>
     </div>
 
   </div>
+
+  <button class="btn btn-success" (click)="checkout()">checkout</button>
+
 
 </div>
