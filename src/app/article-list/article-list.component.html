@@ -4,14 +4,14 @@
     <div class="row">
       <div class="col-md-6">
         <div class="text-center">
-          <label for="code">codice:</label>
-          <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="8613854132161">
+          <label for="name">nome:</label>
+          <input type="text" class="form-control" #searchName name="name" (keyup)="searchByName(searchName.value)" placeholder="flavorart">
         </div>
       </div>
       <div class="col-md-6">
         <div class="text-center">
-          <label for="name">nome:</label>
-          <input type="text" class="form-control" #searchName name="name" (keyup)="searchByName(searchName.value)" placeholder="flavorart">
+          <label for="code">codice:</label>
+          <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="8613854132161">
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
       <h2><strong>{{article.name}}</strong></h2>
       <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>
       <p><strong>Codice: </strong><span>{{article.code}}</span></p>
-      <button class="btn btn-primary" (click)="addToCart(article)">Carrello »</button>
+      <button class="btn btn-primary" (click)="addToCart({article: article, qty: 1})">Carrello »</button>
       <button class="btn btn-default" [routerLink]="['/articles', article._id]">Modifica »</button>
       <button class="btn btn-danger" (click)="removeArticle(article)">Elimina  »</button>
     </div>

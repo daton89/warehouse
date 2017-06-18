@@ -1,3 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { CartService } from './../cart.service';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ArticleService } from "app/article.service";
 import { Article } from "app/article";
@@ -23,7 +26,12 @@ export class ArticleListComponent implements OnInit {
 
   public articles: Observable<Article[]>
 
-  constructor(private articleService: ArticleService) { }
+  constructor(
+    private articleService: ArticleService,
+    public cartService: CartService,
+    public router: Router,
+    public route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
 
@@ -36,12 +44,30 @@ export class ArticleListComponent implements OnInit {
   }
 
   addToCart(article){
+    this.cartService.add(article)
+      .subscribe(
+        cart => {
 
+          if (this.router.url === '/cart') {
+
+            window.location.reload()
+
+          } else {
+
+            this.router.navigateByUrl('/cart')
+
+          }
+
+        }
+      )
   }
 
   searchByCode(code) {
 
-    if (!code) this.articles = this.articleService.fetch()
+    if (!code) {
+      this.articles = this.articleService.fetch()
+      return
+    }
 
     this.articles = this.articleService.getByCode(code)
 
@@ -53,7 +79,10 @@ export class ArticleListComponent implements OnInit {
 
   searchByName(name) {
 
-    if (!name) this.articles = this.articleService.fetch()
+    if (!name) {
+      this.articles = this.articleService.fetch()
+      return
+    }
 
     this.articles = this.articleService.getByName(name)
 
