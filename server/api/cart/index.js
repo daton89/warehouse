@@ -6,9 +6,10 @@ var router = require('express').Router()
 
 router.get('/', controller.read)
 router.get('/:id', controller.readById)
-router.get('/checkout', controller.read)
+router.get('/checkout/:id', controller.checkout)
 router.post('/', controller.create)
-router.put('/', controller.update)
-router.delete('/', controller.remove)
+router.put('/push/:id', controller.push)
+router.put('/pull/:id', controller.pull)
+router.delete('/:id', controller.delete)
 
 module.exports = router
