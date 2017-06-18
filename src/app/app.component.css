@@ -1,4 +1,5 @@
-.articles, .cart {
+.articles,
+.cart {
     height: 150px;
     text-align: center;
     font-size: 36px;
@@ -7,16 +8,22 @@
 }
 
 .articles {
-    color: blue;
-    background-color: #ff6654;
+    background-color: gray;
+}
+
+.articles a {
+    color: #000;
 }
 
 .cart {
-    color: red;
-    background-color: #006654;
+    background-color: gray;
+}
+
+.cart a {
+    color: #000;
 }
 
 .logo {
-  position: absolute;
-  left: calc(50% - 75px);
+    position: absolute;
+    left: calc(50% - 75px);
 }
