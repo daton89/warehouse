@@ -37,7 +37,7 @@ module.exports = {
 
     Cart.create({
       products: [{ article: req.body.article, qty: req.body.qty }],
-      price: req.body.article.price
+      price: parseFloat(req.body.article.price).toFixed(2)
     })
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
@@ -48,7 +48,7 @@ module.exports = {
 
     let article = req.body.article
     let qty = req.body.qty
-    let price = parseInt(article.price * qty, 10)
+    let price = parseFloat(article.price * qty).toFixed(2)
 
     let upsert = {
       $push: {
@@ -59,7 +59,8 @@ module.exports = {
       },
       $inc: {
         price: price
-      }
+      },
+      updatedOn: Date.now()
     }
 
     Cart.findByIdAndUpdate(
@@ -91,8 +92,9 @@ module.exports = {
           }
         },
         $inc: {
-          price: -parseInt(product.article.price * product.qty, 10)
-        }
+          price: -parseFloat(product.article.price * product.qty).toFixed(2)
+        },
+        updatedOn: Date.now()
       }, { new: true })
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
@@ -106,7 +108,12 @@ module.exports = {
 
   checkout(req, res) {
 
-    Cart.findById(req.params.id)
+    Cart.findByIdAndUpdate(
+      req.params.id,
+      {
+        checkout: true,
+        checkoutOn: Date.now()
+      })
       .populate('products.article')
       .then((cart) => {
 
@@ -121,7 +128,6 @@ module.exports = {
         return Promise.all(decrementArticles)
 
       })
-      .then()
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
 
