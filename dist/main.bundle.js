@@ -201,7 +201,7 @@ var ArticleListComponent = (function () {
         var _this = this;
         this.cartService.add(article)
             .subscribe(function (cart) {
-            if (_this.router.url === '/cart') {
+            if (_this.router.url === '/cart' && cart.products.length === 1) {
                 window.location.reload();
             }
             else {
@@ -305,7 +305,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".manage-articles {\n  margin-top: 100px;\n}\n", ""]);
 
 // exports
 
@@ -323,7 +323,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, ".articles, .cart {\n    height: 150px;\n    text-align: center;\n    font-size: 36px;\n    line-height: 150px;\n    vertical-align: middle;\n}\n\n.articles {\n    color: blue;\n    background-color: #ff6654;\n}\n\n.cart {\n    color: red;\n    background-color: #006654;\n}\n\n.logo {\n  position: absolute;\n  left: calc(50% - 75px);\n}\n", ""]);
+exports.push([module.i, ".articles,\n.cart {\n    height: 150px;\n    text-align: center;\n    font-size: 36px;\n    line-height: 150px;\n    vertical-align: middle;\n}\n\n.articles {\n    background-color: gray;\n}\n\n.articles a {\n    color: #000;\n}\n\n.cart {\n    background-color: gray;\n}\n\n.cart a {\n    color: #000;\n}\n\n.logo {\n    position: absolute;\n    left: calc(50% - 75px);\n}\n", ""]);
 
 // exports
 
@@ -359,7 +359,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, ".create-cart {\n  /*position: relative;*/\n  top: 20px;\n  margin: 30px;\n}\n", ""]);
+exports.push([module.i, ".create-cart {\n  margin-top: 100px;\n}\n", ""]);
 
 // exports
 
@@ -390,7 +390,7 @@ module.exports = module.exports.toString();
 /***/ 176:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"manage-articles jumbotron\">\n\n    <br>\n\n    <h2 class=\"text-center\">Aggiungi articolo</h2>\n\n    <form (submit)=\"save($event, article)\">\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Nome</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" [(ngModel)]=\"article.name\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"code\">Codice</label>\n                    <input type=\"text\" id=\"code\" name=\"code\" class=\"form-control\" [(ngModel)]=\"article.code\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"qty\">Quantità</label>\n                    <input type=\"number\" step=\"1\" id=\"qty\" name=\"qty\" class=\"form-control\" [(ngModel)]=\"article.qty\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"category\">Categoria</label>\n                    <select class=\"form-control\" id=\"category\" name=\"category\" [(ngModel)]=\"article.category\">\n                <option value=\"Liquido\">Liquido</option>\n                <option value=\"Hardware\">Hardware</option>\n                </select>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"type\">Tipo</label>\n                    <select name=\"type\" id=\"type\" class=\"form-control\" name=\"type\" [(ngModel)]=\"article.type\">\n                <option value=\"50/50\">50/50</option>\n                <option value=\"Atomizzatore\">Atomizzatore</option>\n                <option value=\"Aroma\">Aroma</option>\n                <option value=\"Box\">Box</option>\n                <option value=\"Filo\">Filo</option>\n                <option value=\"Pronto\">Pronto</option>\n            </select>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"company\">Azienda</label>\n                    <input type=\"text\" class=\"form-control\" id=\"company\" name=\"company\" [(ngModel)]=\"article.company\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"nicotine\">Nicotina</label>\n                    <input type=\"text\" class=\"form-control\" id=\"nicotine\" name=\"nicotine\" [(ngModel)]=\"article.nicotine\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"size\">Formato</label>\n                    <input type=\"text\" class=\"form-control\" id=\"size\" name=\"size\" [(ngModel)]=\"article.size\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"price\">Prezzo</label>\n                    <input type=\"number\" class=\"form-control\" id=\"price\" name=\"price\" [(ngModel)]=\"article.price\">\n                </div>\n            </div>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-success\">Salva</button>\n\n    </form>\n\n</div>\n"
+module.exports = "<div class=\"manage-articles jumbotron\">\n\n    <br>\n\n    <h2 class=\"text-center\">Aggiungi articolo</h2>\n\n    <form (submit)=\"save($event, article)\">\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"name\">Nome</label>\n                    <input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" [(ngModel)]=\"article.name\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"code\">Codice</label>\n                    <input type=\"text\" id=\"code\" name=\"code\" class=\"form-control\" [(ngModel)]=\"article.code\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"qty\">Quantità</label>\n                    <input type=\"number\" step=\"1\" id=\"qty\" name=\"qty\" class=\"form-control\" step=\"1\" [(ngModel)]=\"article.qty\">\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"category\">Categoria</label>\n                    <select class=\"form-control\" id=\"category\" name=\"category\" [(ngModel)]=\"article.category\">\n                <option value=\"Liquido\">Liquido</option>\n                <option value=\"Hardware\">Hardware</option>\n                </select>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"type\">Tipo</label>\n                    <select name=\"type\" id=\"type\" class=\"form-control\" name=\"type\" [(ngModel)]=\"article.type\">\n                <option value=\"50/50\">50/50</option>\n                <option value=\"Atomizzatore\">Atomizzatore</option>\n                <option value=\"Aroma\">Aroma</option>\n                <option value=\"Box\">Box</option>\n                <option value=\"Filo\">Filo</option>\n                <option value=\"Pronto\">Pronto</option>\n            </select>\n                </div>\n            </div>\n            <div class=\"col-md-6\">\n                <div class=\"form-group\">\n                    <label for=\"company\">Azienda</label>\n                    <input type=\"text\" class=\"form-control\" id=\"company\" name=\"company\" [(ngModel)]=\"article.company\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"nicotine\">Nicotina</label>\n                    <input type=\"text\" class=\"form-control\" id=\"nicotine\" name=\"nicotine\" [(ngModel)]=\"article.nicotine\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"size\">Formato</label>\n                    <input type=\"text\" class=\"form-control\" id=\"size\" name=\"size\" [(ngModel)]=\"article.size\">\n                </div>\n            </div>\n            <div class=\"col-md-4\">\n                <div class=\"form-group\">\n                    <label for=\"price\">Prezzo</label>\n                    <input type=\"number\" class=\"form-control\" id=\"price\" name=\"price\" step=\"0.01\" [(ngModel)]=\"article.price\">\n                </div>\n            </div>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-success\">Salva</button>\n\n    </form>\n\n</div>\n"
 
 /***/ }),
 
@@ -411,7 +411,7 @@ module.exports = "<div class=\"article-list\">\n  <div class=\"jumbotron\">\n   
 /***/ 179:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"create-cart text-center\">\n\n  <h2 class=\"text-center\" *ngIf=\"!products\">il carrello è vuoto</h2>\n\n  <h2 class=\"text-center\" *ngIf=\"products\">Carrello</h2>\n\n  <button class=\"btn btn-danger\" *ngIf=\"products\" (click)=\"delete()\">Elimina carrello</button>\n\n  <div class=\"cart-list\">\n\n    <div class=\"row\" *ngFor=\"let product of products | async\">\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <label for=\"article\">Articolo</label>\n          <p>{{product.article.name}} - {{product.article.code}}</p>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"form-group\">\n          <label for=\"code\">Quantità</label>\n          <input type=\"number\" id=\"qty\" name=\"qty\" class=\"form-control\" [(ngModel)]=\"product.qty\">\n        </div>\n      </div>\n      <div class=\"col-md-2\">\n        <button class=\"btn btn-danger\" (click)=\"remove(product)\">rimuovi X</button>\n      </div>\n    </div>\n\n  </div>\n\n  <button class=\"btn btn-success\" (click)=\"checkout()\">checkout</button>\n\n\n</div>\n"
+module.exports = "<div class=\"create-cart text-center jumbotron\">\n\n  <h2 class=\"text-center\" *ngIf=\"!products\">il carrello è vuoto</h2>\n\n  <h2 class=\"text-center\" *ngIf=\"products\">Carrello</h2>\n\n  <button class=\"btn btn-danger\" *ngIf=\"products\" (click)=\"delete()\">Elimina carrello</button>\n\n  <div class=\"cart-list\">\n\n    <div class=\"row\" *ngFor=\"let product of products | async\">\n      <div class=\"col-md-6\">\n        <div class=\"form-group\">\n          <label for=\"article\">Articolo</label>\n          <p>{{product.article.name}} - {{product.article.code}}</p>\n        </div>\n      </div>\n      <div class=\"col-md-4\">\n        <div class=\"form-group\">\n          <label for=\"code\">Quantità</label>\n          <input type=\"number\" id=\"qty\" name=\"qty\" class=\"form-control\" [(ngModel)]=\"product.qty\">\n        </div>\n      </div>\n      <div class=\"col-md-2\">\n        <button class=\"btn btn-danger\" (click)=\"remove(product)\">rimuovi X</button>\n      </div>\n    </div>\n\n  </div>\n\n  <button class=\"btn btn-success\" (click)=\"checkout()\">checkout</button>\n\n</div>\n"
 
 /***/ }),
 
@@ -716,13 +716,14 @@ var CartComponent = (function () {
         });
     };
     CartComponent.prototype.remove = function (product) {
-        this.cartService.remove(product)
-            .subscribe(function (res) {
-            console.log('remove=>', res);
-        }, function (err) { return console.error('remove=>', err); });
+        if (confirm('Sei sicuro di voler rimuovere questo articolo dal carrello?'))
+            this.cartService.remove(product)
+                .subscribe(function (res) {
+                console.log('remove=>', res);
+            }, function (err) { return console.error('remove=>', err); });
     };
     CartComponent.prototype.delete = function () {
-        if (confirm('Sei sicuro di voler rimuovere questo articolo dal carrello?'))
+        if (confirm('Sei sicuro di voler eliminare questo carrello?'))
             this.cartService.delete()
                 .subscribe(function (res) {
                 console.log('delete=>', res);
