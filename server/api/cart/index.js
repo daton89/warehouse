@@ -10,6 +10,7 @@ router.get('/checkout/:id', controller.checkout)
 router.post('/', controller.create)
 router.put('/push/:id', controller.push)
 router.put('/pull/:id', controller.pull)
+router.put('/set-quantity/:id', controller.setQuantity)
 router.delete('/:id', controller.delete)
 
 module.exports = router

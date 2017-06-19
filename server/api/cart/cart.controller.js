@@ -106,6 +106,21 @@ module.exports = {
       .catch((err) => res.status(500).json(err))
   },
 
+  setQuantity(req, res) {
+    Cart.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        'products._id': req.body._id
+      },
+      {
+        $set: { 'products.$.qty': req.body.qty }
+      },
+      { new: true })
+      .populate('products.article')
+      .then((cart) => res.status(200).json(cart))
+      .catch((err) => res.status(500).json(err))
+  },
+
   checkout(req, res) {
 
     Cart.findByIdAndUpdate(
