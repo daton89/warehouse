@@ -24,6 +24,7 @@
       <h2><strong>{{article.name}}</strong></h2>
       <p><strong>Quantità: </strong><span>{{article.qty}}</span></p>
       <p><strong>Codice: </strong><span>{{article.code}}</span></p>
+      <p><strong>Descrizione: </strong>{{article.description}}</p>
       <button class="btn btn-primary" (click)="addToCart({article: article, qty: 1})">Carrello »</button>
       <button class="btn btn-default" [routerLink]="['/articles', article._id]">Modifica »</button>
       <button class="btn btn-danger" (click)="removeArticle(article)">Elimina  »</button>
