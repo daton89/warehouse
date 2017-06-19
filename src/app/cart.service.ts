@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Product } from './product';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
@@ -8,7 +9,7 @@ import _ from 'lodash';
 @Injectable()
 export class CartService {
 
-  public baseUri = 'http://localhost:9999/api/carts'
+  public baseUri = `${environment.apiUrl}/api/carts`
 
   public products: Product[]
   public cart: Cart

@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Article } from './article';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
@@ -11,7 +12,7 @@ import 'rxjs/add/operator/do';
 @Injectable()
 export class ArticleService {
 
-  baseUri = 'http://localhost:9999/api/articles'
+  baseUri = `${environment.apiUrl}/api/articles`
 
   collection: Article[]
 
