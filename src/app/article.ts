@@ -10,6 +10,7 @@ export class Article {
     public price: number
     public nicotine?: string
     public size?: string
+    public description?: string
     constructor(
     ) {
 
