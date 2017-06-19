@@ -3,6 +3,8 @@ import { Product } from './../product';
 import { CartService } from './../cart.service';
 import { Cart } from './../cart';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from "@angular/forms";
+import _ from 'lodash'
 
 @Component({
   selector: 'cart',
@@ -13,8 +15,16 @@ export class CartComponent implements OnInit {
 
   public products: Observable<Product[]>
   public cart: Cart
+  debouncedSetQuantity
 
-  constructor(public cartService: CartService) { }
+  constructor(public cartService: CartService) {
+    this.debouncedSetQuantity = _.debounce((product) => {
+
+      this.cartService.setQuantity(product)
+        .subscribe()
+
+    }, 500)
+  }
 
   ngOnInit() {
 
@@ -22,14 +32,9 @@ export class CartComponent implements OnInit {
 
   }
 
-  updateQuantity(product) {
+  setQuantity(product) {
 
-    this.cartService.updateQuantity(product)
-      .subscribe(
-        res => {
-          console.log('upQty =>', res)
-        }
-      )
+    this.debouncedSetQuantity(product)
 
   }
 

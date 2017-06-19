@@ -61,20 +61,18 @@ export class CartService {
 
   }
 
-  updateQuantity(product) {
+  setQuantity(product) {
 
     return this.http.put(`${this.baseUri}/set-quantity/${this.cart._id}`, product)
       .map(res => res.json() as Cart)
       .do(cart => this.cart = cart)
       .do(cart => {
 
-        let diff = _.differenceBy(cart.products, this.products, 'qty')
+        let i = cart.products.findIndex((p) => p._id === product._id)
 
-        diff.forEach(p => {
+        let pi = this.products.findIndex((p) => p._id === product._id)
 
-          this.products.push(p)
-
-        })
+        this.products.splice(pi, 1, cart.products[i])
 
       })
   }
