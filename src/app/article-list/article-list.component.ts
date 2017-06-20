@@ -51,19 +51,15 @@ export class ArticleListComponent implements OnInit {
       .subscribe(
       cart => {
 
-        // if (this.router.url === '/cart' && cart.products.length === 1) {
+        if (this.router.url === '/cart' && cart.products.length === 1) {
 
-        //   window.location.reload()
+          window.location.reload()
 
-        // } else {
+        } else {
 
-        //   this.router.navigateByUrl('/cart')
+          this.router.navigateByUrl('/cart')
 
-        // }
-
-        // this.router.navigateByUrl('/cart')
-
-        window.location.reload()
+        }
 
       }
       )
