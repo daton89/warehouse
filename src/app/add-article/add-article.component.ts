@@ -44,6 +44,7 @@ export class AddArticleComponent implements OnInit {
   }
 
   save($event, article) {
+    console.log('article =>', article);
     let obs;
     if (article._id) {
       obs = this.articleService.update(article)
