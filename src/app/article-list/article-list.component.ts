@@ -61,7 +61,7 @@ export class ArticleListComponent implements OnInit {
 
         // }
 
-        this.router.navigateByUrl('/cart')
+        // this.router.navigateByUrl('/cart')
 
         window.location.reload()
 
@@ -81,7 +81,6 @@ export class ArticleListComponent implements OnInit {
     this.articles.subscribe(article => {
       if (article.length === 1) {
         this.addToCart({article: article[0], qty: 1})
-        code = ''
       }
     })
 
