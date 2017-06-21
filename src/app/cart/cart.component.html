@@ -2,17 +2,17 @@
 
   <h2 class="text-center" *ngIf="!products">il carrello è vuoto</h2>
 
-  <h2 class="text-center" *ngIf="products">Carrello</h2>
+  <button class="btn btn-danger btn-lg btn-block" *ngIf="products" (click)="delete()">Elimina carrello</button>
 
-  <button class="btn btn-danger" *ngIf="products" (click)="delete()">Elimina carrello</button>
+  <hr>
 
   <div class="cart-list">
 
-    <div class="row" *ngFor="let product of products | async">
+    <form class="form-inline row" *ngFor="let product of products | async; let index=index; let odd=odd; let even=even;">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="article">Articolo</label>
-          <p>{{product.article.name}} - {{product.article.code}}</p>
+          <label for="article">Articolo: </label>
+          <span>{{product.article.name}} - {{product.article.code}}</span>
         </div>
       </div>
       <div class="col-md-4">
@@ -22,12 +22,12 @@
         </div>
       </div>
       <div class="col-md-2">
-        <button class="btn btn-danger" (click)="remove(product)">rimuovi X</button>
+        <button class="btn btn-danger btn-block" (click)="remove(product)">rimuovi</button>
       </div>
-    </div>
+    </form>
 
   </div>
-
-  <button class="btn btn-success" (click)="checkout()">checkout</button>
+  <hr>
+  <button class="btn btn-success btn-lg btn-block" (click)="checkout()">checkout</button>
 
 </div>
