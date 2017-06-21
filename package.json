@@ -1,11 +1,12 @@
 {
-  "name": "angular-electron",
+  "name": "warehouse",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "pm2 start server/index.js --watch --name warehouse && pm2 logs",
     "build": "ng build",
+    "build-production": "ng build --prod --env=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

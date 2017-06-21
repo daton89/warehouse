@@ -26,30 +26,41 @@ export class ArticleListComponent implements OnInit {
 
   public articles: Observable<Article[]>
 
-  searchCode: string
+  debouncedSearchByCode
 
   constructor(
     private articleService: ArticleService,
     public cartService: CartService,
     public router: Router,
     public route: ActivatedRoute
-  ) { }
+  ) {
+
+    this.debouncedSearchByCode = _.debounce((code) => {
+
+      this.articles = this.articleService.getByCode(code)
+
+      this.articles.subscribe(article => {
+        if (article.length === 1) {
+          this.addToCart({ article: article[0], qty: 1 })
+        }
+      })
+
+    }, 500)
+
+  }
 
   ngOnInit() {
 
     this.articles = this.articleService.fetch()
 
-    this.articles.subscribe(
-      change => console.log('change =>', change)
-    )
+    this.articles.subscribe()
 
   }
 
   addToCart(product) {
 
     this.cartService.add(product)
-      .subscribe(
-      cart => {
+      .subscribe(cart => {
 
         if (this.router.url === '/cart' && cart.products.length === 1) {
 
@@ -61,8 +72,7 @@ export class ArticleListComponent implements OnInit {
 
         }
 
-      }
-      )
+      })
   }
 
   searchByCode(code) {
@@ -72,13 +82,7 @@ export class ArticleListComponent implements OnInit {
       return
     }
 
-    this.articles = this.articleService.getByCode(code)
-
-    this.articles.subscribe(article => {
-      if (article.length === 1) {
-        this.addToCart({article: article[0], qty: 1})
-      }
-    })
+    this.debouncedSearchByCode(code)
 
     // .subscribe((res) => {
     //   // this.articles = []
