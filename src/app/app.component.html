@@ -1,6 +1,29 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+        aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+      <a class="navbar-brand" href="#">Warehouse</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/dashboard">Home</a></li>
+        <li routerLinkActive="active"><a routerLink="/articles">Articoli</a></li>
+        <li routerLinkActive="active"><a routerLink="/articles/new">Aggiungi Articolo</a></li>
+        <li routerLinkActive="active"><a routerLink="/cart">Carrello</a></li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
 <div class="container">
 
-  <div class="dashboard">
+  <!--<div class="dashboard">
 
     <div class="articles col-md-6">
       <a routerLink="/articles/new" routerLinkActive="active">Aggiungi Articolo</a>
@@ -11,10 +34,10 @@
     <div class="logo">
       <img src="assets/images/logo.jpg" width="150" height="150" alt="vapers">
     </div>
-  </div>
+  </div>-->
 
   <router-outlet></router-outlet>
 
-  <article-list></article-list>
+  <!--<article-list></article-list>-->
 
 </div>

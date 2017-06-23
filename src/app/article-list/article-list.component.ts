@@ -39,11 +39,11 @@ export class ArticleListComponent implements OnInit {
 
       this.articles = this.articleService.getByCode(code)
 
-      this.articles.subscribe(article => {
-        if (article.length === 1) {
-          this.addToCart({ article: article[0], qty: 1 })
-        }
-      })
+      // this.articles.subscribe(article => {
+      //   if (article.length === 1) {
+      //     this.addToCart({ article: article[0], qty: 1 })
+      //   }
+      // })
 
     }, 500)
 

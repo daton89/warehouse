@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ArticleService } from './../article.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from './../product';
 import { CartService } from './../cart.service';
@@ -15,21 +17,66 @@ export class CartComponent implements OnInit {
 
   public products: Observable<Product[]>
   public cart: Cart
+  articles
+  debouncedSearchByCode
   debouncedSetQuantity
 
-  constructor(public cartService: CartService) {
+  constructor(
+    public cartService: CartService,
+    public articleService: ArticleService,
+    public router: Router
+  ) {
+
     this.debouncedSetQuantity = _.debounce((product) => {
 
       this.cartService.setQuantity(product)
         .subscribe()
 
     }, 500)
+
+    this.debouncedSearchByCode = _.debounce((code) => {
+
+      this.articles = this.articleService.getByCode(code)
+
+      this.articles.subscribe(article => {
+        if (article.length === 1) {
+          this.addToCart({ article: article[0], qty: 1 })
+        }
+      })
+
+    }, 500)
+
   }
 
   ngOnInit() {
 
     this.products = this.cartService.fetch()
 
+  }
+
+  searchByCode(code) {
+
+    if (!code) {
+      this.articles = this.articleService.fetch()
+      return
+    }
+
+    this.debouncedSearchByCode(code)
+
+    // .subscribe((res) => {
+    //   // this.articles = []
+    //   // if (res.json()) this.articles = [res.json()]
+    // })
+  }
+
+  addToCart(product) {
+
+    this.cartService.add(product)
+      .subscribe(cart => {
+
+        window.location.reload()
+
+      })
   }
 
   setQuantity(product) {

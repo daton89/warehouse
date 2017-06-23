@@ -1,5 +1,15 @@
 <div class="create-cart text-center jumbotron">
 
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="text-center">
+        <label for="code">codice:</label>
+        <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="8613854132161"
+          autofocus>
+      </div>
+    </div>
+  </div>
+  <br>
   <h2 class="text-center" *ngIf="!products">il carrello è vuoto</h2>
 
   <button class="btn btn-danger btn-lg btn-block" *ngIf="products" (click)="delete()">Elimina carrello</button>
@@ -11,8 +21,8 @@
     <form class="form-inline row" *ngFor="let product of products | async; let index=index; let odd=odd; let even=even;">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="article">Articolo: </label>
-          <span>{{product.article.name}} - {{product.article.code}}</span>
+          <label for="article">Prodotto: </label>
+          <span>{{product.article.name}} - {{product.article.nicotine}} - €{{product.article.price}}</span>
         </div>
       </div>
       <div class="col-md-4">
