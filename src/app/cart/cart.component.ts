@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from './../product';
 import { CartService } from './../cart.service';
 import { Cart } from './../cart';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import _ from 'lodash'
 
@@ -13,13 +13,18 @@ import _ from 'lodash'
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, AfterViewInit {
+
+  @ViewChild("searchCode")
+  private _inputElement: ElementRef;
 
   public products: Observable<Product[]>
   public cart: Cart
   articles
   debouncedSearchByCode
   debouncedSetQuantity
+
+
 
   constructor(
     public cartService: CartService,
@@ -30,7 +35,11 @@ export class CartComponent implements OnInit {
     this.debouncedSetQuantity = _.debounce((product) => {
 
       this.cartService.setQuantity(product)
-        .subscribe()
+        .subscribe(res => {
+
+          this.cart = this.cartService.cart
+
+        })
 
     }, 500)
 
@@ -44,14 +53,23 @@ export class CartComponent implements OnInit {
         }
       })
 
-    }, 500)
+    }, 100)
 
   }
 
   ngOnInit() {
 
     this.products = this.cartService.fetch()
+      .do(products => {
 
+        this.cart = this.cartService.cart
+
+      })
+
+  }
+
+  ngAfterViewInit(): void {
+    this._inputElement.nativeElement.focus();
   }
 
   searchByCode(code) {
@@ -74,7 +92,11 @@ export class CartComponent implements OnInit {
     this.cartService.add(product)
       .subscribe(cart => {
 
-        window.location.reload()
+        // window.location.reload()
+        // this.code = ''
+        this._inputElement.nativeElement.value = ''
+
+        this.cart = this.cartService.cart
 
       })
   }
@@ -96,18 +118,24 @@ export class CartComponent implements OnInit {
   }
 
   remove(product) {
-    if (confirm('Sei sicuro di voler rimuovere questo articolo dal carrello?'))
+    if (confirm('Sei sicuro di voler rimuovere questo articolo dal carrello?')) {
+
       this.cartService.remove(product)
         .subscribe(
         res => {
           console.log('remove=>', res)
+
+          this.cart = this.cartService.cart
+
         },
         err => console.error('remove=>', err)
         )
+    }
   }
 
   delete() {
-    if (confirm('Sei sicuro di voler eliminare questo carrello?'))
+    if (confirm('Sei sicuro di voler eliminare questo carrello?')) {
+
       this.cartService.delete()
         .subscribe(
         res => {
@@ -119,6 +147,7 @@ export class CartComponent implements OnInit {
         },
         err => console.error('delete=>', err)
         )
+    }
   }
 
 }

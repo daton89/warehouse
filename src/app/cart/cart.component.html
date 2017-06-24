@@ -4,7 +4,7 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="text-center">
         <label for="code">codice:</label>
-        <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="8613854132161"
+        <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)"
           autofocus>
       </div>
     </div>
@@ -16,12 +16,12 @@
 
   <hr>
 
-  <div class="cart-list">
+  <div class="cart-list" *ngIf="products | async">
 
     <form class="form-inline row" *ngFor="let product of products | async; let index=index; let odd=odd; let even=even;">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="article">Prodotto: </label>
+          <!--<label for="article">Prodotto: </label>-->
           <span>{{product.article.name}} - {{product.article.nicotine}} - €{{product.article.price}}</span>
         </div>
       </div>
@@ -35,6 +35,8 @@
         <button class="btn btn-danger btn-block" (click)="remove(product)">rimuovi</button>
       </div>
     </form>
+
+    <p><strong>Totale: </strong>{{cart.price | currency:'EUR':true}}</p>
 
   </div>
   <hr>

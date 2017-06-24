@@ -11,13 +11,14 @@ export class CartService {
 
   public baseUri = `${environment.apiUrl}/api/carts`
 
-  public products: Product[]
+  public products: Product[] = []
   public cart: Cart
 
   constructor(public http: Http) { }
 
   fetch(): Observable<Product[]> {
     return this.http.get(this.baseUri)
+      .do(res => console.log(res))
       .map(res => res.json() as Cart)
       .do(cart => this.cart = cart)
       .map(cart => this.products = cart.products)
@@ -54,7 +55,10 @@ export class CartService {
         .do(cart => this.cart = cart)
         .do(cart => {
 
-          this.products = cart.products
+          console.log('cp=>', cart.products);
+          console.log('tp=>', this.products);
+          this.products.push(cart.products[0])
+          console.log('tp=>', this.products);
 
         })
 

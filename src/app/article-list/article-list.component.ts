@@ -2,10 +2,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { CartService } from './../cart.service';
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { ArticleService } from "app/article.service";
-import { Article } from "app/article";
+import { ArticleService } from 'app/article.service';
+import { Article } from 'app/article';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import _ from 'lodash';
 
 // Observable class extensions
@@ -24,9 +24,9 @@ import 'rxjs/add/operator/distinctUntilChanged';
 })
 export class ArticleListComponent implements OnInit {
 
-  public articles: Observable<Article[]>
+  public articles: Observable<Article[]>;
 
-  debouncedSearchByCode
+  debouncedSearchByCode;
 
   constructor(
     private articleService: ArticleService,
@@ -106,8 +106,9 @@ export class ArticleListComponent implements OnInit {
 
   removeArticle(article) {
 
-    if (confirm('Sei sicuro di voler eliminare questo articolo?'))
-      this.articles = this.articleService.remove(article)
+    if (confirm('Sei sicuro di voler eliminare questo articolo?')) {
+      this.articles = this.articleService.remove(article);
+    }
 
   }
 
