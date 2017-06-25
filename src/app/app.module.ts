@@ -13,6 +13,8 @@ import { AddArticleComponent } from './add-article/add-article.component';
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticleService } from "app/article.service";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ArticleService } from "app/article.service";
     CommonModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [ArticleService, CartService],
   bootstrap: [AppComponent]
