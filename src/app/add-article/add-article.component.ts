@@ -53,7 +53,7 @@ export class AddArticleComponent implements OnInit {
     }
     obs.subscribe(
       (res) => {
-        this.router.navigateByUrl('/dashboard')
+        this.router.navigateByUrl('/articles')
       },
       (err) => console.error(err)
     )
