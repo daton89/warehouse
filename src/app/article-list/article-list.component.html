@@ -5,13 +5,13 @@
             <div class="col-md-6">
                 <div class="text-center">
                     <label for="name">nome:</label>
-                    <input type="text" class="form-control" #searchName name="name" (keyup)="searchByName(searchName.value)" placeholder="flavorart">
+                    <input type="text" class="form-control" #searchName name="name" (keyup)="searchByName(searchName.value)" placeholder="">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="text-center">
                     <label for="code">codice:</label>
-                    <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="8613854132161" autofocus>
+                    <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="" autofocus>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <p class="card-text">{{article.description}}</p>
                 <button class="btn btn-small btn-primary" (click)="addToCart({article: article, qty: 1})">Carrello »</button>
                 <button class="btn btn-default" [routerLink]="['/articles', article._id]">Modifica »</button>
-                <!--<button class="btn btn-danger" (click)="removeArticle(article)">Elimina  »</button>-->
+                <button class="btn btn-danger" (click)="removeArticle(article)">Elimina  »</button>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">

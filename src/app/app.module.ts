@@ -13,7 +13,9 @@ import { AddArticleComponent } from './add-article/add-article.component';
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticleService } from "app/article.service";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ArticleImportComponent } from './article-import/article-import.component';
+
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     ArticleListComponent,
     AddArticleComponent,
     CartComponent,
-    DashboardComponent
+    DashboardComponent,
+    ArticleImportComponent
   ],
   imports: [
     BrowserModule,
