@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
+import { environment } from '../../environments/environment';
 
 // const URL = '/api/';
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+const URL = `${environment.apiUrl}/api/articles/import`;
 
 @Component({
   selector: 'app-article-import',
@@ -12,13 +13,31 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 })
 export class ArticleImportComponent implements OnInit {
 
-  public uploader: FileUploader = new FileUploader({ url: URL });
+  public finishedUpload: any
+
+  public uploader: FileUploader = new FileUploader({
+    url: URL,
+    method: 'POST'
+  });
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+    this.uploader.onBeforeUploadItem = (item) => {
+      item.withCredentials = false;
+    }
+
+    this.uploader.onCompleteItem = (response) => {
+      console.log('response', response);
+    }
+
+    this.uploader.onSuccessItem = (response) => {
+      response.onComplete = (response) => {
+        this.finishedUpload = JSON.parse(response)
+      }
+    }
   }
 
   public fileOverBase(e: any): void {

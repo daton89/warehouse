@@ -3,7 +3,9 @@
 const Article = require('./article.model');
 const parser = require('csv').parser
 const fs = require('fs');
-var parse = require('csv').parse;
+const parse = require('csv').parse;
+const async = require('async')
+const config = require('../../config/environment')
 
 
 const controller = {
@@ -53,38 +55,93 @@ const controller = {
             .catch(err => res.status(500).json(err));
     },
 
-    import (req, res) {
+    import(req, res, next) {
 
         // handle upload csv file
 
-        var inputFile = 'myfile.csv';
+        console.log('req.files=>', req.files);
 
-        let deferreds = []
+        let toPush = []
+        let pushed = []
+        let notPushed = []
 
-        var parser = parse({ delimiter: ',' }, function(err, data) {
-            async.eachSeries(data, function(line, callback) {
+        let skipFirst = true
+
+        var parser = parse({ delimiter: ',' }, function (err, data) {
+
+            data.forEach(function (line) {
                 // do something with the line
-                deferreds.push(Article.create(line))
+                console.log('line=>', line);
+
+                if (skipFirst) {
+                    skipFirst = false
+                } else {
+
+                    let quantity = line[3] || 0
+                    let nicotine = line[6] || 0
+                    let price = line[8] || 0
+
+                    let article = {
+                        name: line[0],
+                        code: line[1],
+                        company: line[2],
+                        quantity: parseInt(quantity),
+                        category: line[4],
+                        type: line[5],
+                        nicotine: parseInt(nicotine),
+                        format: line[7],
+                        price: parseFloat(price),
+                        description: line[9]
+                    }
+
+                    toPush.push(article)
+
+                }
 
             })
         })
 
         parser.on('end', () => {
 
-            Promise.all(deferreds)
-                .then(articles => {
-                    res.status(200).json(articles)
-                })
-                .catch(err => {
-                    next(err)
-                })
+            async.eachSeries(toPush, (article, callback) => {
+
+                Article.create(article)
+                    .then((article) => {
+                        pushed.push(article)
+                        callback()
+                    })
+                    .catch(err => {
+                        notPushed.push(article)
+                        console.error(err);
+                        callback()
+                    })
+
+            }, (err) => {
+
+                res.status(200).json({ pushed, notPushed })
+
+            })
 
         })
 
-        fs.createReadStream(inputFile).pipe(parser);
+        var inputFile = config.root + '/server/uploads/' + req.files.name;
+
+        try {
+
+            fs.renameSync(req.files.file.path, inputFile)
+
+        } catch (error) {
+
+            console.error(error)
+            next(error)
+
+        }
+
+        fs.createReadStream(inputFile).pipe(parser)
+
     },
 
-    export (req, res) {
+    export(req, res) {
 
 
 
