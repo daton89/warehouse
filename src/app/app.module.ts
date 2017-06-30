@@ -15,8 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticleService } from "app/article.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleImportComponent } from './article-import/article-import.component';
-
-
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,9 @@ import { ArticleImportComponent } from './article-import/article-import.componen
     AddArticleComponent,
     CartComponent,
     DashboardComponent,
-    ArticleImportComponent
+    ArticleImportComponent,
+    FileDropDirective,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

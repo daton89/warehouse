@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
 
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -7,8 +7,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 @Component({
   selector: 'app-article-import',
   templateUrl: './article-import.component.html',
-  styleUrls: ['./article-import.component.css'],
-  // directives: [FILE_UPLOAD_DIRECTIVES, NgClass, NgStyle, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  styleUrls: ['./article-import.component.css']
 
 })
 export class ArticleImportComponent implements OnInit {
