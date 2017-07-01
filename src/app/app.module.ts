@@ -15,7 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticleService } from "app/article.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleImportComponent } from './article-import/article-import.component';
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -24,9 +24,9 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
     AddArticleComponent,
     CartComponent,
     DashboardComponent,
-    ArticleImportComponent,
-    FileDropDirective,
-    FileSelectDirective
+    ArticleImportComponent
+    // FileDropDirective,
+    // FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -34,7 +34,8 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    FileUploadModule
   ],
   providers: [ArticleService, CartService],
   bootstrap: [AppComponent]
