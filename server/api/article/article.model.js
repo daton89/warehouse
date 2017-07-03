@@ -13,7 +13,9 @@ const article = mongoose.Schema({
     nicotine: Number,
     format: String,
     price: Number,
-    description: String
+    description: String,
+    createdOn: { type: Date, default: Date.now() },
+    updatedOn: { type: Date, default: Date.now() }
 
 }, { strict: false })
 

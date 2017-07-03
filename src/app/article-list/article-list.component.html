@@ -21,33 +21,7 @@
 
     <div class="card-deck">
 
-        <div class="card" style="width: 20rem;" *ngFor="let article of articles | async">
-            <!--<img class="card-img-top" src="assets/images/card-image.svg" alt="Card image cap">-->
-            <div class="card-block">
-                <h4 class="card-title">{{article.name}}</h4>
-                <p class="card-text">{{article.description}}</p>
-                <button class="btn btn-small btn-primary" (click)="addToCart({article: article, qty: 1})">Carrello »</button>
-                <button class="btn btn-default" [routerLink]="['/articles', article._id]">Modifica »</button>
-                <button class="btn btn-danger" (click)="removeArticle(article)">Elimina  »</button>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <strong>Codice: </strong>{{article.code}}
-                </li>
-                <li class="list-group-item">
-                    <strong>Quantità: </strong>{{article.qty}}
-                </li>
-                <li class="list-group-item">
-                    <strong>Categoria/Tipo: </strong>{{article.category +'/'+ article.type}}
-                </li>
-                <li class="list-group-item" *ngIf="article.category === 'Liquido'">
-                    <strong>Formato/Nicotina: </strong>{{article.format +'/'+ article.nicotine}}
-                </li>
-            </ul>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-        </div>
+        <app-article-card [article]="article" *ngFor="let article of articles | async"></app-article-card>
 
     </div>
 </div>

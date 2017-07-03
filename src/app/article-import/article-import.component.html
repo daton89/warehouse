@@ -99,17 +99,22 @@
                 </button>
         </div>
 
-        <div *ngIf="finishedUpload">
-          <div>
-            inseriti: {{finishedUpload.pushed | json}}
-          </div>
-          <div>
-            non inseriti: {{finishedUpload.notPushed | json}}
-          </div>
-        </div>
-
       </div>
 
     </div>
   </div>
+
+  <div *ngIf="finishedUpload">
+    <h1>articoli non inseriti:</h1>
+    <div class="card-deck">
+      <app-article-card [article]="article" *ngFor="let article of finishedUpload.notPushed"></app-article-card>
+    </div>
+
+    <h1>articoli inseriti correttamente: </h1>
+    <div class="card-deck">
+      <app-article-card [article]="article" *ngFor="let article of finishedUpload.pushed"></app-article-card>
+    </div>
+
+  </div>
+
 </div>

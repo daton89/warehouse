@@ -91,7 +91,9 @@ const controller = {
                         nicotine: parseInt(nicotine),
                         format: line[7],
                         price: parseFloat(price),
-                        description: line[9]
+                        description: line[9],
+                        createdOn: Date.now(),
+                        updatedOn: Date.now()
                     }
 
                     toPush.push(article)

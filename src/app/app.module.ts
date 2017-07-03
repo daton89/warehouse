@@ -16,10 +16,12 @@ import { ArticleService } from "app/article.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleImportComponent } from './article-import/article-import.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ArticleCardComponent } from './article-card/article-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ArticleCardComponent,
     ArticleListComponent,
     AddArticleComponent,
     CartComponent,
