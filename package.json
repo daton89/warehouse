@@ -36,6 +36,7 @@
     "express-formidable": "^1.0.0",
     "install": "^0.10.1",
     "jquery": "^3.2.1",
+    "json2csv": "^3.8.0",
     "lodash": "^4.17.4",
     "method-override": "^2.3.9",
     "mongoose": "^4.10.5",

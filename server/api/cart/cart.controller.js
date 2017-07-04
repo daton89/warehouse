@@ -3,6 +3,8 @@
 const Cart = require('./cart.model')
 const Article = require('../article/article.model')
 const _ = require('lodash')
+const json2csv = require('json2csv');
+const fs = require('fs');
 
 module.exports = {
 
@@ -172,6 +174,35 @@ module.exports = {
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
 
+  },
+
+  async export(req, res, next) {
+    var fields = ['car', 'price', 'color'];
+
+    let carts = await Cart.find(req.body).lean()
+
+
+    var myCars = [
+      {
+        "car": "Audi",
+        "price": 40000,
+        "color": "blue"
+      }, {
+        "car": "BMW",
+        "price": 35000,
+        "color": "black"
+      }, {
+        "car": "Porsche",
+        "price": 60000,
+        "color": "green"
+      }
+    ];
+    var csv = json2csv({ data: myCars, fields: fields, del: ',' });
+
+    fs.writeFile('file.csv', csv, function (err) {
+      if (err) throw err;
+      console.log('file saved');
+    });
   }
 
 }
