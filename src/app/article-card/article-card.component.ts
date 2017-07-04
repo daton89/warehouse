@@ -29,15 +29,7 @@ export class ArticleCardComponent implements OnInit {
     this.cartService.add(product)
       .subscribe(cart => {
 
-        if (this.router.url === '/cart' && cart.products.length === 1) {
-
-          window.location.reload()
-
-        } else {
-
-          this.router.navigateByUrl('/cart')
-
-        }
+        this.router.navigateByUrl('/cart')
 
       })
   }
