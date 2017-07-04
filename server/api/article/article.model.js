@@ -14,6 +14,7 @@ const article = mongoose.Schema({
     format: String,
     price: Number,
     description: String,
+    deleted: { type: Boolean, default: false },
     createdOn: { type: Date, default: Date.now() },
     updatedOn: { type: Date, default: Date.now() }
 

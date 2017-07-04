@@ -11,7 +11,7 @@ const config = require('../../config/environment')
 const controller = {
 
     read(req, res) {
-        Article.find({})
+        Article.find({ 'deleted': { $ne: true } })
             .then(articles => res.status(200).json(articles))
             .catch(err => res.status(500).json(err));
     },
@@ -23,13 +23,19 @@ const controller = {
     },
 
     readByName(req, res) {
-        Article.find({ name: new RegExp(req.params.name, 'i') })
+        Article.find({
+            name: new RegExp(req.params.name, 'i'),
+            'deleted': { $ne: true }
+        })
             .then(article => res.status(200).json(article))
             .catch(err => res.status(500).json(err));
     },
 
     readByCode(req, res) {
-        Article.find({ code: req.params.code })
+        Article.find({
+            code: req.params.code,
+            'deleted': { $ne: true }
+        })
             .then(article => res.status(200).json(article))
             .catch(err => res.status(500).json(err));
     },
@@ -43,13 +49,25 @@ const controller = {
 
     update(req, res) {
         req.body.updatedOn = Date.now()
-        Article.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+        Article.findOneAndUpdate(
+            {
+                _id: req.params.id,
+                'deleted': { $ne: true }
+            },
+            req.body,
+            {
+                new: true
+            })
             .then(article => res.status(200).json(article))
             .catch(err => res.status(500).json(err));
     },
 
     remove(req, res) {
-        Article.findByIdAndRemove(req.params.id)
+        Article.findByIdAndUpdate(
+            req.params.id,
+            {
+                deleted: true
+            })
             .then(a => Article.find({}))
             .then(articles => res.status(200).json(articles))
             .catch(err => res.status(500).json(err));

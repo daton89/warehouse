@@ -9,8 +9,8 @@ module.exports = {
   read(req, res) {
 
     Cart.find({
-        checkout: false
-      })
+      checkout: false
+    })
       .sort('-createdOn')
       .limit(1)
       .populate('products.article')
@@ -29,7 +29,8 @@ module.exports = {
       .then((cart) => res.status(200).json(cart[0]))
       .catch((err) => {
         console.error(err);
-        res.status(500).json(err)})
+        res.status(500).json(err)
+      })
 
   },
 
@@ -45,12 +46,12 @@ module.exports = {
   create(req, res) {
 
     Cart.create({
-        products: [{
-          article: req.body.article,
-          qty: req.body.qty
-        }],
-        price: parseFloat(req.body.article.price).toFixed(2)
-      })
+      products: [{
+        article: req.body.article,
+        qty: req.body.qty
+      }],
+      price: parseFloat(req.body.article.price).toFixed(2)
+    })
       .then(cart => {
         return Cart.findById(cart._id)
           .populate('products.article')
@@ -81,10 +82,10 @@ module.exports = {
     }
 
     Cart.findByIdAndUpdate(
-        req.params.id,
-        upsert, { // options
-          new: true
-        })
+      req.params.id,
+      upsert, { // options
+        new: true
+      })
       .populate('products.article')
       .then((cart) => {
 
@@ -100,36 +101,36 @@ module.exports = {
     let product = req.body
 
     Cart.findByIdAndUpdate(
-        req.params.id, {
-          $pull: {
-            products: {
-              _id: product._id
-            }
-          },
-          $inc: {
-            price: -parseFloat(product.article.price * product.qty).toFixed(2)
-          },
-          updatedOn: Date.now()
-        }, {
-          new: true
-        })
+      req.params.id, {
+        $pull: {
+          products: {
+            _id: product._id
+          }
+        },
+        $inc: {
+          price: -parseFloat(product.article.price * product.qty).toFixed(2)
+        },
+        updatedOn: Date.now()
+      }, {
+        new: true
+      })
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
   },
 
   delete(req, res) {
     Cart.remove({
-        _id: req.params.id
-      })
+      _id: req.params.id
+    })
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
   },
 
   setQuantity(req, res) {
     Cart.findOneAndUpdate({
-        _id: req.params.id,
-        'products._id': req.body._id
-      }, {
+      _id: req.params.id,
+      'products._id': req.body._id
+    }, {
         $set: {
           'products.$.qty': req.body.qty
         }
@@ -144,10 +145,10 @@ module.exports = {
   checkout(req, res) {
 
     Cart.findByIdAndUpdate(
-        req.params.id, {
-          checkout: true,
-          checkoutOn: Date.now()
-        })
+      req.params.id, {
+        checkout: true,
+        checkoutOn: Date.now()
+      })
       .populate('products.article')
       .then((cart) => {
 
