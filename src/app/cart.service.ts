@@ -33,20 +33,15 @@ export class CartService {
 
   add(product): Observable<Cart> {
 
-    let obs
-
     if (this.cart && this.cart._id) {
 
       return this.http.put(`${this.baseUri}/push/${this.cart._id}`, product)
         .map(res => res.json() as Cart)
         .do(cart => this.cart = cart)
-        .do(cart => {
-
-          let diff = _.differenceBy(cart.products, this.products, '_id')
-
-          diff.forEach(p => this.products.push(p))
-
-        })
+        .do(cart =>
+          _.differenceBy(cart.products, this.products, '_id')
+            .forEach(p => this.products.push(p))
+        )
 
     } else {
 
@@ -54,12 +49,7 @@ export class CartService {
         .map(res => res.json() as Cart)
         .do(cart => this.cart = cart)
         .do(cart => {
-
-          console.log('cp=>', cart.products);
-          console.log('tp=>', this.products);
           this.products.push(cart.products[0])
-          console.log('tp=>', this.products);
-
         })
 
     }
@@ -73,9 +63,9 @@ export class CartService {
       .do(cart => this.cart = cart)
       .do(cart => {
 
-        let i = cart.products.findIndex((p) => p._id === product._id)
+        const i = cart.products.findIndex((p) => p._id === product._id)
 
-        let pi = this.products.findIndex((p) => p._id === product._id)
+        const pi = this.products.findIndex((p) => p._id === product._id)
 
         this.products.splice(pi, 1, cart.products[i])
 
@@ -88,7 +78,7 @@ export class CartService {
   }
 
   exportCSV(start, end) {
-    return this.http.put(`${this.baseUri}/export-csv`, {start, end})
+    return this.http.put(`${this.baseUri}/export-csv`, { start, end })
   }
 
   remove(product): Observable<Cart> {
@@ -97,11 +87,10 @@ export class CartService {
       .do(cart => this.cart = cart)
       .do(cart => {
 
-        let diff = _.differenceBy(this.products, cart.products, '_id')
-
-        diff.forEach(p => {
-          _.remove(this.products, p)
-        })
+        _.differenceBy(this.products, cart.products, '_id')
+          .forEach(p => {
+            _.remove(this.products, p)
+          })
 
       })
   }

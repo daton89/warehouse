@@ -9,7 +9,7 @@ const moment = require('moment')
 
 module.exports = {
 
-  index(req,res,next){
+  index(req, res, next) {
     return Cart.find()
       .populate('products.article')
       .then((carts) => res.status(200).json(carts))
@@ -188,25 +188,27 @@ module.exports = {
 
     const fields = ['name', 'company', 'quantity', 'category', 'type', 'price']
 
-    const carts = await
-    Cart.find({})
+    const carts = await Cart.aggregate([{
+        "$group": {
+          "_id": "$type",
+          "machines": {
+            "$push": "$$ROOT"
+          }
+        }
+      }])
       .lean()
       .exec()
 
-    const csv = json2csv({
-      data: carts,
-      fields: fields,
-      del: ','
-    });
+    console.log('carts=>', carts.map(c => c.products.map(p => p.article)))
 
-    const fileName = `export${moment(req.body.start).format('DD-MM-YYYY')}${moment(req.body.end).format('DD-MM-YYYY')}.csv`
-
-    try {
-      // fs.writeFileSync(`export.csv`, csv)
-      res.send(csv)
-    } catch (err) {
-      throw err
-    }
+    res.json({
+      csv: json2csv({
+        data: carts,
+        fields: fields,
+        del: ','
+      }),
+      fileName: `export${new Date()}.csv`
+    })
 
   }
 

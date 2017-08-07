@@ -112,7 +112,7 @@ export class CartComponent implements OnInit, AfterViewInit {
   checkout() {
     this.cartService.checkout()
       .subscribe(
-      res => {
+      (res) => {
         console.log('checkout =>', res)
         window.location.reload()
       }
@@ -120,7 +120,26 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
 
   saveCSV() {
-    this.cartService.exportCSV(this.exportStart, this.exportEnd).subscribe();
+    this.cartService.exportCSV(this.exportStart, this.exportEnd).subscribe((res) => {
+
+      let data, filename, link;
+      let csv = res.json().csv
+      // tslint:disable-next-line:curly
+      if (csv == null) return;
+
+      filename = 'export.csv';
+
+      if (!csv.match(/^data:text\/csv/i)) {
+        csv = 'data:text/csv;charset=utf-8,' + csv;
+      }
+      data = encodeURI(csv);
+
+      link = document.createElement('a');
+      link.setAttribute('href', data);
+      link.setAttribute('download', filename);
+      link.click();
+
+    })
   }
 
   remove(product) {

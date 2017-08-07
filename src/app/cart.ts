@@ -7,7 +7,7 @@ export class Cart {
   public price: number
   public createdOn: Date
   public updatedOn: Date
-  public checkuot: boolean
+  public checkout: boolean
   public checkoutOn: Date
 
 }
