@@ -87,6 +87,10 @@ export class CartService {
       .map(cart => this.cart = cart.json() as Cart)
   }
 
+  exportCSV(start, end) {
+    return this.http.put(`${this.baseUri}/export-csv`, {start, end})
+  }
+
   remove(product): Observable<Cart> {
     return this.http.put(`${this.baseUri}/pull/${this.cart._id}`, product)
       .map(res => res.json() as Cart)

@@ -13,18 +13,20 @@ import _ from 'lodash'
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit, AfterViewInit {
 
-  @ViewChild("searchCode")
+export class CartComponent implements OnInit, AfterViewInit {
+  exportStart: any;
+  exportEnd: any;
+  articles: any;
+  debouncedSearchByCode: any;
+  debouncedSetQuantity: any;
+
+  @ViewChild('searchCode')
+
   private _inputElement: ElementRef;
 
-  public products: Observable<Product[]>
-  public cart: Cart
-  articles
-  debouncedSearchByCode
-  debouncedSetQuantity
-
-
+  public products: Observable<Product[]>;
+  public cart: Cart;
 
   constructor(
     public cartService: CartService,
@@ -37,23 +39,23 @@ export class CartComponent implements OnInit, AfterViewInit {
       this.cartService.setQuantity(product)
         .subscribe(res => {
 
-          this.cart = this.cartService.cart
+          this.cart = this.cartService.cart;
 
-        })
+        });
 
-    }, 500)
+    }, 500);
 
     this.debouncedSearchByCode = _.debounce((code) => {
 
-      this.articles = this.articleService.getByCode(code)
+      this.articles = this.articleService.getByCode(code);
 
       this.articles.subscribe(article => {
         if (article.length === 1) {
-          this.addToCart({ article: article[0], qty: 1 })
+          this.addToCart({ article: article[0], qty: 1 });
         }
-      })
+      });
 
-    }, 100)
+    }, 100);
 
   }
 
@@ -115,6 +117,10 @@ export class CartComponent implements OnInit, AfterViewInit {
         window.location.reload()
       }
       )
+  }
+
+  saveCSV() {
+    this.cartService.exportCSV(this.exportStart, this.exportEnd).subscribe();
   }
 
   remove(product) {

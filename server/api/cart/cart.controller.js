@@ -5,14 +5,22 @@ const Article = require('../article/article.model')
 const _ = require('lodash')
 const json2csv = require('json2csv');
 const fs = require('fs');
+const moment = require('moment')
 
 module.exports = {
+
+  index(req,res,next){
+    return Cart.find()
+      .populate('products.article')
+      .then((carts) => res.status(200).json(carts))
+      .catch((err) => res.status(500).json(err))
+  },
 
   read(req, res) {
 
     Cart.find({
-      checkout: false
-    })
+        checkout: false
+      })
       .sort('-createdOn')
       .limit(1)
       .populate('products.article')
@@ -48,12 +56,12 @@ module.exports = {
   create(req, res) {
 
     Cart.create({
-      products: [{
-        article: req.body.article,
-        qty: req.body.qty
-      }],
-      price: parseFloat(req.body.article.price).toFixed(2)
-    })
+        products: [{
+          article: req.body.article,
+          qty: req.body.qty
+        }],
+        price: parseFloat(req.body.article.price).toFixed(2)
+      })
       .then(cart => {
         return Cart.findById(cart._id)
           .populate('products.article')
@@ -84,10 +92,10 @@ module.exports = {
     }
 
     Cart.findByIdAndUpdate(
-      req.params.id,
-      upsert, { // options
-        new: true
-      })
+        req.params.id,
+        upsert, { // options
+          new: true
+        })
       .populate('products.article')
       .then((cart) => {
 
@@ -103,36 +111,36 @@ module.exports = {
     let product = req.body
 
     Cart.findByIdAndUpdate(
-      req.params.id, {
-        $pull: {
-          products: {
-            _id: product._id
-          }
-        },
-        $inc: {
-          price: -parseFloat(product.article.price * product.qty).toFixed(2)
-        },
-        updatedOn: Date.now()
-      }, {
-        new: true
-      })
+        req.params.id, {
+          $pull: {
+            products: {
+              _id: product._id
+            }
+          },
+          $inc: {
+            price: -parseFloat(product.article.price * product.qty).toFixed(2)
+          },
+          updatedOn: Date.now()
+        }, {
+          new: true
+        })
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
   },
 
   delete(req, res) {
     Cart.remove({
-      _id: req.params.id
-    })
+        _id: req.params.id
+      })
       .then((cart) => res.status(200).json(cart))
       .catch((err) => res.status(500).json(err))
   },
 
   setQuantity(req, res) {
     Cart.findOneAndUpdate({
-      _id: req.params.id,
-      'products._id': req.body._id
-    }, {
+        _id: req.params.id,
+        'products._id': req.body._id
+      }, {
         $set: {
           'products.$.qty': req.body.qty
         }
@@ -147,10 +155,10 @@ module.exports = {
   checkout(req, res) {
 
     Cart.findByIdAndUpdate(
-      req.params.id, {
-        checkout: true,
-        checkoutOn: Date.now()
-      })
+        req.params.id, {
+          checkout: true,
+          checkoutOn: Date.now()
+        })
       .populate('products.article')
       .then((cart) => {
 
@@ -176,33 +184,30 @@ module.exports = {
 
   },
 
-  async export(req, res, next) {
-    var fields = ['car', 'price', 'color'];
+  async exportCSV(req, res, next) {
 
-    let carts = await Cart.find(req.body).lean()
+    const fields = ['name', 'company', 'quantity', 'category', 'type', 'price']
 
+    const carts = await
+    Cart.find({})
+      .lean()
+      .exec()
 
-    var myCars = [
-      {
-        "car": "Audi",
-        "price": 40000,
-        "color": "blue"
-      }, {
-        "car": "BMW",
-        "price": 35000,
-        "color": "black"
-      }, {
-        "car": "Porsche",
-        "price": 60000,
-        "color": "green"
-      }
-    ];
-    var csv = json2csv({ data: myCars, fields: fields, del: ',' });
-
-    fs.writeFile('file.csv', csv, function (err) {
-      if (err) throw err;
-      console.log('file saved');
+    const csv = json2csv({
+      data: carts,
+      fields: fields,
+      del: ','
     });
+
+    const fileName = `export${moment(req.body.start).format('DD-MM-YYYY')}${moment(req.body.end).format('DD-MM-YYYY')}.csv`
+
+    try {
+      // fs.writeFileSync(`export.csv`, csv)
+      res.send(csv)
+    } catch (err) {
+      throw err
+    }
+
   }
 
 }

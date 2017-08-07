@@ -41,4 +41,18 @@
   <hr>
   <button class="btn btn-success btn-lg btn-block" (click)="checkout()">checkout</button>
 
+  <hr>
+
+  <form class="form-inline">
+    <div class="col-md-4">
+      <div class="form-group"><label for="start"></label><input type="date" name="start" [(ngModel)]="exportStart"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group"><label for="end"></label><input type="date" name="end" [(ngModel)]="exportEnd"></div>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-primary btn-lg btn-block" (click)="saveCSV()">salva csv</button>
+    </div>
+  </form>
+
 </div>
