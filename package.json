@@ -39,6 +39,7 @@
     "json2csv": "^3.8.0",
     "lodash": "^4.17.4",
     "method-override": "^2.3.9",
+    "moment": "^2.18.1",
     "mongoose": "^4.10.5",
     "morgan": "^1.8.2",
     "ng2-file-upload": "^1.2.1",
