@@ -184,31 +184,153 @@ module.exports = {
 
   },
 
+  // CART SCHEMA
+  // products: [{
+  //   article: { type: mongoose.Schema.Types.ObjectId, ref: 'Article', required: true },
+  //   qty: { type: Number, required: true }
+  // }],
+  // price: { type: Number, required: true },
+  // createdOn: { type: Date, default: Date.now() },
+  // updatedOn: { type: Date, default: Date.now() },
+  // checkout: { type: Boolean, default: false },
+  // checkoutOn: { type: Date }
+
+  // ARTICLE SCHEMA
+  // name: { type: String, required: true },
+  // code: String,
+  // company: String,
+  // quantity: Number,
+  // category: String,
+  // type: String,
+  // nicotine: Number,
+  // format: String,
+  // price: Number,
+  // description: String,
+  // deleted: { type: Boolean, default: false },
+  // createdOn: { type: Date, default: Date.now() },
+  // updatedOn: { type: Date, default: Date.now() }
+
   async exportCSV(req, res, next) {
 
-    const fields = ['name', 'company', 'quantity', 'category', 'type', 'price']
+    const fields = ['name', 'company', 'type', 'category', 'quantity', 'price']
 
-    const carts = await Cart.aggregate([{
-        "$group": {
-          "_id": "$type",
-          "machines": {
-            "$push": "$$ROOT"
+    try {
+
+
+
+      const data = await Cart.aggregate([{
+          //   $match: {
+          //     "saleDate": {
+          //       $gte: ISODate("2013-04-10T00:00:00.000Z"),
+          //       $lt: ISODate("2013-04-11T00:00:00.000Z")
+          //     },
+          //     checkout: true,
+          //     "checkoutOn": {
+          //       $type: 9
+          //     }
+          //   }
+          // },
+          // {
+            "$unwind": "$products"
+          },
+          {
+            "$project": {
+              "_id": 0,
+              "article": "$products.article",
+              "qty": "$products.qty",
+              "checkoutOn": "$checkoutOn"
+            }
+          },
+          {
+            "$lookup": {
+              from: "articles",
+              localField: "article",
+              foreignField: "_id",
+              as: "sells"
+            }
+          },
+          {
+            "$unwind": "$sells"
+          },
+          {
+            "$project": {
+              "_id": "$sells._id",
+              "name": "$sells.name",
+              "company": "$sells.company",
+              "type": "$sells.type",
+              "category": "$sells.category",
+              "price": "$sells.price",
+              "qty": "$qty",
+              "checkoutOn": "$checkoutOn",
+              "total": {
+                "$multiply": ["$qty", "$sells.price"]
+              }
+            }
+          },
+          {
+            "$group": {
+              // "_id": "$_id",
+              "_id": {
+                "name": "$name",
+                // "day": {
+                //   $dayOfMonth: "$checkoutOn"
+                // },
+                // "month": {
+                //   $month: "$checkoutOn"
+                // },
+                // "year": {
+                //   $year: "$checkoutOn"
+                // }
+              },
+              "total": {
+                "$sum": "$total"
+              },
+              "qty": {
+                "$sum": "$qty"
+              }
+            }
+          }, {
+            "$lookup": {
+              from: "articles",
+              localField: "_id",
+              foreignField: "_id",
+              as: "article"
+            }
+          },
+          {
+            "$unwind": "$article"
+          },
+          {
+            "$project": {
+              "_id": 0,
+              "name": "$article.name",
+              "company": "$article.company",
+              "type": "$article.type",
+              "category": "$article.category",
+              "price": "$article.price",
+              "qty": "$qty",
+              "total": "$total"
+            }
           }
-        }
-      }])
-      .lean()
-      .exec()
+        ])
+        .exec()
 
-    console.log('carts=>', carts.map(c => c.products.map(p => p.article)))
+      // console.log('carts=>', data.map(c => c.article.map(p => p.article)))
 
-    res.json({
-      csv: json2csv({
-        data: carts,
-        fields: fields,
-        del: ','
-      }),
-      fileName: `export${new Date()}.csv`
-    })
+      console.log('data =>', data);
+
+      res.json({
+        csv: json2csv({
+          data,
+          fields,
+          del: ','
+        }),
+        fileName: `export${new Date()}.csv`
+      })
+
+    } catch (err) {
+      console.error('err =>', err);
+    }
 
   }
 
