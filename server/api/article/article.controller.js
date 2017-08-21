@@ -24,18 +24,18 @@ const controller = {
 
     readByName(req, res) {
         Article.find({
-            name: new RegExp(req.params.name, 'i'),
-            'deleted': { $ne: true }
-        })
+                name: new RegExp(req.params.name, 'i'),
+                'deleted': { $ne: true }
+            })
             .then(article => res.status(200).json(article))
             .catch(err => res.status(500).json(err));
     },
 
     readByCode(req, res) {
         Article.find({
-            code: req.params.code,
-            'deleted': { $ne: true }
-        })
+                code: req.params.code,
+                'deleted': { $ne: true }
+            })
             .then(article => res.status(200).json(article))
             .catch(err => res.status(500).json(err));
     },
@@ -49,35 +49,28 @@ const controller = {
 
     update(req, res) {
         req.body.updatedOn = Date.now()
-        Article.findOneAndUpdate(
-            {
-                _id: req.params.id,
-                'deleted': { $ne: true }
-            },
-            req.body,
-            {
-                new: true
-            })
+        Article.findOneAndUpdate({
+                    _id: req.params.id,
+                    'deleted': { $ne: true }
+                },
+                req.body, {
+                    new: true
+                })
             .then(article => res.status(200).json(article))
             .catch(err => res.status(500).json(err));
     },
 
     remove(req, res) {
         Article.findByIdAndUpdate(
-            req.params.id,
-            {
-                deleted: true
-            })
+                req.params.id, {
+                    deleted: true
+                })
             .then(a => Article.find({}))
             .then(articles => res.status(200).json(articles))
             .catch(err => res.status(500).json(err));
     },
 
-    import(req, res, next) {
-
-        // handle upload csv file
-
-        console.log('req.files=>', req.files);
+    import (req, res, next) {
 
         let toPush = []
         let pushed = []
@@ -85,9 +78,9 @@ const controller = {
 
         let skipFirst = true
 
-        var parser = parse({ delimiter: ',' }, function (err, data) {
+        var parser = parse({ delimiter: ',' }, function(err, data) {
 
-            data.forEach(function (line) {
+            data.forEach(function(line) {
                 // do something with the line
                 console.log('line=>', line);
 
@@ -110,7 +103,6 @@ const controller = {
                         format: line[7],
                         price: parseFloat(price),
                         description: line[9],
-                        createdOn: Date.now(),
                         updatedOn: Date.now()
                     }
 
@@ -125,7 +117,24 @@ const controller = {
 
             async.eachSeries(toPush, (article, callback) => {
 
-                Article.create(article)
+                Article.findOneAndUpdate({
+                        name: article.name
+                    }, {
+                        name: article.name,
+                        code: article.code,
+                        company: article.company,
+                        quantity: { $inc: article.quantity },
+                        category: article.category,
+                        type: article.type,
+                        nicotine: article.nicotine,
+                        format: article.format,
+                        price: article.price,
+                        description: article.description,
+                        updatedOn: article.updatedOn
+                    }, {
+                        upsert: true,
+                        new: true
+                    })
                     .then((article) => {
                         pushed.push(article)
                         callback()
@@ -161,7 +170,7 @@ const controller = {
 
     },
 
-    export(req, res) {
+    export (req, res) {
 
 
 
