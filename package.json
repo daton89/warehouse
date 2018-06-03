@@ -23,7 +23,7 @@
     "@angular/http": "^6.0.3",
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^4.0.0",
-    "@angular/router": "^4.0.0",
+    "@angular/router": "^6.0.3",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
     "async": "^2.5.0",
     "bluebird": "^3.5.0",
