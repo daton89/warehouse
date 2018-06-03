@@ -21,7 +21,7 @@
     "@angular/core": "^6.0.3",
     "@angular/forms": "^4.0.0",
     "@angular/http": "^6.0.3",
-    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
