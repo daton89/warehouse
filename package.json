@@ -12,7 +12,9 @@
     "e2e": "ng e2e",
     "build-electron": "ng build --base-href . && cp src/electron/* dist",
     "electron": "npm run build-electron && electron dist",
-    "serve": "ng serve"
+    "serve": "ng serve",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -46,7 +48,8 @@
     "npm": "^5.0.3",
     "pouchdb": "^6.2.0",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "snyk": "^1.88.0"
   },
   "devDependencies": {
     "@angular/cli": "1.0.3",
@@ -69,5 +72,6 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "2.3.4"
-  }
+  },
+  "snyk": true
 }
