@@ -22,7 +22,7 @@
     "@angular/forms": "^4.0.0",
     "@angular/http": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^6.1.7",
+    "@angular/platform-browser-dynamic": "^6.1.8",
     "@angular/router": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
     "async": "^2.5.0",
