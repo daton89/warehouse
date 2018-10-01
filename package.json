@@ -31,7 +31,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "compression": "^1.6.2",
     "core-js": "^2.4.1",
-    "csv": "^1.1.1",
+    "csv": "^4.0.0",
     "express": "^4.15.3",
     "express-formidable": "^1.0.0",
     "install": "^0.10.1",
