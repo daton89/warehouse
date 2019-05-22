@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "pm2 start server/index.js --watch --name warehouse && pm2 logs",
+    "start": "pm2 start server/index.js --watch server/ --name warehouse && pm2 logs",
     "build": "ng build",
     "build-production": "ng build --prod --env=prod",
     "test": "ng test",
