@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col">
+
+    <div class="d-flex justify-content-between" style="padding: 0 15px;">
+        <strong>Article</strong>
+        <strong>Price</strong>
+        <strong>Amount/Quantity</strong>
+    </div>
+
+    <hr>
+    
+    <ul class="list-group">
+      <app-cart-item
+        *ngFor="let product of products; let index=index; let odd=odd; let even=even;"
+        [product]="product"
+        [index]="index"
+        [odd]="odd"
+        [even]="even"
+      ></app-cart-item>
+    </ul>
+
+  </div>
+</div>

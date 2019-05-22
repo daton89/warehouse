@@ -1,47 +1,46 @@
-<div class="navbar-offset text-center jumbotron">
+<div class="row">
+  <div class="col">
 
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <div class="text-center">
-        <label for="code">codice:</label>
+    <!-- <div class="row">
+      <div class="col">
+        <label for="code">code:</label>
         <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" autofocus>
       </div>
+    </div> -->
+
+    <div *ngIf="cart && cart.products; else cartIsEmpty">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="d-flex">
+            <h4>Shopping Basket</h4>
+            <button type="button" class="btn btn-outline-danger" (click)="delete()">x</button>
+          </div>
+          <button class="btn btn-success" (click)="checkout()">checkout</button>
+        </div>
+
+        <hr>
+
+        <app-cart-list [products]="cart.products"></app-cart-list>
+
     </div>
-  </div>
-  <br>
-  <h2 class="text-center" *ngIf="!products">il carrello è vuoto</h2>
 
-  <button class="btn btn-danger btn-lg btn-block" *ngIf="products" (click)="delete()">Elimina carrello</button>
+    <ng-template #cartIsEmpty>
 
-  <hr>
-
-  <div class="cart-list" *ngIf="products | async">
-
-    <form class="form-inline row" *ngFor="let product of products | async; let index=index; let odd=odd; let even=even;">
-      <div class="col-md-6">
-        <div class="form-group">
-          <!--<label for="article">Prodotto: </label>-->
-          <span>{{product.article.name}} - {{product.article.nicotine}} - €{{product.article.price}}</span>
-        </div>
+      <div class="d-flex flex-row justify-content-between">
+        <h4>Shopping Basket is empty...</h4>
+        <button class="btn btn-primary" (click)="delete()">Quick add</button>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="code">Quantità</label>
-          <input type="number" id="qty" name="qty" class="form-control" (input)="setQuantity(product)" [(ngModel)]="product.qty">
-        </div>
-      </div>
-      <div class="col-md-2">
-        <button class="btn btn-danger btn-block" (click)="remove(product)">rimuovi</button>
-      </div>
-    </form>
 
-    <p><strong>Totale: </strong>{{cart.price | currency:'EUR':true}}</p>
+    </ng-template>
 
   </div>
-  <hr>
-  <button class="btn btn-success btn-lg btn-block" (click)="checkout()">checkout</button>
+  <div class="col-3">
+      <app-cart-detail [cart]="cart"></app-cart-detail>
+  </div>
+</div>
 
-  <hr>
+
+
+  <!-- <hr>
 
   <form class="form-inline">
     <div class="col-md-4">
@@ -53,6 +52,4 @@
     <div class="col-md-4">
       <button class="btn btn-primary btn-lg btn-block" (click)="saveCSV()">salva csv</button>
     </div>
-  </form>
-
-</div>
+  </form> -->
