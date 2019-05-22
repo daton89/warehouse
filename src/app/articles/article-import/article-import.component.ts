@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 // const URL = '/api/';
 const URL = `${environment.apiUrl}/api/articles/import`;

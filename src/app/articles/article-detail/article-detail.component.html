@@ -1,0 +1,54 @@
+<div class="navbar-offset" *ngIf="article; else noArticles">
+  <div class="d-flex flex-row justify-content-between">
+
+    <h4>{{ article.name }} ({{article.qty}}) {{article.code}}</h4>
+
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        Manage Article <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
+        <li><a style="cursor: pointer;" (click)="onEditArticle()">Edit Article</a></li>
+        <li><a style="cursor: pointer;" (click)="onDeleteArticle()">Delete Article</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <hr>
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <img
+        [src]="article.image"
+        alt="{{ article.name }}"
+        class="img-responsive"
+        style="max-height: 300px;">
+    </div>
+  </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        {{ article.description }}
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let tag of article.tags">
+            {{ tag.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noArticles>
+    <div class="navbar-offset">
+      <h4>Article not found...</h4>
+    </div>
+  </ng-template>

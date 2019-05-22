@@ -6,7 +6,7 @@
 
       <div class="col-md-4">
 
-        <h3>Seleziona un file</h3>
+        <h3>Select a file</h3>
 
         <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader"
           class="card bg-faded my-drop-zone">
@@ -39,7 +39,7 @@
 
       <div class="col-md-8" style="margin-bottom: 40px">
 
-        <h3>Coda di Upload</h3>
+        <h3>Upload Queue</h3>
         <p>Queue length: {{ uploader?.queue?.length }}</p>
 
         <table class="table">
@@ -105,14 +105,20 @@
   </div>
 
   <div *ngIf="finishedUpload">
-    <h1>articoli non inseriti:</h1>
+    <h1>articles not succesfully done:</h1>
     <div class="card-deck">
-      <app-article-card [article]="article" *ngFor="let article of finishedUpload.notPushed"></app-article-card>
+      <app-article-item
+        *ngFor="let article of finishedUpload.notPushed"
+        [article]="article"
+        ></app-article-item>
     </div>
 
-    <h1>articoli inseriti correttamente: </h1>
+    <h1>articles successfully done: </h1>
     <div class="card-deck">
-      <app-article-card [article]="article" *ngFor="let article of finishedUpload.pushed"></app-article-card>
+      <app-article-item
+        *ngFor="let article of finishedUpload.pushed"
+        [article]="article"
+        ></app-article-item>
     </div>
 
   </div>
