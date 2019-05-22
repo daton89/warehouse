@@ -1,130 +1,125 @@
-<div class="navbar-offset">
-
-  <div class="row">
-    <div class="col">
-      <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col">
-            <button
-              type="submit"
-              class="btn btn-success"
-              [disabled]="!articleForm.valid">Save</button>
-            <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!articleForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
           </div>
         </div>
-        <hr>
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="name">Name</label>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="image">Image URL</label>
+            <input
+              type="text"
+              id="image"
+              formControlName="image"
+              class="form-control"
+              #image>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <img [src]="image.value" class="img-responsive">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              formControlName="description"
+              rows="6"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="qty">Quantity</label>
+            <input
+              type="text"
+              id="qty"
+              class="form-control"
+              formControlName="qty"
+              />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="code">Code</label>
+            <input
+              type="text"
+              id="code"
+              class="form-control"
+              formControlName="code"
+              />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="price">Unit Price</label>
+            <input
+              type="text"
+              id="price"
+              class="form-control"
+              formControlName="price"
+              />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" formArrayName="tags">
+          <div
+            class="row"
+            *ngFor="let ingredientCtrl of articleForm.get('tags').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs-8">
               <input
                 type="text"
-                id="name"
-                formControlName="name"
-                class="form-control">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="image">Image URL</label>
-              <input
-                type="text"
-                id="image"
-                formControlName="image"
                 class="form-control"
-                #image>
+                formControlName="name">
+            </div>
+            <div class="col-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteIngredient(i)">X</button>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddTag()">Add Tag</button>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <img [src]="image.value" class="img-responsive">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea
-                type="text"
-                id="description"
-                class="form-control"
-                formControlName="description"
-                rows="6"></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="qty">Quantity</label>
-              <input
-                type="text"
-                id="qty"
-                class="form-control"
-                formControlName="qty"
-                />
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="code">Code</label>
-              <input
-                type="text"
-                id="code"
-                class="form-control"
-                formControlName="code"
-                />
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="price">Unit Price</label>
-              <input
-                type="text"
-                id="price"
-                class="form-control"
-                formControlName="price"
-                />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col" formArrayName="tags">
-            <div
-              class="row"
-              *ngFor="let ingredientCtrl of articleForm.get('tags').controls; let i = index"
-              [formGroupName]="i"
-              style="margin-top: 10px;">
-              <div class="col-xs-8">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="name">
-              </div>
-              <div class="col-2">
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  (click)="onDeleteIngredient(i)">X</button>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col">
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  (click)="onAddTag()">Add Tag</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
-
-
 </div>

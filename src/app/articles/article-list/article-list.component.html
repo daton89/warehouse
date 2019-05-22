@@ -1,21 +1,17 @@
-<div class="navbar-offset">
-
-  <div class="row">
-    <div class="col-xs-12">
-      <button class="btn btn-success" (click)="onNewArticle()">New Article</button>
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewArticle()">New Article</button>
   </div>
+</div>
 
-  <hr>
+<hr>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <app-article-item
-        *ngFor="let article of articles; let i = index"
-        [article]="article"
-        [id]="article._id"
-      ></app-article-item>
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <app-article-item
+      *ngFor="let article of articles; let i = index"
+      [article]="article"
+      [id]="article._id"
+    ></app-article-item>
   </div>
-
 </div>

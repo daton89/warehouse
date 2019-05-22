@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Article } from '../article.model';
 import { Subscription } from 'rxjs/Subscription';
 import { DataStorageService } from 'app/shared/data-storage.service';
-import { Product } from 'app/product';
+import { Product } from 'app/shared/product.model';
 
 @Component({
   selector: 'app-article-detail',

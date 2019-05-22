@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from '../../article.service';
 import { Article } from 'app/articles/article.model';
 import { Component, OnInit, Input } from '@angular/core';
-import { CartService } from 'app/cart.service';
+import { CartService } from 'app/cart/cart.service';
 
 @Component({
   selector: 'app-article-item',

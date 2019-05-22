@@ -9,7 +9,6 @@ export class ArticleSearchComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

@@ -1,4 +1,4 @@
-<div class="navbar-offset" *ngIf="article; else noArticles">
+<div *ngIf="article; else noArticles">
   <div class="d-flex flex-row justify-content-between">
 
     <h4>{{ article.name }} ({{article.qty}}) {{article.code}}</h4>
@@ -17,7 +17,7 @@
   </div>
 
   <hr>
-  
+
   <div class="row">
     <div class="col-xs-12">
       <img
@@ -28,27 +28,18 @@
     </div>
   </div>
     <hr>
-    <div class="row">
-      <div class="col-xs-12">
-        {{ article.description }}
-      </div>
+    <div class="d-flex justify-content-between">
+      <span> {{ article.description }} </span>
+      <span> {{ article.price | currency:'EUR':true }} </span>
     </div>
     <hr>
     <div class="row">
-      <div class="col-xs-12">
-        <ul class="list-group">
-          <li
-            class="list-group-item"
-            *ngFor="let tag of article.tags">
-            {{ tag.name }}
-          </li>
-        </ul>
+      <div class="col">
+        <span class="badge badge-info" *ngFor="let tag of article.tags">{{ tag.name }}</span>
       </div>
     </div>
   </div>
 
   <ng-template #noArticles>
-    <div class="navbar-offset">
-      <h4>Article not found...</h4>
-    </div>
+    <h4>Article not found...</h4>
   </ng-template>
