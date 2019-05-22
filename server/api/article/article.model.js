@@ -10,13 +10,14 @@ const article = mongoose.Schema({
     quantity: Number,
     category: String,
     type: String,
+    tags: { type: Array },
     nicotine: Number,
     format: String,
     price: Number,
     description: String,
     deleted: { type: Boolean, default: false },
-    createdOn: { type: Date, default: Date.now() },
-    updatedOn: { type: Date, default: Date.now() }
+    createdOn: { type: Date, default: Date.now },
+    updatedOn: { type: Date, default: Date.now }
 
 }, { strict: false })
 
