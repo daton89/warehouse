@@ -9,8 +9,8 @@ const cart = new mongoose.Schema({
         qty: { type: Number, required: true }
     }],
     price: { type: Number, required: true },
-    createdOn: { type: Date, default: Date.now() },
-    updatedOn: { type: Date, default: Date.now() },
+    createdOn: { type: Date, default: Date.now },
+    updatedOn: { type: Date, default: Date.now },
     checkout: { type: Boolean, default: false },
     checkoutOn: { type: Date }
 })
