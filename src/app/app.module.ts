@@ -1,32 +1,49 @@
-import { CartService } from './cart.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { CartService } from './cart/cart.service';
 import { AppComponent } from './app.component';
-import { ArticleListComponent } from './article-list/article-list.component';
-import { AddArticleComponent } from './add-article/add-article.component';
+import { ArticleListComponent } from './articles/article-list/article-list.component';
+import { AddArticleComponent } from './articles/add-article/add-article.component';
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ArticleService } from "app/article.service";
+import { ArticleService } from 'app/articles/article.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ArticleImportComponent } from './article-import/article-import.component';
-import { FileUploadModule } from 'ng2-file-upload';
-import { ArticleCardComponent } from './article-card/article-card.component';
+import { ArticleImportComponent } from './articles/article-import/article-import.component';
+import { ArticleItemComponent } from './articles/article-list/article-item/article-item.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticleSearchComponent } from './articles/article-search/article-search.component';
+import { ArticleDetailComponent } from './articles/article-detail/article-detail.component';
+import { DataStorageService } from './shared/data-storage.service';
+import { HeaderComponent } from './header/header.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+import { CartListComponent } from './cart/cart-list/cart-list.component';
+import { CartItemComponent } from './cart/cart-list/cart-item/cart-item.component';
+import { CartDetailComponent } from './cart/cart-detail/cart-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArticleCardComponent,
+    ArticleItemComponent,
     ArticleListComponent,
     AddArticleComponent,
     CartComponent,
     DashboardComponent,
-    ArticleImportComponent
+    ArticleImportComponent,
+    ArticlesComponent,
+    ArticleSearchComponent,
+    ArticleDetailComponent,
+    HeaderComponent,
+    DropdownDirective,
+    CartListComponent,
+    CartItemComponent,
+    CartDetailComponent
     // FileDropDirective,
     // FileSelectDirective
   ],
@@ -34,12 +51,13 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     BrowserModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     NgbModule.forRoot(),
     FileUploadModule
   ],
-  providers: [ArticleService, CartService],
+  providers: [ArticleService, CartService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
