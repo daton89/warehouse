@@ -43,6 +43,22 @@ export class DataStorageService {
       );
   }
 
+  fetchArticlesByCode(code: string) {
+    return this.http.get(this.articleBaseUri + '/code/' + code)
+      .map((response: Response) => response.json())
+      .subscribe(
+        (articles: Article[]) => this.articleService.setArticles(articles)
+      )
+  }
+
+  fetchArticlesByName(name: string) {
+    return this.http.get(this.articleBaseUri + '/name/' + name)
+      .map((response: Response) => response.json())
+      .subscribe(
+        (articles: Article[]) => this.articleService.setArticles(articles)
+      )
+  }
+
   getArticleById(id: string) {
     return this.http.get(`${this.articleBaseUri}/${id}`)
     .map(

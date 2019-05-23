@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from 'app/shared/data-storage.service';
 
 @Component({
   selector: 'app-article-search',
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dataStorageService: DataStorageService
+  ) { }
 
   ngOnInit() { }
+
+  onSearchByName(name: HTMLInputElement) {
+    this.dataStorageService.fetchArticlesByName(name.value)
+  }
+
+  onSearchByCode(code: HTMLInputElement) {
+    this.dataStorageService.fetchArticlesByCode(code.value)
+  }
 
 }

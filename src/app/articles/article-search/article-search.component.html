@@ -1,14 +1,18 @@
-<h4>Search articles</h4>
+<div class="row">
+  <div class="col">
+    <h4>Search articles</h4>
+  </div>
+</div>
 
 <hr>
 
 <div class="row">
-  <div class="col-sm-5 form-group">
+  <div class="col-5 form-group">
     <label for="name">name</label>
-    <input type="text" class="form-control" #searchName name="name" (keyup)="searchByName(searchName.value)" placeholder="">
+    <input type="text" class="form-control" #searchName name="name" (keyup)="onSearchByName(searchName)" placeholder="">
   </div>
-  <div class="col-sm-3 form-group">
+  <div class="col-3 form-group">
     <label for="code">code</label>
-    <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" placeholder="" autofocus>
+    <input type="text" class="form-control" #searchCode name="code" (keyup)="onSearchByCode(searchCode)" placeholder="">
   </div>
 </div>
