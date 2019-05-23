@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Article } from '../article.model';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { DataStorageService } from 'app/shared/data-storage.service';
 import { Product } from 'app/shared/product.model';
 

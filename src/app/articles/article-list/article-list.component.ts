@@ -4,19 +4,8 @@ import { CartService } from '../../cart/cart.service';
 import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { Article } from 'app/articles/article.model';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subject ,  Subscription } from 'rxjs';
 import _ from 'lodash';
-
-// Observable class extensions
-import 'rxjs/add/observable/of';
-
-// Observable operators
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import { Subscription } from 'rxjs/Subscription';
 import { DataStorageService } from 'app/shared/data-storage.service';
 
 @Component({

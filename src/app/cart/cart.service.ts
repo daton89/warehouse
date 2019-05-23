@@ -1,11 +1,10 @@
 import { environment } from '../../environments/environment';
 import { Product } from '../shared/product.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subject } from 'rxjs';
 import { Http } from '@angular/http';
 import { Cart } from './cart';
 import { Injectable } from '@angular/core';
 import _ from 'lodash';
-import { Subject } from 'rxjs';
 
 @Injectable()
 export class CartService {

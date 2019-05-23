@@ -1,8 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import 'rxjs/Rx';
-
+import { map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { ArticleService } from '../articles/article.service';
 import { Article } from '../articles/article.model';
@@ -23,18 +22,22 @@ export class DataStorageService {
 
   createArticle(article: Article) {
     return this.http.post(this.articleBaseUri, article)
-      .map(
-        (response: Response) => response.json()
-      )
-      .do(
-        (article: Article) => this.articleService.addArticle(article)
+      .pipe(
+        map(
+          (response: Response) => response.json()
+        ),
+        tap(
+          (article: Article) => this.articleService.addArticle(article)
+        )
       )
   }
 
   fetchArticles() {
     this.http.get(this.articleBaseUri)
-      .map(
-        (response: Response) => response.json()
+      .pipe(
+        map(
+          (response: Response) => response.json()
+        )
       )
       .subscribe(
         (articles: Article[]) => {
@@ -45,7 +48,7 @@ export class DataStorageService {
 
   fetchArticlesByCode(code: string) {
     return this.http.get(this.articleBaseUri + '/code/' + code)
-      .map((response: Response) => response.json())
+      .pipe(map((response: Response) => response.json()))
       .subscribe(
         (articles: Article[]) => this.articleService.setArticles(articles)
       )
@@ -53,7 +56,7 @@ export class DataStorageService {
 
   fetchArticlesByName(name: string) {
     return this.http.get(this.articleBaseUri + '/name/' + name)
-      .map((response: Response) => response.json())
+      .pipe(map((response: Response) => response.json()))
       .subscribe(
         (articles: Article[]) => this.articleService.setArticles(articles)
       )
@@ -61,24 +64,20 @@ export class DataStorageService {
 
   getArticleById(id: string) {
     return this.http.get(`${this.articleBaseUri}/${id}`)
-    .map(
-      (response: Response) => response.json()
-    )
+    .pipe(map((response: Response) => response.json()))
   }
 
   updateArticle(article: Article) {
     return this.http.put(`${this.articleBaseUri}/${article._id}`, article)
-      .map(
-        (response: Response) => response.json()
-      )
-      .do(
-        (article: Article) => this.articleService.updateArticle(article)
+      .pipe(
+        map((response: Response) => response.json()),
+        tap((article: Article) => this.articleService.updateArticle(article))
       )
   }
 
   fetchCart() {
     return this.http.get(this.cartBaseUri)
-      .map(res => res.json())
+      .pipe(map(res => res.json()))
       .subscribe((cart: Cart) => this.cartService.setCart(cart))
   }
 
@@ -88,7 +87,7 @@ export class DataStorageService {
 
     if (cart._id) {
       return this.http.put(`${this.cartBaseUri}/push/${cart._id}`, product)
-        .map(res => res.json())
+        .pipe(map(res => res.json()))
         .subscribe(
           (cart: Cart) => this.cartService.setCart(cart)
         )
@@ -99,7 +98,7 @@ export class DataStorageService {
 
     } else {
       return this.http.post(this.cartBaseUri, product)
-        .map(res => res.json())
+        .pipe(map(res => res.json()))
         .subscribe(
           (cart: Cart) => this.cartService.setCart(cart)
         )
