@@ -3,12 +3,21 @@
 
     <h4>{{ article.name }} ({{article.qty}}) {{article.code}}</h4>
 
+    <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Action - 1</button>
+          <button ngbDropdownItem>Another Action</button>
+          <button ngbDropdownItem>Something else is here</button>
+        </div>
+      </div>
+
     <div class="btn-group" appDropdown>
       <button type="button" class="btn btn-primary dropdown-toggle">
         Manage Article <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
+        <li><a (click)="onAddToShoppingList()" >To Shopping List</a></li>
         <li><a style="cursor: pointer;" (click)="onEditArticle()">Edit Article</a></li>
         <li><a style="cursor: pointer;" (click)="onDeleteArticle()">Delete Article</a></li>
       </ul>
