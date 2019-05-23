@@ -148,7 +148,13 @@ module.exports = {
                 new: true
             })
             .populate('products.article')
-            .then((cart) => res.status(200).json(cart))
+            .then((cart) => {
+                if (!cart) {
+                    res.sendStatus(404)
+                } else {
+                    res.status(200).json(cart)
+                }
+            })
             .catch((err) => res.status(500).json(err))
     },
 
