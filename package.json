@@ -46,8 +46,6 @@
     "mongoose": "^5.3.0",
     "morgan": "^1.8.2",
     "ng2-file-upload": "^1.2.1",
-    "npm": "^5.0.3",
-    "pouchdb": "^6.2.0",
     "rxjs": "^6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "^0.9.1"
@@ -71,6 +69,7 @@
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "pm2": "^3.5.0",
     "protractor": "^5.4.2",
     "rxjs-tslint": "^0.1.7",
     "ts-node": "~2.0.0",
