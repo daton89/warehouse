@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+
+import { DataStorageService } from 'app/shared/data-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,14 @@ import { Http } from '@angular/http';
 
 export class AppComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private dataStorageService: DataStorageService
+  ) {
 
   }
 
   ngOnInit() {
-
+    this.dataStorageService.fetchCart()
   }
 
 }
