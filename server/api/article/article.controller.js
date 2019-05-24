@@ -6,49 +6,67 @@ const fs = require("fs");
 const parse = require("csv").parse;
 const async = require("async");
 const config = require("../../config/environment");
+const rest = require('../../utils/rest.util')
 
 const controller = {
   read(req, res) {
-    Article.find({ deleted: { $ne: true } })
-      .then(articles => res.status(200).json(articles))
-      .catch(err => res.status(500).json(err));
+    const query = { deleted: { $ne: true } }
+    const options = {
+      page: +req.query.page,
+      limit: +req.query.pageSize,
+      lean: true
+    }
+    Article.paginate(query, options)
+      .then(rest.handleEntityNotFound(res))
+      .then(rest.respondWithResult(res))
+      .catch(rest.handleCatch(res));
   },
 
   readById(req, res) {
     Article.findById(req.params.id)
-      .then(article => res.status(200).json(article))
-      .catch(err => res.status(500).json(err));
+      .lean()
+      .then(rest.handleEntityNotFound(res))
+      .then(rest.respondWithResult(res))
+      .catch(rest.handleCatch(res));
   },
 
   readByName(req, res) {
-    const query = {
-      deleted: { $ne: true }
-    };
+    const query = { deleted: { $ne: true } }
     if (req.params.name) {
       query.name = new RegExp(req.params.name, "i");
     }
-    Article.find(query)
-      .then(article => res.status(200).json(article))
-      .catch(err => res.status(500).json(err));
+    const options = {
+      page: +req.query.page,
+      limit: +req.query.pageSize,
+      lean: true
+    }
+    Article.paginate(query, options)
+      .then(rest.handleEntityNotFound(res))
+      .then(rest.respondWithResult(res))
+      .catch(rest.handleCatch(res));
   },
 
   readByCode(req, res) {
-    const query = {
-      deleted: { $ne: true }
-    };
+    const query = { deleted: { $ne: true } }
     if (req.params.code) {
       query.code = new RegExp(req.params.code, "i");
     }
-    Article.find(query)
-      .then(article => res.status(200).json(article))
-      .catch(err => res.status(500).json(err));
+    const options = {
+      page: +req.query.page,
+      limit: +req.query.pageSize,
+      lean: true
+    }
+    Article.paginate(query, options)
+      .then(rest.handleEntityNotFound(res))
+      .then(rest.respondWithResult(res))
+      .catch(rest.handleCatch(res));
   },
 
   create(req, res) {
     req.body.createdOn = Date.now();
     Article.create(req.body)
-      .then(article => res.status(201).json(article))
-      .catch(err => res.status(500).json(err));
+      .then(rest.respondWithResult(res, 201))
+      .catch(rest.handleCatch(res));
   },
 
   update(req, res) {
@@ -63,17 +81,19 @@ const controller = {
         new: true
       }
     )
-      .then(article => res.status(200).json(article))
-      .catch(err => res.status(500).json(err));
+    .lean()
+      .then(rest.handleEntityNotFound(res))
+      .then(rest.respondWithResult(res))
+      .catch(rest.handleCatch(res));
   },
 
   remove(req, res) {
     Article.findByIdAndUpdate(req.params.id, {
       deleted: true
     })
-      .then(a => Article.find({}))
-      .then(articles => res.status(200).json(articles))
-      .catch(err => res.status(500).json(err));
+      .then(() => Article.find({ deleted: {$ne: true} }.lean()))
+      .then(rest.respondWithResult(200))
+      .catch(rest.handleCatch(res));
   },
 
   import(req, res, next) {
@@ -83,8 +103,8 @@ const controller = {
 
     let skipFirst = true;
 
-    var parser = parse({ delimiter: "," }, function(err, data) {
-      data.forEach(function(line) {
+    var parser = parse({ delimiter: "," }, function (err, data) {
+      data.forEach(function (line) {
         // do something with the line
         console.log("line=>", line);
 
@@ -168,7 +188,7 @@ const controller = {
     fs.createReadStream(inputFile).pipe(parser);
   },
 
-  export(req, res) {}
+  export(req, res) { }
 };
 
 module.exports = controller;

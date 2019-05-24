@@ -1,13 +1,14 @@
 'use strict';
 
 const mongoose = require('mongoose')
+const paginate = require('mongoose-paginate')
 
 const article = mongoose.Schema({
 
     name: { type: String, required: true },
     code: String,
     company: String,
-    quantity: Number,
+    qty: Number,
     category: String,
     type: String,
     tags: { type: Array },
@@ -20,5 +21,7 @@ const article = mongoose.Schema({
     updatedOn: { type: Date, default: Date.now }
 
 }, { strict: false })
+
+article.plugin(paginate)
 
 module.exports = mongoose.model('Article', article)
