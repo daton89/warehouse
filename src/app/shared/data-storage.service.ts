@@ -1,13 +1,16 @@
 
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+// TODO: http is deprecated, migrate to common/http
+import { Http, Response, RequestOptions } from '@angular/http';
+import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { ArticleService } from '../articles/article.service';
-import { Article } from '../articles/article.model';
+
 import { CartService } from 'app/cart/cart.service';
 import { Product } from 'app/shared/product.model';
-import { Cart } from 'app/cart/cart';
+import { Cart } from 'app/cart/cart.model';
+import { environment } from '../../environments/environment';
+import { ArticleService, ArticlePaginate } from '../articles/article.service';
+import { Article } from '../articles/article.model';
 
 @Injectable()
 export class DataStorageService {
@@ -18,56 +21,48 @@ export class DataStorageService {
     private http: Http,
     private articleService: ArticleService,
     private cartService: CartService
-  ) {}
+  ) { }
 
-  createArticle(article: Article) {
+  createArticle(article: Article): Observable<Article> {
     return this.http.post(this.articleBaseUri, article)
       .pipe(
-        map(
-          (response: Response) => response.json()
-        ),
-        tap(
-          (article: Article) => this.articleService.addArticle(article)
-        )
+        map((response: Response) => response.json()),
+        tap((article: Article) => this.articleService.addArticle(article))
       )
   }
 
-  fetchArticles() {
-    this.http.get(this.articleBaseUri)
-      .pipe(
-        map(
-          (response: Response) => response.json()
-        )
-      )
+  fetchArticles(options: { page: number, pageSize: number }): Subscription {
+    return this.http.get(this.articleBaseUri, { params: options })
+      .pipe(map((response: Response) => response.json()))
       .subscribe(
-        (articles: Article[]) => {
-          this.articleService.setArticles(articles);
+        (articlePaginate: ArticlePaginate) => {
+          this.articleService.setArticles(articlePaginate);
         }
       );
   }
 
-  fetchArticlesByCode(code: string) {
-    return this.http.get(this.articleBaseUri + '/code/' + code)
+  fetchArticlesByCode(code: string, options: { page: number, pageSize: number }): Subscription {
+    return this.http.get(this.articleBaseUri + '/code/' + code, { params: options })
       .pipe(map((response: Response) => response.json()))
       .subscribe(
-        (articles: Article[]) => this.articleService.setArticles(articles)
+        (articlePaginate: ArticlePaginate) => this.articleService.setArticles(articlePaginate)
       )
   }
 
-  fetchArticlesByName(name: string) {
-    return this.http.get(this.articleBaseUri + '/name/' + name)
+  fetchArticlesByName(name: string, options: { page: number, pageSize: number }): Subscription {
+    return this.http.get(this.articleBaseUri + '/name/' + name, { params: options })
       .pipe(map((response: Response) => response.json()))
       .subscribe(
-        (articles: Article[]) => this.articleService.setArticles(articles)
+        (articlePaginate: ArticlePaginate) => this.articleService.setArticles(articlePaginate)
       )
   }
 
-  getArticleById(id: string) {
+  getArticleById(id: string): Observable<Article> {
     return this.http.get(`${this.articleBaseUri}/${id}`)
-    .pipe(map((response: Response) => response.json()))
+      .pipe(map((response: Response) => response.json()))
   }
 
-  updateArticle(article: Article) {
+  updateArticle(article: Article): Observable<Article> {
     return this.http.put(`${this.articleBaseUri}/${article._id}`, article)
       .pipe(
         map((response: Response) => response.json()),
@@ -75,38 +70,62 @@ export class DataStorageService {
       )
   }
 
-  fetchCart() {
+  fetchCart(): Subscription {
     return this.http.get(this.cartBaseUri)
-      .pipe(map(res => res.json()))
+      .pipe(map((res: Response) => res.json()))
       .subscribe((cart: Cart) => this.cartService.setCart(cart))
   }
 
-  addToShoppingList(product: Product) {
+  addToShoppingList(product: Product): Observable<Cart> {
     const cart = this.cartService.getCart()
-    console.log('cart =>', JSON.stringify(cart,null, 4));
 
-    if (cart._id) {
-      return this.http.put(`${this.cartBaseUri}/push/${cart._id}`, product)
-        .pipe(map(res => res.json()))
-        .subscribe(
-          (cart: Cart) => this.cartService.setCart(cart)
-        )
-        // .do((cart: Cart) =>
-        //   _.differenceBy(cart.products, this.products, '_id')
-        //     .forEach(p => this.products.push(p))
-        // )
+    const productAlreadyPresent = cart.products
+      .find((p: Product) => p.article._id === product.article._id)
 
-    } else {
-      return this.http.post(this.cartBaseUri, product)
-        .pipe(map(res => res.json()))
-        .subscribe(
-          (cart: Cart) => this.cartService.setCart(cart)
-        )
-        // .do(cart => this.cart = cart)
-        // .do(cart => {
-        //   this.products.push(cart.products[0])
-        // })
+    if (productAlreadyPresent) {
+      return this.updateAmount(cart._id, {
+        ...productAlreadyPresent,
+        qty: productAlreadyPresent.qty + product.qty
+      })
     }
+
+    return this.http.put(`${this.cartBaseUri}/push/${cart._id}`, product)
+      .pipe(
+        map((res: Response) => res.json()),
+        tap(
+          (cart: Cart) => this.cartService.setCart(cart)
+        )
+      )
+  }
+
+  updateAmount(cartId: string, product: Product): Observable<Cart> {
+    return this.http.put(`${this.cartBaseUri}/set-quantity/${cartId}`, product)
+      .pipe(
+        map((res: Response) => res.json()),
+        tap(
+          (cart: Cart) => this.cartService.setCart(cart)
+        )
+      )
+  }
+
+  removeProduct(cartId: string, product: Product): Subscription {
+    return this.http.put(`${this.cartBaseUri}/pull/${cartId}`, product)
+      .pipe(
+        map((res: Response) => res.json())
+      )
+      .subscribe(
+        (cart: Cart) => this.cartService.setCart(cart)
+      )
+  }
+
+  checkout(cartId: string): Observable<Cart> {
+    return this.http.get(`${this.cartBaseUri}/checkout/${cartId}`)
+      .pipe(
+        map((res: Response) => res.json()),
+        tap(
+          (cart: Cart) => this.cartService.setCart(cart)
+        )
+      )
   }
 
 }
