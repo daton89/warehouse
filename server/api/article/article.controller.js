@@ -17,7 +17,6 @@ const controller = {
       lean: true
     }
     Article.paginate(query, options)
-      .then(rest.handleEntityNotFound(res))
       .then(rest.respondWithResult(res))
       .catch(rest.handleCatch(res));
   },
@@ -41,7 +40,6 @@ const controller = {
       lean: true
     }
     Article.paginate(query, options)
-      .then(rest.handleEntityNotFound(res))
       .then(rest.respondWithResult(res))
       .catch(rest.handleCatch(res));
   },
@@ -57,7 +55,6 @@ const controller = {
       lean: true
     }
     Article.paginate(query, options)
-      .then(rest.handleEntityNotFound(res))
       .then(rest.respondWithResult(res))
       .catch(rest.handleCatch(res));
   },
