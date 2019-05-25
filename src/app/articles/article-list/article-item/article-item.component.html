@@ -1,11 +1,15 @@
-<a
+<!-- <a
   style="cursor: pointer;"
   [routerLink]="[id]"
   routerLinkActive="active"
   class="list-group-item d-flex justify-content-between">
   <div>
-    <h4 class="list-group-item-heading">{{ article.name }} ({{article.code}})</h4>
+    <h4 class="list-group-item-heading">{{ article.name }}</h4>
     <p class="list-group-item-text">{{ article.description }}</p>
+    <div class="d-flex justify-content-between">
+      <span class="list-group-item-text">{{ article.code }}</span>
+      <span class="list-group-item-text">{{ article.price | currency:'EUR':'symbol' }}</span>
+    </div>
   </div>
   <span>
     <img
@@ -14,4 +18,18 @@
       class="img-responsive"
       style="max-height: 50px;">
   </span>
-</a>
+</a> -->
+<li 
+  [routerLink]="[id]"
+  routerLinkActive="active"
+  class="media article-list-item mt-2 mb-2 p-2 pointer">
+  <img [src]="article.image" alt="{{ article.name }}" class="align-self-center mr-3" style="max-width: 64px;">
+  <div class="media-body">
+    <h5 class="mt-0 mb-1">{{ article.name }}</h5>
+    <p class="paragraph">{{ article.description }}</p>
+    <div class="d-flex justify-content-between">
+      <p class="paragraph">{{ article.code }}</p>
+      <p class="paragraph">{{ article.price | currency:'EUR':'symbol' }}</p>
+    </div>
+  </div>
+</li>

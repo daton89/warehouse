@@ -1,0 +1,17 @@
+.paragraph {
+    margin-bottom: 0;
+}
+
+.article-list-item {
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+li.pointer.active {
+    border: 2px solid #007bff;
+    color: #007bff;
+}
