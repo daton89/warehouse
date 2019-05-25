@@ -3,6 +3,7 @@ export class Product {
   public _id: string
   public article: Article
   public qty: number
+  public updated: boolean
 
   constructor(
     article: Article,
