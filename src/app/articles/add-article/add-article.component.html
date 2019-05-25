@@ -38,7 +38,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <img [src]="image.value" class="img-responsive">
+          <img [src]="image.value" class="img-responsive" style="max-height: 300px;">
         </div>
       </div>
       <div class="row">
@@ -93,7 +93,7 @@
         <div class="col" formArrayName="tags">
           <div
             class="row"
-            *ngFor="let ingredientCtrl of articleForm.get('tags').controls; let i = index"
+            *ngFor="let tagCtrl of articleForm.get('tags').controls; let i = index"
             [formGroupName]="i"
             style="margin-top: 10px;">
             <div class="col-xs-8">
@@ -106,7 +106,7 @@
               <button
                 type="button"
                 class="btn btn-danger"
-                (click)="onDeleteIngredient(i)">X</button>
+                (click)="onDeleteTag(i)">X</button>
             </div>
           </div>
           <hr>

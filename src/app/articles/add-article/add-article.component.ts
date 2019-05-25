@@ -53,6 +53,10 @@ export class AddArticleComponent implements OnInit {
     }
   }
 
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
   onAddTag() {
     (<FormArray>this.articleForm.get('tags')).push(
       new FormGroup({
@@ -65,10 +69,6 @@ export class AddArticleComponent implements OnInit {
     (<FormArray>this.articleForm.get('tags')).removeAt(index);
   }
 
-  onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route});
-  }
-
   private initForm() {
     let articleName = '';
     let articleImagePath = '';
@@ -79,7 +79,7 @@ export class AddArticleComponent implements OnInit {
     const articleTags = new FormArray([]);
 
     if (this.editMode) {
-      const article = this.articleService.getArticle(this.id);
+      const article: Article = this.articleService.getArticle(this.id);
 
       articleName = article.name;
       articleImagePath = article.image;
