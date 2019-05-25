@@ -1,55 +1,29 @@
 <div class="row">
   <div class="col">
 
-    <!-- <div class="row">
-      <div class="col">
-        <label for="code">code:</label>
-        <input type="text" class="form-control" #searchCode name="code" (keyup)="searchByCode(searchCode.value)" autofocus>
-      </div>
-    </div> -->
-
     <div *ngIf="cart && cart.products; else cartIsEmpty">
-        <div class="d-flex flex-row justify-content-between">
-          <div class="d-flex">
-            <h4>Shopping Basket</h4>
-            <button type="button" class="btn btn-outline-danger" (click)="delete()">x</button>
-          </div>
-          <button class="btn btn-success" (click)="checkout()">checkout</button>
-        </div>
-
-        <hr>
-
-        <app-cart-list [products]="cart.products"></app-cart-list>
-
+      <div class="d-flex flex-row justify-content-between">
+        <h4>Shopping Basket</h4>
+        <button class="btn btn-success" (click)="onCheckout()">checkout</button>
+      </div>
+      <hr>
+      <p>
+        <ngb-alert [dismissible]="false">
+          <strong>Warning!</strong> Better check yourself, you're not looking too good.
+        </ngb-alert>
+      </p>
+      <app-cart-list [products]="cart.products" [cartId]="cart._id"></app-cart-list>
     </div>
 
     <ng-template #cartIsEmpty>
-
       <div class="d-flex flex-row justify-content-between">
         <h4>Shopping Basket is empty...</h4>
-        <button class="btn btn-primary" (click)="delete()">Quick add</button>
+        <button class="btn btn-primary" (click)="onContinue()">Continue Shopping</button>
       </div>
-
     </ng-template>
 
   </div>
   <div class="col-3">
-      <app-cart-detail [cart]="cart"></app-cart-detail>
+    <app-cart-detail></app-cart-detail>
   </div>
 </div>
-
-
-
-  <!-- <hr>
-
-  <form class="form-inline">
-    <div class="col-md-4">
-      <div class="form-group"><label for="start"></label><input type="date" name="start" [(ngModel)]="exportStart"></div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group"><label for="end"></label><input type="date" name="end" [(ngModel)]="exportEnd"></div>
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-primary btn-lg btn-block" (click)="saveCSV()">salva csv</button>
-    </div>
-  </form> -->
