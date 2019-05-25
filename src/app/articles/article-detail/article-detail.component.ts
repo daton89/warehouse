@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../article.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Article } from '../article.model';
-import { Subscription } from 'rxjs';
-import { DataStorageService } from 'app/shared/data-storage.service';
-import { Product } from 'app/shared/product.model';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Router, Params } from '@angular/router'
+import { Subscription } from 'rxjs'
+
+import { Article } from 'app/articles/article.model'
+import { Product } from 'app/shared/product.model'
+import { ArticleService } from '../article.service'
+import { DataStorageService } from 'app/shared/data-storage.service'
 
 @Component({
   selector: 'app-article-detail',
@@ -13,8 +14,8 @@ import { Product } from 'app/shared/product.model';
 })
 export class ArticleDetailComponent implements OnInit {
   subscription: Subscription
-  article: Article;
-  id: string;
+  article: Article
+  id: string
 
   constructor(
     private articleService: ArticleService,
@@ -27,31 +28,35 @@ export class ArticleDetailComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = params['id'];
+          this.id = params['id']
 
-         this.dataStorageService.getArticleById(this.id)
-          .subscribe(
-            (article: Article) => {
-              this.article = article
-            }
-          );
+          this.dataStorageService.getArticleById(this.id)
+            .subscribe(
+              (article: Article) => {
+                this.article = article
+              }
+            )
         }
-      );
+      )
   }
 
-  onAddToShoppingList() {
-    const product = new Product(this.article, 1)
-    this.dataStorageService.addToShoppingList(product);
+  onAddToShoppingList(quantityInput: HTMLInputElement) {
+    const product = new Product(this.article, +quantityInput.value)
+    this.dataStorageService.addToShoppingList(product)
+      .subscribe(
+        () => { },
+        () => alert('failed add to cart')
+      )
   }
 
   onEditArticle() {
-    this.router.navigate(['edit'], {relativeTo: this.route});
-    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
+    this.router.navigate(['edit'], { relativeTo: this.route })
+    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route})
   }
 
-  onDeleteArticle() {
-    this.articleService.deleteArticle(this.id);
-    this.router.navigate(['/articles']);
+  onDeleteArticle(article: Article) {
+    this.articleService.deleteArticle(article)
+    this.router.navigate(['/articles'])
   }
 
 }
