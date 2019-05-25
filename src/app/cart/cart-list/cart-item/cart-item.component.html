@@ -1,23 +1,21 @@
 <li class="list-group-item d-flex justify-content-between">
 
   <h6> {{product.article.name}} </h6>
-  
-  <span>{{product.article.price | currency:'EUR':true}}</span>
 
-  <div class="input-group mb-3" style="max-width: 150px;">
-    <div class="input-group-prepend">
-      <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Amount</button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">1</a>
-        <a class="dropdown-item" href="#">2</a>
-        <a class="dropdown-item" href="#">3</a>
-        <a class="dropdown-item" href="#">4</a>
-        <a class="dropdown-item" href="#">5</a>
-        <div role="separator" class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#" (click)="remove(product)">Remove</a>
+  <span>{{product.article.price | currency:'EUR':'symbol'}}</span>
+
+  <div class="input-group mb-3" style="max-width: 180px;">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" [id]="'amount-' + product._id" ngbDropdownToggle>Amount</button>
+      <div ngbDropdownMenu aria-labelledby="'amount-' + product._id">
+        <button ngbDropdownItem *ngFor="let num of numbers" (click)="onSetAmount(product, {value: num})">{{num}}</button>
+        <hr>
+        <button ngbDropdownItem (click)="onRemove(product)">Remove</button>
+        <span *ngIf="product.updated">updated</span>
       </div>
     </div>
-    <input type="number" id="qty" name="qty" class="form-control" (input)="setQuantity(product)" [(ngModel)]="product.qty">
+    <input type="number" name="qty" class="form-control"
+      [value]="product.qty" #amountInput (change)="onSetAmount(product, amountInput)">
   </div>
 
 </li>
