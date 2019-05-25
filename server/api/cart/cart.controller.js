@@ -89,9 +89,9 @@ module.exports = {
 
         Cart.findByIdAndUpdate(
             req.params.id,
-            upsert, 
+            upsert,
             // options
-            { 
+            {
                 new: true,
                 useFindAndModify: false
             })
@@ -120,6 +120,7 @@ module.exports = {
             }, {
                 new: true
             })
+            .populate('products.article')
             .then(rest.handleEntityNotFound(res))
             .then(rest.respondWithResult(res))
             .catch(rest.handleCatch(res))
