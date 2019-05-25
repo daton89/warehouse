@@ -8,6 +8,7 @@ import { Product } from 'app/shared/product.model';
 })
 export class CartListComponent implements OnInit {
   @Input() products: Product[]
+  @Input() cartId: string
 
   constructor() { }
 

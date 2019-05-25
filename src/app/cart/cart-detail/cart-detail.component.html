@@ -1,6 +1,6 @@
-<div class="jumbotron">
+<div class="jumbotron" *ngIf="!!cart">
   <span class="lead">Subtotal</span>
-  <strong>({{cart.products.length}} Items):</strong>
+  <strong *ngIf="!!cart.products">({{cart.items}} Items):</strong>
   <hr class="my-2">
-  <span>{{cart.price | currency:'EUR':true}}</span>
+  <span>{{cart.price | currency:'EUR':'symbol'}}</span>
 </div>
