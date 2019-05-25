@@ -1,94 +1,75 @@
-import { Article } from './article.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import _ from 'lodash'
 
+import { Article } from './article.model';
 
+export interface ArticlePaginate {
+  docs: Article[],
+  total: number,
+  limit: number,
+  page: number,
+  pages: number
+}
 
+export interface ArticleEvent {
+  type: string,
+  article?: Article,
+  paginate?: ArticlePaginate
+}
 
 @Injectable()
 export class ArticleService {
-  articlesChanged = new Subject<Article[]>()
+  eventTypes = { CREATED: 'created', UPDATED: 'updated', LOADED: 'loaded', REMOVED: 'removed' }
+  articlesChanged = new Subject<ArticleEvent>()
+  private articlePaginate: ArticlePaginate
 
-  private articles: Article[] = []
-
-  constructor( ) { }
+  constructor() { }
 
   // Methods for the Articles' collection
-  setArticles(articles: Article[]) {
-    this.articles = articles
-    this.articlesChanged.next([...this.articles])
+  setArticles(articlePaginate: ArticlePaginate) {
+    this.articlePaginate = articlePaginate
+    this.articlesChanged.next({
+      type: this.eventTypes.LOADED,
+      paginate: { ...articlePaginate }
+    })
   }
 
   getArticles() {
-    return [...this.articles]
+    return [...this.articlePaginate.docs]
   }
 
   // CRUD Methods for the Article's model
   addArticle(article: Article) {
-    this.articles.push(article)
-    this.articlesChanged.next([...this.articles])
+    this.articlePaginate.docs.push(article)
+    this.articlesChanged.next({
+      type: this.eventTypes.CREATED,
+      article,
+      paginate: {...this.articlePaginate}
+    })
   }
 
   getArticle(id: string) {
-    const index = this.articles.findIndex(({_id}) => _id === id)
-    return this.articles[index];
+    return this.articlePaginate.docs.find(({ _id }) => _id === id)
   }
 
-  getArticleById(id: string) {
-    return this.articles.find(({ _id }) => id === _id);
+  updateArticle(updatedArticle: Article) {
+    const index = this.articlePaginate.docs.findIndex((({ _id }) => _id === updatedArticle._id))
+    this.articlePaginate.docs.splice(index, 1, updatedArticle);
+    this.articlesChanged.next({
+      type: this.eventTypes.UPDATED,
+      article: updatedArticle,
+      paginate: {...this.articlePaginate}
+    });
   }
 
-  updateArticle(changedArticle: Article) {
-    const index = this.articles.findIndex((({_id}) => _id === changedArticle._id))
-    this.articles.splice(index, 1, changedArticle);
-    this.articlesChanged.next([...this.articles]);
+  deleteArticle(article: Article) {
+    const index = this.articlePaginate.docs.findIndex((({ _id }) => _id === article._id))
+    this.articlePaginate.docs.splice(index, 1)
+    this.articlesChanged.next({
+      type: this.eventTypes.REMOVED,
+      article,
+      paginate: {...this.articlePaginate}
+    })
   }
-
-  deleteArticle(id: string) {
-    const index = this.articles.findIndex((({_id}) => _id === id))
-    this.articles.splice(index, 1)
-    this.articlesChanged.next([...this.articles])
-  }
-
-  // fetch(): Observable<Article[]> {
-  //   return this.http.get(this.baseUri)
-  //     .map(articles => this.collection = articles.json() as Article[])
-  //   // .toPromise()
-  //   // .then(response => response.json().data as Article[])
-  //   // .catch(err => Promise.reject(err.message || err));
-  // }
-
-  // getById(id: string): Observable<Article> {
-  //   return this.http.get(this.baseUri + '/' + id)
-  //     .map(articles => articles.json() as Article)
-  // }
-
-  // getByCode(code: string): Observable<Article[]> {
-  //   return this.http.get(this.baseUri + '/code/' + code)
-  //     .map(articles => articles.json() as Article[])
-  // }
-
-  // getByName(name: string): Observable<Article[]> {
-  //   return this.http.get(this.baseUri + '/name/' + name)
-  //     .map(articles => articles.json() as Article[])
-  // }
-
-  // create(article: Article) {
-  //   return this.http.post(this.baseUri, article)
-  //     .map(res => res.json() as Article)
-  //     .do(article => this.collection.push(article))
-  // }
-
-  // update(article: Article): Observable<Article> {
-  //   return this.http.put(this.baseUri + '/' + article._id, article)
-  //     .map(res => res.json() as Article)
-  //     .do(article => this.collection.splice(this.collection.findIndex(a => a._id === article._id), 1, article))
-  // }
-
-  // remove(article: Article): Observable<Article[]> {
-  //   return this.http.delete(this.baseUri + '/' + article._id)
-  //     .map(articles => articles.json() as Article[])
-  // }
 
 }
