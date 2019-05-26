@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { AddArticleComponent } from './articles/add-article/add-article.component';
-import { ArticleListComponent } from './articles/article-list/article-list.component';
 import { ArticleImportComponent } from './articles/article-import/article-import.component';
 import { CartComponent } from './cart/cart.component';
 import { ArticleSearchComponent } from './articles/article-search/article-search.component';
