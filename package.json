@@ -3,16 +3,18 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
     "start": "pm2 start server/index.js --watch server/ --name warehouse && pm2 logs",
+    "stop": "pm2 stop warehouse",
+    "kill": "pm2 kill",
+    "ng": "ng",
+    "serve": "ng serve",
     "build": "ng build",
     "build-production": "ng build --prod --env=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-electron": "ng build --base-href . && cp src/electron/* dist",
-    "electron": "npm run build-electron && electron dist",
-    "serve": "ng serve"
+    "electron": "npm run build-electron && electron dist"
   },
   "private": true,
   "dependencies": {
