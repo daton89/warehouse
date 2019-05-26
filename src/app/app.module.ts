@@ -26,6 +26,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { CartListComponent } from './cart/cart-list/cart-list.component';
 import { CartItemComponent } from './cart/cart-list/cart-item/cart-item.component';
 import { CartDetailComponent } from './cart/cart-detail/cart-detail.component';
+import { ImagePreviewDirective } from './shared/image-preview.directive';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CartDetailComponent } from './cart/cart-detail/cart-detail.component';
     DropdownDirective,
     CartListComponent,
     CartItemComponent,
-    CartDetailComponent
+    CartDetailComponent,
+    ImagePreviewDirective
     // FileDropDirective,
     // FileSelectDirective
   ],
