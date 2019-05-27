@@ -46,7 +46,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
     this.dataStorageService.checkout(this.cart._id)
       .subscribe(
-        () => alert('checkout success!'),
+        () => {
+          // alert('checkout success!')
+          this.dataStorageService.fetchCart()
+        },
         () => alert('checkout failed!')
       )
   }

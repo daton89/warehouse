@@ -7,11 +7,9 @@
         <button class="btn btn-success" (click)="onCheckout()">checkout</button>
       </div>
       <hr>
-      <p>
-        <ngb-alert [dismissible]="false">
-          <strong>Warning!</strong> Better check yourself, you're not looking too good.
-        </ngb-alert>
-      </p>
+      <!-- <ngb-alert [dismissible]="false">
+        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+      </ngb-alert> -->
       <app-cart-list [products]="cart.products" [cartId]="cart._id"></app-cart-list>
     </div>
 
