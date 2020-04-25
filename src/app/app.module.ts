@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,16 +46,14 @@ import { ImagePreviewDirective } from './shared/image-preview.directive';
     CartItemComponent,
     CartDetailComponent,
     ImagePreviewDirective
-    // FileDropDirective,
-    // FileSelectDirective
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     AppRoutingModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     FileUploadModule
   ],
