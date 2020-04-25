@@ -27,7 +27,7 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
   }
 
   onSearchByName(name: HTMLInputElement) {
-    this.dataStorageService.fetchArticlesByName(
+    this.articlesService.fetchByName(
       name.value,
       {
         page: this.articlePaginate.page, pageSize: this.articlePaginate.pages
@@ -36,7 +36,7 @@ export class ArticleSearchComponent implements OnInit, OnDestroy {
   }
 
   onSearchByCode(code: HTMLInputElement) {
-    this.dataStorageService.fetchArticlesByCode(
+    this.articlesService.fetchByCode(
       code.value,
       {
         page: this.articlePaginate.page, pageSize: this.articlePaginate.pages

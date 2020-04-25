@@ -38,16 +38,16 @@ export class AddArticleComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      this.dataStorageService.updateArticle({
+      this.articleService.update({
         _id: this.id,
         ...this.articleForm.value
       })
-        .subscribe(
-          () => { this.onCancel(); }
-        );
+        .then(() => {
+          this.onCancel();
+        });
     } else {
-      this.dataStorageService.createArticle(this.articleForm.value)
-        .subscribe(
+      this.articleService.create(this.articleForm.value)
+        .then(
           () => { this.onCancel(); }
         );
     }

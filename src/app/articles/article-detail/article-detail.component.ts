@@ -30,8 +30,8 @@ export class ArticleDetailComponent implements OnInit {
         (params: Params) => {
           this.id = params['id']
 
-          this.dataStorageService.getArticleById(this.id)
-            .subscribe(
+          this.articleService.fetchById(this.id)
+            .then(
               (article: Article) => {
                 this.article = article
               }

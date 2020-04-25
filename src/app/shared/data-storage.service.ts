@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 // TODO: http is deprecated, migrate to common/http
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -9,8 +9,6 @@ import { CartService } from 'app/cart/cart.service';
 import { Product } from 'app/shared/product.model';
 import { Cart } from 'app/cart/cart.model';
 import { environment } from '../../environments/environment';
-import { ArticleService, ArticlePaginate } from '../articles/article.service';
-import { Article } from '../articles/article.model';
 
 @Injectable()
 export class DataStorageService {
@@ -19,56 +17,8 @@ export class DataStorageService {
 
   constructor(
     private http: Http,
-    private articleService: ArticleService,
     private cartService: CartService
   ) { }
-
-  createArticle(article: Article): Observable<Article> {
-    return this.http.post(this.articleBaseUri, article)
-      .pipe(
-        map((response: Response) => response.json()),
-        tap((article: Article) => this.articleService.addArticle(article))
-      )
-  }
-
-  fetchArticles(options: { page: number, pageSize: number }): Subscription {
-    return this.http.get(this.articleBaseUri, { params: options })
-      .pipe(map((response: Response) => response.json()))
-      .subscribe(
-        (articlePaginate: ArticlePaginate) => {
-          this.articleService.setArticles(articlePaginate);
-        }
-      );
-  }
-
-  fetchArticlesByCode(code: string, options: { page: number, pageSize: number }): Subscription {
-    return this.http.get(this.articleBaseUri + '/code/' + code, { params: options })
-      .pipe(map((response: Response) => response.json()))
-      .subscribe(
-        (articlePaginate: ArticlePaginate) => this.articleService.setArticles(articlePaginate)
-      )
-  }
-
-  fetchArticlesByName(name: string, options: { page: number, pageSize: number }): Subscription {
-    return this.http.get(this.articleBaseUri + '/name/' + name, { params: options })
-      .pipe(map((response: Response) => response.json()))
-      .subscribe(
-        (articlePaginate: ArticlePaginate) => this.articleService.setArticles(articlePaginate)
-      )
-  }
-
-  getArticleById(id: string): Observable<Article> {
-    return this.http.get(`${this.articleBaseUri}/${id}`)
-      .pipe(map((response: Response) => response.json()))
-  }
-
-  updateArticle(article: Article): Observable<Article> {
-    return this.http.put(`${this.articleBaseUri}/${article._id}`, article)
-      .pipe(
-        map((response: Response) => response.json()),
-        tap((article: Article) => this.articleService.updateArticle(article))
-      )
-  }
 
   fetchCart(): Subscription {
     return this.http.get(this.cartBaseUri)

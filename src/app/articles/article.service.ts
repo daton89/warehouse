@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { Subject } from 'rxjs';
 
+import { environment } from '../../environments/environment';
 import { Article } from './article.model';
 
 export interface ArticlePaginate {
@@ -19,11 +21,78 @@ export interface ArticleEvent {
 
 @Injectable()
 export class ArticleService {
+  private articleBaseUri = `${environment.apiUrl}/api/articles`
   eventTypes = { CREATED: 'created', UPDATED: 'updated', LOADED: 'loaded', REMOVED: 'removed' }
   articlesChanged = new Subject<ArticleEvent>()
   private articlePaginate: ArticlePaginate
 
-  constructor() { }
+  constructor(
+    private http: Http
+  ) { }
+
+  // Service methods
+  dispatch(action: string, payload: any, meta: any) {
+    this[action](payload, meta)
+  }
+
+  commit(method: string, payload: any) {
+    this[method](payload)
+  }
+
+
+  // actions
+  create(payload: Article) {
+    return this.http.post(this.articleBaseUri, payload)
+      .toPromise()
+      .then((response) => {
+        const article: Article = response.json()
+        this.addArticle(article)
+      })
+  }
+
+  update(payload: Article) {
+    return this.http.put(`${this.articleBaseUri}/${payload._id}`, payload)
+      .toPromise()
+      .then((response) => {
+        const article: Article = response.json()
+        this.updateArticle(article)
+      })
+  }
+
+  fetch(options: { page: number, pageSize: number }) {
+    return this.http.get(this.articleBaseUri, { params: options })
+      .toPromise()
+      .then((response) => {
+        const articlePaginate: ArticlePaginate = response.json()
+        this.setArticles(articlePaginate);
+      });
+  }
+
+  fetchById(id: string) {
+    return this.http.get(`${this.articleBaseUri}/${id}`)
+      .toPromise()
+      .then((response) => response.json())
+  }
+
+  fetchByCode(code: string, options: { page: number, pageSize: number }) {
+    return this.http.get(this.articleBaseUri + '/code/' + code, { params: options })
+      .toPromise()
+      .then(
+        (response) => {
+          const articlePaginate: ArticlePaginate = response.json()
+          this.setArticles(articlePaginate)
+        }
+      )
+  }
+
+  fetchByName(name: string, options: { page: number, pageSize: number }) {
+    return this.http.get(this.articleBaseUri + '/name/' + name, { params: options })
+      .toPromise()
+      .then((response) => {
+        const articlePaginate: ArticlePaginate = response.json()
+         this.setArticles(articlePaginate)
+      })
+  }
 
   // Methods for the Articles' collection
   setArticles(articlePaginate: ArticlePaginate) {

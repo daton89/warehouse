@@ -37,7 +37,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
         }
       )
 
-    this.dataStorageService.fetchArticles({
+    this.articleService.fetch({
       page: this.page,
       pageSize: this.pageSize
     })
@@ -48,7 +48,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(page: number) {
-    this.dataStorageService.fetchArticles({
+    this.articleService.fetch({
       page,
       pageSize: this.pageSize
     })
