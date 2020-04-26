@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -27,7 +27,7 @@ export class ArticleService {
   private articlePaginate: ArticlePaginate
 
   constructor(
-    private http: Http
+    private http: HttpClient
   ) { }
 
   // Service methods
@@ -44,8 +44,7 @@ export class ArticleService {
   create(payload: Article) {
     return this.http.post(this.articleBaseUri, payload)
       .toPromise()
-      .then((response) => {
-        const article: Article = response.json()
+      .then((article: Article) => {
         this.addArticle(article)
       })
   }
@@ -53,17 +52,19 @@ export class ArticleService {
   update(payload: Article) {
     return this.http.put(`${this.articleBaseUri}/${payload._id}`, payload)
       .toPromise()
-      .then((response) => {
-        const article: Article = response.json()
+      .then((article: Article) => {
         this.updateArticle(article)
       })
   }
 
   fetch(options: { page: number, pageSize: number }) {
-    return this.http.get(this.articleBaseUri, { params: options })
+    const params = new HttpParams()
+    .set('page', `${options.page}`)
+    .set('pageSize', `${options.pageSize}`)
+
+    return this.http.get(this.articleBaseUri, { params })
       .toPromise()
-      .then((response) => {
-        const articlePaginate: ArticlePaginate = response.json()
+      .then((articlePaginate: ArticlePaginate) => {
         this.setArticles(articlePaginate);
       });
   }
@@ -71,25 +72,30 @@ export class ArticleService {
   fetchById(id: string) {
     return this.http.get(`${this.articleBaseUri}/${id}`)
       .toPromise()
-      .then((response) => response.json())
   }
 
   fetchByCode(code: string, options: { page: number, pageSize: number }) {
-    return this.http.get(this.articleBaseUri + '/code/' + code, { params: options })
+    const params = new HttpParams()
+    .set('page', `${options.page}`)
+    .set('pageSize', `${options.pageSize}`)
+
+    return this.http.get(this.articleBaseUri + '/code/' + code, { params })
       .toPromise()
       .then(
-        (response) => {
-          const articlePaginate: ArticlePaginate = response.json()
+        (articlePaginate: ArticlePaginate) => {
           this.setArticles(articlePaginate)
         }
       )
   }
 
   fetchByName(name: string, options: { page: number, pageSize: number }) {
-    return this.http.get(this.articleBaseUri + '/name/' + name, { params: options })
+    const params = new HttpParams()
+    .set('page', `${options.page}`)
+    .set('pageSize', `${options.pageSize}`)
+
+    return this.http.get(this.articleBaseUri + '/name/' + name, { params })
       .toPromise()
-      .then((response) => {
-        const articlePaginate: ArticlePaginate = response.json()
+      .then((articlePaginate: ArticlePaginate) => {
          this.setArticles(articlePaginate)
       })
   }

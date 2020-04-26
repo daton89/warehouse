@@ -1,7 +1,6 @@
 
 import { Injectable } from '@angular/core';
-// TODO: http is deprecated, migrate to common/http
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -16,13 +15,12 @@ export class DataStorageService {
   private cartBaseUri = `${environment.apiUrl}/api/carts`
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private cartService: CartService
   ) { }
 
   fetchCart(): Subscription {
     return this.http.get(this.cartBaseUri)
-      .pipe(map((res: Response) => res.json()))
       .subscribe((cart: Cart) => this.cartService.setCart(cart))
   }
 
@@ -41,7 +39,6 @@ export class DataStorageService {
 
     return this.http.put(`${this.cartBaseUri}/push/${cart._id}`, product)
       .pipe(
-        map((res: Response) => res.json()),
         tap(
           (cart: Cart) => this.cartService.setCart(cart)
         )
@@ -51,7 +48,6 @@ export class DataStorageService {
   updateAmount(cartId: string, product: Product): Observable<Cart> {
     return this.http.put(`${this.cartBaseUri}/set-quantity/${cartId}`, product)
       .pipe(
-        map((res: Response) => res.json()),
         tap(
           (cart: Cart) => this.cartService.setCart(cart)
         )
@@ -60,9 +56,6 @@ export class DataStorageService {
 
   removeProduct(cartId: string, product: Product): Subscription {
     return this.http.put(`${this.cartBaseUri}/pull/${cartId}`, product)
-      .pipe(
-        map((res: Response) => res.json())
-      )
       .subscribe(
         (cart: Cart) => this.cartService.setCart(cart)
       )
@@ -71,7 +64,6 @@ export class DataStorageService {
   checkout(cartId: string): Observable<Cart> {
     return this.http.get(`${this.cartBaseUri}/checkout/${cartId}`)
       .pipe(
-        map((res: Response) => res.json()),
         tap(
           (cart: Cart) => this.cartService.setCart(cart)
         )
