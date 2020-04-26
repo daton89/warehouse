@@ -93,7 +93,7 @@
         <div class="col" formArrayName="tags">
           <div
             class="row"
-            *ngFor="let tagCtrl of articleForm.get('tags').controls; let i = index"
+            *ngFor="let tagCtrl of articleFormData.controls; let i = index"
             [formGroupName]="i"
             style="margin-top: 10px;">
             <div class="col-xs-8">
