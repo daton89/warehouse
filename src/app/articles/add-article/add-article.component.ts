@@ -25,6 +25,8 @@ export class AddArticleComponent implements OnInit {
     private router: Router
   ) { }
 
+  get articleFormData() { return <FormArray>this.articleForm.get('Data'); }
+
   ngOnInit() {
     this.route.params
       .subscribe(

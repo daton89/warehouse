@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -14,7 +15,6 @@ import { AddArticleComponent } from './articles/add-article/add-article.componen
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticleService } from 'app/articles/article.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleImportComponent } from './articles/article-import/article-import.component';
 import { ArticleItemComponent } from './articles/article-list/article-item/article-item.component';
 import { ArticlesComponent } from './articles/articles.component';
@@ -54,7 +54,7 @@ import { ImagePreviewDirective } from './shared/image-preview.directive';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule.forRoot(),
+    NgbModule,
     FileUploadModule
   ],
   providers: [ArticleService, CartService, DataStorageService],
