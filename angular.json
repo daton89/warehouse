@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-electron": {
+    "warehouse": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -56,18 +56,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-electron:build"
+            "browserTarget": "warehouse:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-electron:build:production"
+              "browserTarget": "warehouse:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-electron:build"
+            "browserTarget": "warehouse:build"
           }
         },
         "test": {
@@ -100,7 +100,7 @@
         }
       }
     },
-    "angular-electron-e2e": {
+    "warehouse-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -109,7 +109,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "angular-electron:serve"
+            "devServerTarget": "warehouse:serve"
           }
         },
         "lint": {
@@ -124,7 +124,7 @@
       }
     }
   },
-  "defaultProject": "angular-electron",
+  "defaultProject": "warehouse",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
