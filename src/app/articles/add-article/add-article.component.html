@@ -3,23 +3,20 @@
     <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col">
-          <button
-            type="submit"
-            class="btn btn-success"
-            [disabled]="!articleForm.valid">Save</button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          <button type="submit" class="btn btn-success" [disabled]="!articleForm.valid">
+            Save
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">
+            Cancel
+          </button>
         </div>
       </div>
-      <hr>
+      <hr />
       <div class="row">
         <div class="col">
           <div class="form-group">
             <label for="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              formControlName="name"
-              class="form-control">
+            <input type="text" id="name" formControlName="name" class="form-control" />
           </div>
         </div>
       </div>
@@ -27,18 +24,13 @@
         <div class="col">
           <div class="form-group">
             <label for="image">Image URL</label>
-            <input
-              type="text"
-              id="image"
-              formControlName="image"
-              class="form-control"
-              #image>
+            <input type="text" id="image" formControlName="image" class="form-control" #image />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <img [src]="image.value" class="img-responsive" style="max-height: 300px;">
+          <img [src]="image.value" class="img-responsive" style="max-height: 300px;" />
         </div>
       </div>
       <div class="row">
@@ -50,7 +42,8 @@
               id="description"
               class="form-control"
               formControlName="description"
-              rows="6"></textarea>
+              rows="6"
+            ></textarea>
           </div>
         </div>
       </div>
@@ -58,34 +51,19 @@
         <div class="col">
           <div class="form-group">
             <label for="qty">Quantity</label>
-            <input
-              type="text"
-              id="qty"
-              class="form-control"
-              formControlName="qty"
-              />
+            <input type="text" id="qty" class="form-control" formControlName="qty" />
           </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label for="code">Code</label>
-            <input
-              type="text"
-              id="code"
-              class="form-control"
-              formControlName="code"
-              />
+            <input type="text" id="code" class="form-control" formControlName="code" />
           </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label for="price">Unit Price</label>
-            <input
-              type="text"
-              id="price"
-              class="form-control"
-              formControlName="price"
-              />
+            <input type="text" id="price" class="form-control" formControlName="price" />
           </div>
         </div>
       </div>
@@ -93,29 +71,25 @@
         <div class="col" formArrayName="tags">
           <div
             class="row"
-            *ngFor="let tagCtrl of articleFormData.controls; let i = index"
+            *ngFor="let tagCtrl of articleForm.get('tags')['controls']; index as i"
             [formGroupName]="i"
-            style="margin-top: 10px;">
+            style="margin-top: 10px;"
+          >
             <div class="col-xs-8">
-              <input
-                type="text"
-                class="form-control"
-                formControlName="name">
+              <input type="text" class="form-control" formControlName="name" />
             </div>
             <div class="col-2">
-              <button
-                type="button"
-                class="btn btn-danger"
-                (click)="onDeleteTag(i)">X</button>
+              <button type="button" class="btn btn-danger" (click)="onDeleteTag(i)">
+                X
+              </button>
             </div>
           </div>
-          <hr>
+          <hr />
           <div class="row">
             <div class="col">
-              <button
-                type="button"
-                class="btn btn-success"
-                (click)="onAddTag()">Add Tag</button>
+              <button type="button" class="btn btn-success" (click)="onAddTag()">
+                Add Tag
+              </button>
             </div>
           </div>
         </div>
