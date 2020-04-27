@@ -1,45 +1,39 @@
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs'
 
-import { ArticleEvent } from './../article.service';
-import { ArticleService } from '../article.service';
-import { Article } from 'app/articles/article.model';
-import { DataStorageService } from 'app/shared/data-storage.service';
+import { ArticleEvent } from './../article.service'
+import { ArticleService } from '../article.service'
+import { Article } from 'app/articles/article.model'
 
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.css']
+  styleUrls: ['./article-list.component.css'],
 })
 export class ArticleListComponent implements OnInit, OnDestroy {
   subscription: Subscription
   articles: Article[]
-  pageSize: number = 5
-  page: number = 1
-  collectionSize: number = 0
+  pageSize = 5
+  page = 1
+  collectionSize = 0
 
   constructor(
     private articleService: ArticleService,
-    private dataStorageService: DataStorageService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.subscription = this.articleService.articlesChanged
-      .subscribe(
-        (event: ArticleEvent) => {
-          console.log(event)
-          this.articles = event.paginate.docs
-          this.collectionSize = event.paginate.total
-        }
-      )
+    this.subscription = this.articleService.articlesChanged.subscribe((event: ArticleEvent) => {
+      this.articles = event.paginate.docs
+      this.collectionSize = event.paginate.total
+    })
 
     this.articleService.fetch({
       page: this.page,
-      pageSize: this.pageSize
+      pageSize: this.pageSize,
     })
   }
 
@@ -50,12 +44,11 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   onPageChange(page: number) {
     this.articleService.fetch({
       page,
-      pageSize: this.pageSize
+      pageSize: this.pageSize,
     })
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe()
   }
-
 }
