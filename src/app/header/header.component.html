@@ -1,6 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Warehouse</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -9,10 +17,15 @@
         <a class="nav-link" routerLink="/dashboard">Home</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/articles">Articles <span class="badge badge-primary">{{articlesCount}}</span></a>
+        <a class="nav-link" routerLink="/articles"
+          >Articles <span class="badge badge-primary">{{ articlesCount }}</span></a
+        >
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/cart">Shopping List <span class="badge badge-primary">{{cartProductsCount}}</span></a>
+        <a class="nav-link" routerLink="/cart"
+          >Shopping List
+          <span class="badge badge-primary" #shoppingCartBadge>{{ cartProductsCount }}</span></a
+        >
       </li>
     </ul>
   </div>

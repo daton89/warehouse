@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 .navbar-offset {
-    margin-top: 16px;
+  margin-top: 16px;
+}
+
+.flying {
+  transition: all ease-in-out 0.5s;
+  position: absolute;
+  height: '150px';
+  top: 50px;
+  left: 50px;
+  opacity: 0.5;
 }

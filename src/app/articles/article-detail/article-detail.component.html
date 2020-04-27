@@ -1,44 +1,41 @@
 <div *ngIf="article; else noArticles">
   <div class="d-flex flex-row justify-content-between">
-
-    <h4>{{ article.name }} ({{article.qty}}) {{article.code}}</h4>
+    <h4>{{ article.name }} ({{ article.qty }}) {{ article.code }}</h4>
 
     <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Manage Article</button>
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+        Manage Article
+      </button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
         <button ngbDropdownItem (click)="onEditArticle()">Edit Article</button>
         <button ngbDropdownItem (click)="onDeleteArticle(article)">Delete Article</button>
       </div>
     </div>
-
   </div>
 
-  <hr>
+  <hr />
 
   <div class="row">
     <div class="col">
-      <img 
-        appImagePreview
-        [src]="article.image"
-        class="img-responsive" 
-        alt="{{ article.name }}">
+      <img appImagePreview [src]="article.image" class="img-responsive" alt="{{ article.name }}" />
     </div>
   </div>
-  <hr>
+  <hr />
   <div class="d-flex justify-content-between">
     <span> description </span>
     <span> {{ article.description }} </span>
   </div>
   <div class="d-flex justify-content-between">
     <span> price </span>
-    <span> {{ article.price | currency:'EUR':'symbol' }} </span>
+    <span> {{ article.price | currency: 'EUR':'symbol' }} </span>
   </div>
   <div class="d-flex justify-content-between">
     <span> availability </span>
     <span> {{ article.qty }} </span>
   </div>
   <div class="d-flex justify-content-between">
-    <input type="number"
+    <input
+      type="number"
       class="form-control"
       style="max-width: 75px;"
       name="productQty"
@@ -46,11 +43,14 @@
       aria-describedby="quantity"
       placeholder="quantity"
       #quantityInput
-      value="1">
-    <button (click)="onAddToShoppingList(quantityInput)" class="btn btn-success">To Shopping List</button>
+      value="1"
+    />
+    <button (click)="onAddToShoppingList(quantityInput)" class="btn btn-success" appFlyingAddToCart>
+      To Shopping List
+    </button>
   </div>
-      <!-- <small id="chooseQuantity" class="form-text text-muted">choose the quantity</small> -->
-  <hr>
+  <!-- <small id="chooseQuantity" class="form-text text-muted">choose the quantity</small> -->
+  <hr />
   <div class="row">
     <div class="col">
       <span class="badge badge-info" *ngFor="let tag of article.tags">{{ tag.name }}</span>
