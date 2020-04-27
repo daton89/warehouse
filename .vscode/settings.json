@@ -1,4 +1,5 @@
 {
-    "files.autoSave": "onWindowChange",
-    "editor.suggest.showReferences": true
+  "files.autoSave": "onWindowChange",
+  "editor.suggest.showReferences": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
