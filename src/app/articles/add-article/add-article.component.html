@@ -3,7 +3,7 @@
     <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-success" [disabled]="!articleForm.valid">
+          <button type="submit" class="btn btn-success" [disabled]="articleForm.invalid">
             Save
           </button>
           <button type="button" class="btn btn-danger" (click)="onCancel()">
@@ -42,7 +42,7 @@
               id="description"
               class="form-control"
               formControlName="description"
-              rows="6"
+              rows="3"
             ></textarea>
           </div>
         </div>
