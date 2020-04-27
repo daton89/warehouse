@@ -64,6 +64,7 @@
     "connect-livereload": "^0.6.0",
     "cors": "^2.8.3",
     "electron": "^1.6.10",
+    "husky": "^4.2.5",
     "jasmine-core": "^3.4.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^4.1.0",
@@ -72,12 +73,31 @@
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "lint-staged": "^10.1.7",
     "pm2": "^3.5.0",
+    "prettier": "^2.0.5",
     "protractor": "^5.4.2",
     "rxjs-tslint": "^0.1.7",
     "ts-node": "~2.0.0",
     "tslint": "^5.16.0",
     "typescript": "3.8.3",
     "webpack": "^4.32.2"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,css,md}": "prettier --write"
   }
 }

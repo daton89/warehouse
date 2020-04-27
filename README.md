@@ -1,33 +1,64 @@
-# AngularElectron
+# Warehouse
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
+This is a example application is part of my experiments.
 
-## Package Angular-CLI application into Electron 
+## Development server
 
-run `npm i -D electron` and  add `mkdir src/electron`
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+## Code Styles and Guidelines
+
+We are using Prettier as formatter, so I needed to setup a precommit hook using husky to avoid formatting issues.
+
+[Resources](https://prettier.io/docs/en/precommit.html)
+
+## Package Angular-CLI application into Electron
+
+run `npm i -D electron` and add `mkdir src/electron`
 
 ```json
 // src/electron/package.json
 {
-  "name"    : "angular-electron",
-  "version" : "0.1.0",
-  "main"    : "electron.js"
+  "name": "angular-electron",
+  "version": "0.1.0",
+  "main": "electron.js"
 }
 ```
+
 Now add file `electron.js`, it is the script indicating how the application should behave while creating the main window, and how it should handle the different events such as when the windows are closing.
 
 ```js
 // src/electron/electron.js
 
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow({width: 800, height: 600})
+  win = new BrowserWindow({ width: 800, height: 600 })
 
   // and load the index.html of the app.
   win.loadURL(`file://${__dirname}/index.html`)
@@ -86,6 +117,7 @@ The first one is a simple ng build followed by a copy of all the files contained
   },
 [...]
 ```
+
 Now, go ahead, and run:
 
 `npm run electron`
@@ -94,30 +126,8 @@ And you should see your Angular app packaged into a desktop application:
 
 ![angular electron](https://i1.wp.com/www.blog.bdauria.com/wp-content/uploads/2016/10/AngularElectron-2016-10-12-13-01-43.png?w=874)
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
