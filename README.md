@@ -1,6 +1,8 @@
 # Warehouse
 
-This is a example application is part of my experiments.
+This is an Angular 13 application with Electron. I built this application as a sentinel project to make experiments.
+
+I
 
 ## Development server
 
