@@ -12,6 +12,7 @@ const config = {
       uri: process.env.MONGO_URI || 'mongodb://localhost/warehouse-production',
       options: {
         useMongoClient: true,
+        useUnifiedTopology: true,
       },
     },
     port: process.env.PORT || 9999,
@@ -23,6 +24,7 @@ const config = {
       uri: process.env.MONGO_URI || 'mongodb://localhost/warehouse-development',
       options: {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
       },
     },
     port: process.env.PORT || 9999,
@@ -34,6 +36,7 @@ const config = {
       uri: process.env.MONGO_URI || 'mongodb://localhost/warehouse-test',
       options: {
         useMongoClient: true,
+        useUnifiedTopology: true,
       },
     },
     port: process.env.PORT || 9999,
