@@ -26,10 +26,16 @@ export class AddArticleComponent implements OnInit {
   // }
 
   ngOnInit() {
+    this.initForm()
     this.route.params.subscribe((params: Params) => {
+      console.log('params =>', params)
       this.id = params['id']
-      this.editMode = params['id'] != null
-      this.initForm()
+      this.editMode = params['id'] !== null
+      if (this.articleService.getArticles().length === 0) {
+        this.articleService.fetchById(params.id).then(() => {
+          this.initForm()
+        })
+      }
     })
   }
 
@@ -77,9 +83,9 @@ export class AddArticleComponent implements OnInit {
     let articlePrice = 0
     const articleTags = new FormArray([])
 
+    console.log('article', this.articleService.getArticles())
     if (this.editMode) {
       const article: Article = this.articleService.getArticle(this.id)
-
       articleName = article.name
       articleImagePath = article.image
       articleDescription = article.description

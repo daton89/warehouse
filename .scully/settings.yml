@@ -1,0 +1,11 @@
+identifier: k0x9s0r8797fh7c2
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: warehouse
+homeFolder: /Users/dangeloan/Coding/warehouse
+distFolder: dist/warehouse
+outDir: /Users/dangeloan/Coding/warehouse/dist/static
+handle404: ''
+allowErrorCollect: true
