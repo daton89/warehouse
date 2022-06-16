@@ -72,7 +72,7 @@
     "codelyzer": "^6.0.0",
     "connect-livereload": "^0.6.0",
     "cors": "^2.8.3",
-    "electron": "^1.6.10",
+    "electron": "^15.5.5",
     "husky": "^4.2.5",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
